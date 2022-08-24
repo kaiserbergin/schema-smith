@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Domain" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Graphr.Neo4j" Version="0.1.2" />
+    </ItemGroup>
+
 </Project>

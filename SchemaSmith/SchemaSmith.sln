@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith", "SchemaSmith\SchemaSmith.csproj", "{12FAA2E7-3F62-4A51-B27C-06ABCAA53A73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith.Tests", "SchemaSmith.Tests\SchemaSmith.Tests.csproj", "{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{12FAA2E7-3F62-4A51-B27C-06ABCAA53A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12FAA2E7-3F62-4A51-B27C-06ABCAA53A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12FAA2E7-3F62-4A51-B27C-06ABCAA53A73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
