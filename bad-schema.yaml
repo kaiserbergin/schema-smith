@@ -1,0 +1,101 @@
+nodes:
+  - label: Test
+    properties:
+      - name: id
+        type: rainbow
+      - name: stringProp
+        type: string
+      - name: intProp
+        type: integer
+      - name: floatProp
+        type: float
+      - name: boolProp
+        type: boolean
+      - name: pointProp
+        type: point
+      - name: dateProp
+        type: date
+      - name: timeProp
+        type: time
+      - name: localTimeProp
+        type: localTime
+      - name: dateTimeProp
+        type: dateTime
+      - name: localDateTimeProp
+        type: localDateTime
+      - name: durationProp
+        type: duration
+  - label: AnotherLabel
+    properties:
+      - name: id
+        type: pop
+
+relationships:
+  - name: SELF_CARE
+    properties:
+      - name: relProp
+        type: string
+    connections:
+      - Test->Test
+  - name: RELATED_TO
+    connections:
+      - Test->AnotherLabel
+      - AnotherLabel->Test
+      - AnotherLabel->AnotherLabel
+
+constraints:
+  - name: AnotherLabel_NK
+    type: node-key
+    entity:
+      type: node
+      name: AnotherLabel
+      properties:
+        - id
+  - name: SELF_CARE_EC
+    type: existence
+    entity:
+      type: relationship
+      name: SELF_CARE
+      properties:
+        - stringProp
+        - intProp
+  - name: Test_UC
+    type: unique
+    entity:
+      type: node
+      name: Test
+      properties:
+        - id
+
+indexes:
+  - name: Test_BI
+    type: b-tree
+    entity:
+      type: node
+      name: Test
+      properties:
+        - id
+        - intProp
+  - name: SELF_CARE_TXT
+    type: text
+    entity:
+      type: relationship
+      name: SELF_CARE
+      properties:
+        - relProp
+  - name: Test_RI
+    type: range
+    entity:
+      type: node
+      name: Test
+      properties:
+        - id
+        - intProp
+        - floatProp
+  - name: Test_POINT
+    type: point
+    entity:
+      type: node
+      name: Test
+      properties:
+        - pointProp

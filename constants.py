@@ -1,0 +1,1 @@
+SCHEMA_SMITH_LABEL = "SchemaSmith"
