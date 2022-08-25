@@ -7,11 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Domain" />
+      <PackageReference Include="Graphr.Neo4j" Version="0.1.2" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Graphr.Neo4j" Version="0.1.2" />
+      <None Update="Schemas\neo-schema.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="CypherBuilder" />
+      <Folder Include="Linting" />
     </ItemGroup>
 
 </Project>
