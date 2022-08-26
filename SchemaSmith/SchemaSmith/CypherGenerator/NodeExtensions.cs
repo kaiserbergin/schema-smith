@@ -9,7 +9,7 @@ internal static class NodeExtensions
     {
         var sb = new StringBuilder();
 
-        sb.Append($"CREATE (n:{node.Label}:{Constants.SCHEMA_SMITH_LABEL_NAME})");
+        sb.Append($"CREATE (n:{node.Label}:{SchemaSmithConstants.SCHEMA_SMITH_ENTITY_IDENTIFIER})");
 
         foreach (var property in node.Properties)
         {

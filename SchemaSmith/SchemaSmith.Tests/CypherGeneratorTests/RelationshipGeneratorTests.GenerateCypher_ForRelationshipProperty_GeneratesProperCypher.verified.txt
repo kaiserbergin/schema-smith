@@ -1,0 +1,21 @@
+﻿[  
+CREATE (n1:Node:SchemaSmith)-[r:TEST_RELATIONSHIP]->(n2:Node:SchemaSmith)
+SET r.propOne = "string"
+SET r.propTwo = false;
+  
+CREATE (n1:Node:SchemaSmith)<-[r:TEST_RELATIONSHIP]-(n2:Node:SchemaSmith)
+SET r.propOne = "string"
+SET r.propTwo = false;
+  
+CREATE (n1:Node:SchemaSmith)-[r:TEST_RELATIONSHIP]->(n2:OtherNode:SchemaSmith)
+SET r.propOne = "string"
+SET r.propTwo = false;
+  
+CREATE (n1:OtherNode:SchemaSmith)-[r:TEST_RELATIONSHIP]->(n2:Node:SchemaSmith)
+SET r.propOne = "string"
+SET r.propTwo = false;
+  
+CREATE (n1:Node:SchemaSmith)<-[r:TEST_RELATIONSHIP]-(n2:Directionless:SchemaSmith)
+SET r.propOne = "string"
+SET r.propTwo = false;
+]
