@@ -1,0 +1,23 @@
+﻿CREATE (n:Node:SchemaSmith)
+SET n.x = "string"
+SET n.x = 0
+SET n.x = 1.0
+SET n.x = false
+SET n.x = point({ latitude: 0, longitude: 0 })
+SET n.x = date()
+SET n.x = time()
+SET n.x = localtime()
+SET n.x = datetime()
+SET n.x = localdatetime()
+SET n.x = duration('P14DT16H12M')
+SET n.x = [ "string" ]
+SET n.x = [ 0 ]
+SET n.x = [ 1.0 ]
+SET n.x = [ false ]
+SET n.x = [ point({ latitude: 0, longitude: 0 }) ]
+SET n.x = [ date() ]
+SET n.x = [ time() ]
+SET n.x = [ localtime() ]
+SET n.x = [ datetime() ]
+SET n.x = [ localdatetime() ]
+SET n.x = [ duration('P14DT16H12M') ];

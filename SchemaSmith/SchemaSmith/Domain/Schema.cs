@@ -1,3 +1,5 @@
+using System.Runtime.Serialization;
+
 namespace SchemaSmith.Domain;
 
 internal class Server
@@ -92,11 +94,11 @@ internal class Constraint
 
 internal enum ConstraintType
 {
-    [System.Runtime.Serialization.EnumMember(Value = @"node-key")]
+    [EnumMember(Value = @"node-key")]
     NodeKey,
-    [System.Runtime.Serialization.EnumMember(Value = @"unique")]
+    [EnumMember(Value = @"unique")]
     Unique,
-    [System.Runtime.Serialization.EnumMember(Value = @"existence")]
+    [EnumMember(Value = @"existence")]
     Existence
 }
 
@@ -120,13 +122,13 @@ internal class Index
 
 internal enum IndexType
 {
-    [System.Runtime.Serialization.EnumMember(Value = @"b-tree")]
+    [EnumMember(Value = @"b-tree")]
     BTree,
-    [System.Runtime.Serialization.EnumMember(Value = @"text")]
+    [EnumMember(Value = @"text")]
     Text,
-    [System.Runtime.Serialization.EnumMember(Value = @"point")]
+    [EnumMember(Value = @"point")]
     Point,
-    [System.Runtime.Serialization.EnumMember(Value = @"range")]
+    [EnumMember(Value = @"range")]
     Range,
 }
 
@@ -143,7 +145,7 @@ internal class Property
     /// <summary>
     /// Property data type.
     /// </summary>
-    internal PropertiesType Type { get; init; } = PropertiesType.String;
+    internal PropertyType Type { get; init; } = PropertyType.String;
 }
 
 internal class Entity
@@ -163,98 +165,98 @@ internal class Entity
 
 internal enum EntityType
 {
-    [System.Runtime.Serialization.EnumMember(Value = @"node")]
+    [EnumMember(Value = @"node")]
     Node,
-    [System.Runtime.Serialization.EnumMember(Value = @"relationship")]
+    [EnumMember(Value = @"relationship")]
     Relationship
 }
 
-internal enum PropertiesType
+internal enum PropertyType
 {
-    [System.Runtime.Serialization.EnumMember(Value = @"string")]
+    [EnumMember(Value = @"string")]
     String = 0,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"integer")]
+    [EnumMember(Value = @"integer")]
     Integer = 1,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"float")]
+    [EnumMember(Value = @"float")]
     Float = 2,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"boolean")]
+    [EnumMember(Value = @"boolean")]
     Boolean = 3,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"point")]
+    [EnumMember(Value = @"point")]
     Point = 4,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"date")]
+    [EnumMember(Value = @"date")]
     Date = 5,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"time")]
+    [EnumMember(Value = @"time")]
     Time = 6,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"localTime")]
+    [EnumMember(Value = @"localTime")]
     LocalTime = 7,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"dateTime")]
+    [EnumMember(Value = @"dateTime")]
     DateTime = 8,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"localDateTime")]
+    [EnumMember(Value = @"localDateTime")]
     LocalDateTime = 9,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"duration")]
+    [EnumMember(Value = @"duration")]
     Duration = 10,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(string)")]
+    [EnumMember(Value = @"list(string)")]
     ListString = 11,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(integer)")]
+    [EnumMember(Value = @"list(integer)")]
     ListInteger = 12,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(float)")]
+    [EnumMember(Value = @"list(float)")]
     ListFloat = 13,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(boolean)")]
+    [EnumMember(Value = @"list(boolean)")]
     ListBoolean = 14,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(point)")]
+    [EnumMember(Value = @"list(point)")]
     ListPoint = 15,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(date)")]
+    [EnumMember(Value = @"list(date)")]
     ListDate = 16,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(time)")]
+    [EnumMember(Value = @"list(time)")]
     ListTime = 17,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(localTime)")]
+    [EnumMember(Value = @"list(localTime)")]
     ListLocalTime = 18,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(dateTime)")]
+    [EnumMember(Value = @"list(dateTime)")]
     ListDateTime = 19,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(localDateTime)")]
+    [EnumMember(Value = @"list(localDateTime)")]
     ListLocalDateTime = 20,
 
 
-    [System.Runtime.Serialization.EnumMember(Value = @"list(duration)")]
+    [EnumMember(Value = @"list(duration)")]
     ListDuration = 21,
 }

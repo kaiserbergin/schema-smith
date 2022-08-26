@@ -1,0 +1,51 @@
+﻿using System;
+using System.Linq;
+using SchemaSmith.CypherGenerator;
+using SchemaSmith.Domain;
+using VerifyXunit;
+using Xunit;
+
+namespace SchemaSmith.Tests.CypherGeneratorTests;
+
+[UsesVerify]
+public class NodeExtensionTests
+{
+    [Fact]
+    public async void GenerateCypher_WithProperties_GeneratesProperCypher()
+    {
+        // Arrange
+        var node = new Node
+        {
+            Label = "Node",
+            Properties = Enum.GetValues<PropertyType>()
+                .Select(x => new Property
+                {
+                    Name = nameof(x),
+                    Type = x
+                })
+        };
+
+        // Act
+        var cypherStatement = node.GenerateCypher();
+
+        // Assert
+        await Verifier.Verify(cypherStatement);
+    }
+    
+    [Fact]
+    public async void GenerateCypher_WithoutProperties_GeneratesProperCypher()
+    {
+        // Arrange
+        var node = new Node
+        {
+            Label = "Node",
+            Properties = Enumerable.Empty<Property>()
+        };
+
+        // Act
+        var cypherStatement = node.GenerateCypher();
+
+        // Assert
+        await Verifier.Verify(cypherStatement);
+    }
+}
