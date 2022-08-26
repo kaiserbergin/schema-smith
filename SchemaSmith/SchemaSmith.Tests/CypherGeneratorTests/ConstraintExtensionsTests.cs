@@ -56,6 +56,29 @@ public class ConstraintExtensionsTests
     }
     
     [Fact]
+    public async void GenerateCypher_WithExistenceConstraint_CreatesProperCypher()
+    {
+        // Arrange
+        var constraint = new Constraint
+        {
+            Name = nameof(GenerateCypher_WithExistenceConstraint_CreatesProperCypher),
+            Type = ConstraintType.Existence,
+            Entity = new Entity
+            {
+                Type = EntityType.Node,
+                Id = "PokemonTrainer",
+                Properties = new[] { "trainerId" }
+            }
+        };
+        
+        // Act
+        var cypherStatement = constraint.GenerateCypher();
+        
+        // Assert
+        await Verifier.Verify(cypherStatement);
+    }
+    
+    [Fact]
     public async void GenerateCypher_WithRelationshipPropertyExistenceConstraint_CreatesProperCypher()
     {
         // Arrange

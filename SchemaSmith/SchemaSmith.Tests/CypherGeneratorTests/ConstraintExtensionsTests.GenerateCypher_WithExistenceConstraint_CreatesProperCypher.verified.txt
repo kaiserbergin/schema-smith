@@ -1,0 +1,6 @@
+﻿CREATE CONSTRAINT GenerateCypher_WithExistenceConstraint_CreatesProperCypher IF NOT EXISTS
+FOR (n:PokemonTrainer) 
+ REQUIRE (
+ n.trainerId
+)
+IS NOT NULL;
