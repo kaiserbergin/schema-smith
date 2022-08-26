@@ -33,6 +33,29 @@ public class ConstraintExtensionsTests
     }
     
     [Fact]
+    public async void GenerateCypher_WithUniqueKeyConstraint_CreatesProperCypher()
+    {
+        // Arrange
+        var constraint = new Constraint
+        {
+            Name = nameof(GenerateCypher_WithUniqueKeyConstraint_CreatesProperCypher),
+            Type = ConstraintType.Unique,
+            Entity = new Entity
+            {
+                Type = EntityType.Node,
+                Id = "PokemonTrainer",
+                Properties = new[] { "trainerId", "internationalId" }
+            }
+        };
+        
+        // Act
+        var cypherStatement = constraint.GenerateCypher();
+        
+        // Assert
+        await Verifier.Verify(cypherStatement);
+    }
+    
+    [Fact]
     public async void GenerateCypher_WithRelationshipPropertyExistenceConstraint_CreatesProperCypher()
     {
         // Arrange
