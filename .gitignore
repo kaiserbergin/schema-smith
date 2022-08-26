@@ -6,11 +6,8 @@
 # remove mac things
 **/.DS_Store
 
-# Docker test result output
-**/docker-test-results
-
-#ibm drivers
-**/clidriver
+# Verify Test Files
+*.received.txt
 
 # NBomber Test Results
 **/NBomber_Reports

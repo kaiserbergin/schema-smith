@@ -5,37 +5,46 @@ namespace SchemaSmith.CypherGenerator;
 
 public static class ConstraintExtensions
 {
-    private static readonly Dictionary<string, string> SuffixDict = new Dictionary<string, string>
+    private static readonly Dictionary<ConstraintType, string> SuffixDict = new ()
     {
         {
-            "node-key", "IS NODE KEY"
+            ConstraintType.NodeKey, "IS NODE KEY"
         },
         {
-            "unique", "IS UNIQUE"
+            ConstraintType.Unique ,"IS UNIQUE"
         },
         {
-            "existence", "IS NOT NULL"
+            ConstraintType.Existence, "IS NOT NULL"
         }
     };
 
     public static string GenerateCypher(this Constraint constraint) =>
         constraint.Entity.Type switch
         {
-            EntityType.Node => "asdf",
-            EntityType.Relationship => "asdf"
+            EntityType.Node => CreateNodeConstraintCypher(constraint),
+            EntityType.Relationship => CreateRelationshipConstraintCypher(constraint),
+            _ => throw new ArgumentOutOfRangeException()
         };
 
-    private static string CreateNodeKeyConstraintCypher(Constraint constraint)
+    private static string CreateRelationshipConstraintCypher(Constraint constraint)
     {
-        if (constraint.Type == "existence")
-            return CreateExistenceConstraintCypher(Constraint constraint);
-
         var sb = new StringBuilder();
 
         sb.Append($"CREATE CONSTRAINT {constraint.Name} IF NOT EXISTS");
-        sb.Append($"\nFOR (nc:{constraint.Entity.Id}) ");
+        sb.Append($"\nFOR ()-[r:{constraint.Entity.Id}]-()");
+        sb.Append($"\nREQUIRE r.{constraint.Entity.Properties.Single()} IS NOT NULL;");
+
+        return sb.ToString();
+    }
+
+    private static string CreateNodeConstraintCypher(Constraint constraint)
+    {
+        var sb = new StringBuilder();
+
+        sb.Append($"CREATE CONSTRAINT {constraint.Name} IF NOT EXISTS");
+        sb.Append($"\nFOR (n:{constraint.Entity.Id}) ");
         CreateRequireNormalPropertiesFragment(constraint, sb);
-        sb.Append($"\n{SuffixDict[constraint.Type]}");
+        sb.Append($"\n{SuffixDict[constraint.Type]};");
 
         return sb.ToString();
     }
@@ -44,14 +53,16 @@ public static class ConstraintExtensions
     {
         var propCount = 0;
         
-        sb.Append("\n Require (");
+        sb.Append("\n REQUIRE (");
 
         foreach (var property in constraint.Entity.Properties)
         {
             sb.Append(propCount == 0 ? "\n " : ",\n ");
-            sb.Append($"cn.{property}");
+            sb.Append($"n.{property}");
+
+            propCount++;
         }
 
-        sb.Append('\n');
+        sb.Append("\n)");
     }
 }

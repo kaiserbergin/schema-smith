@@ -82,12 +82,22 @@ public class Constraint
     /// <summary>
     /// Type of constraint
     /// </summary>
-    public string Type { get; init; } = null!;
+    public ConstraintType Type { get; init; }
 
     /// <summary>
     /// Entity that the constraint will be created for.
     /// </summary>
     public Entity Entity { get; init; } = new();
+}
+
+public enum ConstraintType
+{
+    [System.Runtime.Serialization.EnumMember(Value = @"node-key")]
+    NodeKey,
+    [System.Runtime.Serialization.EnumMember(Value = @"unique")]
+    Unique,
+    [System.Runtime.Serialization.EnumMember(Value = @"existence")]
+    Existence
 }
 
 public class Index
@@ -126,7 +136,7 @@ public class Property
 
 public class Entity
 {
-    public EntityType Type { get; init; } = null!;
+    public EntityType Type { get; init; }
 
     /// <summary>
     /// Entity id. (Label for Nodes, Type for Relationships)
@@ -136,12 +146,14 @@ public class Entity
     /// <summary>
     /// Properties used for the constraint.
     /// </summary>
-    public IEnumerable<string> Properties { get; set; } = Enumerable.Empty<string>();
+    public IEnumerable<string> Properties { get; init; } = Enumerable.Empty<string>();
 }
 
 public enum EntityType
 {
+    [System.Runtime.Serialization.EnumMember(Value = @"node")]
     Node,
+    [System.Runtime.Serialization.EnumMember(Value = @"relationship")]
     Relationship
 }
 

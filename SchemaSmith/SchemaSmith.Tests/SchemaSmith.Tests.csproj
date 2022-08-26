@@ -6,9 +6,6 @@
 
         <IsPackable>false</IsPackable>
     </PropertyGroup>
-    
-    <ItemGroup>
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
@@ -23,6 +20,10 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SchemaSmith\SchemaSmith.csproj" />
     </ItemGroup>
 
 </Project>

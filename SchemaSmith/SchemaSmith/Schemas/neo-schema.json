@@ -84,7 +84,12 @@
                 },
                 "type": {
                   "type": "string",
-                  "description": "Type of constraint"
+                  "description": "Type of constraint",
+                  "enum": [
+                    "node-key",
+                    "unique",
+                    "existence"
+                  ]
                 },
                 "entity": {
                   "type": "object",

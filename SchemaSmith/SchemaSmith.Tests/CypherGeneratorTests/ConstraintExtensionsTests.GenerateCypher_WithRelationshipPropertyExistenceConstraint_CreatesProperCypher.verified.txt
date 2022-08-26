@@ -1,0 +1,3 @@
+﻿CREATE CONSTRAINT GenerateCypher_WithRelationshipPropertyExistenceConstraint_CreatesProperCypher IF NOT EXISTS
+FOR ()-[r:BELONGS_TO_LEAGUE]-()
+REQUIRE r.joined IS NOT NULL;
