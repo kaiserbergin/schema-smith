@@ -1,0 +1,5 @@
+﻿CREATE TEXT INDEX IF NOT EXISTS
+FOR (i:Node) ON
+(
+i.textIndex
+);

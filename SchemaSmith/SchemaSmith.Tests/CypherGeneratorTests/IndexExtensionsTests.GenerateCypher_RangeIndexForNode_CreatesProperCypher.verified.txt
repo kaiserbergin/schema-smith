@@ -1,0 +1,6 @@
+﻿CREATE RANGE INDEX IF NOT EXISTS
+FOR (i:Node) ON
+(
+i.rangeProp,
+i.rangeProp2
+);

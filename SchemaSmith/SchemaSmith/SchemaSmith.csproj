@@ -11,6 +11,12 @@
     </ItemGroup>
 
     <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>SchemaSmith.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
       <None Update="Schemas\neo-schema.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>

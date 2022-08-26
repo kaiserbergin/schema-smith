@@ -110,12 +110,24 @@ public class Index
     /// <summary>
     /// Type of index
     /// </summary>
-    public string Type { get; init; } = null!;
+    public IndexType Type { get; init; }
 
     /// <summary>
     /// Entity that the constraint will be created for.
     /// </summary>
     public Entity Entity { get; set; } = new();
+}
+
+public enum IndexType
+{
+    [System.Runtime.Serialization.EnumMember(Value = @"b-tree")]
+    BTree,
+    [System.Runtime.Serialization.EnumMember(Value = @"text")]
+    Text,
+    [System.Runtime.Serialization.EnumMember(Value = @"point")]
+    Point,
+    [System.Runtime.Serialization.EnumMember(Value = @"range")]
+    Range,
 }
 
 /// <summary>

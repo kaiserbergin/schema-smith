@@ -136,7 +136,13 @@
                 },
                 "type": {
                   "type": "string",
-                  "description": "Type of index"
+                  "description": "Type of index",
+                  "enum": [
+                    "b-tree",
+                    "text",
+                    "point",
+                    "range"
+                  ]
                 },
                 "entity": {
                   "type": "object",

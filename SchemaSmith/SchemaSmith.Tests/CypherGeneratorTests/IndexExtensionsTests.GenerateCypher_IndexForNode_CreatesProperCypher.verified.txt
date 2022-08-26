@@ -1,0 +1,6 @@
+﻿CREATE BTREE INDEX IF NOT EXISTS
+FOR (i:Node) ON
+(
+i.someProp,
+i.someOtherProp
+);

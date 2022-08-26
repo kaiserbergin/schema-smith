@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using SchemaSmith.CypherGenerator;
+﻿using SchemaSmith.CypherGenerator;
 using VerifyXunit;
 using Xunit;
 using SchemaSmith.Domain;

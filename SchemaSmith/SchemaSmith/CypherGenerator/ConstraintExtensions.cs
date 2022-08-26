@@ -18,7 +18,7 @@ public static class ConstraintExtensions
         }
     };
 
-    public static string GenerateCypher(this Constraint constraint) =>
+    internal static string GenerateCypher(this Constraint constraint) =>
         constraint.Entity.Type switch
         {
             EntityType.Node => CreateNodeConstraintCypher(constraint),
