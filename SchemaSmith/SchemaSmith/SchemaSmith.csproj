@@ -17,7 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="CypherBuilder" />
       <Folder Include="Linting" />
     </ItemGroup>
 
