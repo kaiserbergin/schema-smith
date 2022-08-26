@@ -3,7 +3,7 @@ using SchemaSmith.Domain;
 
 namespace SchemaSmith.CypherGenerator;
 
-public static class ConstraintExtensions
+internal static class ConstraintExtensions
 {
     private static readonly Dictionary<ConstraintType, string> SuffixDict = new ()
     {

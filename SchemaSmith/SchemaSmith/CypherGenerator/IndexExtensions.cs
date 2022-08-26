@@ -4,7 +4,7 @@ using Index = SchemaSmith.Domain.Index;
 
 namespace SchemaSmith.CypherGenerator;
 
-public static class IndexExtensions
+internal static class IndexExtensions
 {
     private const string BTREE_INDEX = "BTREE";
     private const string TEXT = "TEXT";

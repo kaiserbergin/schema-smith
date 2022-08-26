@@ -1,6 +1,6 @@
 namespace SchemaSmith.Domain;
 
-public class Constants
+internal class Constants
 {
-    public const string SCHEMA_SMITH_LABEL_NAME = "SchemaSmith";
+    internal const string SCHEMA_SMITH_LABEL_NAME = "SchemaSmith";
 }
