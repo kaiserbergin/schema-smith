@@ -1,6 +1,6 @@
 ﻿using SchemaSmith.Domain;
 
-namespace SchemaSmith.CypherGenerator;
+namespace SchemaSmith.CypherStatementExtensions;
 
 internal static class PropertyExtensions
 {

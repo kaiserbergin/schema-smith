@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using SchemaSmith.Domain;
 
-namespace SchemaSmith.CypherGenerator;
+namespace SchemaSmith.CypherStatementExtensions;
 
 internal static class RelationshipExtensions
 {
@@ -18,11 +18,14 @@ internal static class RelationshipExtensions
             var relationshipInfo = GetRelationshipInfo(connection);
             var sb = new StringBuilder();
 
-            sb.Append($"CREATE (n1:{relationshipInfo.firstLabel}:{SchemaSmithConstants.SCHEMA_SMITH_ENTITY_IDENTIFIER})");
+            sb.Append($"MATCH (n1:{relationshipInfo.firstLabel}:{SchemaSmithConstants.SCHEMA_SMITH_ENTITY_IDENTIFIER}), ");
+            sb.Append($"(n2:{relationshipInfo.secondLabel}:{SchemaSmithConstants.SCHEMA_SMITH_ENTITY_IDENTIFIER})");
+            
+            sb.Append("\nCREATE (n1)");
             sb.Append(relationshipInfo.direction == OUTGOING_RELATIONSHIP ? '-' : "<-");
             sb.Append($"[r:{relationship.Type}]");
             sb.Append(relationshipInfo.direction == OUTGOING_RELATIONSHIP ? "->" : '-');
-            sb.Append($"(n2:{relationshipInfo.secondLabel}:{SchemaSmithConstants.SCHEMA_SMITH_ENTITY_IDENTIFIER})");
+            sb.Append("(n2)");
             
             foreach (var property in relationship.Properties)
             {

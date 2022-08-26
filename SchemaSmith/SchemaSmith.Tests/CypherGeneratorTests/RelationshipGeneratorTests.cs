@@ -1,4 +1,4 @@
-﻿using SchemaSmith.CypherGenerator;
+﻿using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
 using VerifyXunit;
 using Xunit;

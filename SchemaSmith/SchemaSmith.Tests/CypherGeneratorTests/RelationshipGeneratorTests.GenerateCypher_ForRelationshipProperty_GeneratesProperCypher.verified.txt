@@ -1,21 +1,26 @@
 ﻿[  
-CREATE (n1:Node:SchemaSmith)-[r:TEST_RELATIONSHIP]->(n2:Node:SchemaSmith)
+MATCH (n1:Node:SchemaSmith), (n2:Node:SchemaSmith)
+CREATE (n1)-[r:TEST_RELATIONSHIP]->(n2)
 SET r.propOne = "string"
 SET r.propTwo = false;
   
-CREATE (n1:Node:SchemaSmith)<-[r:TEST_RELATIONSHIP]-(n2:Node:SchemaSmith)
+MATCH (n1:Node:SchemaSmith), (n2:Node:SchemaSmith)
+CREATE (n1)<-[r:TEST_RELATIONSHIP]-(n2)
 SET r.propOne = "string"
 SET r.propTwo = false;
   
-CREATE (n1:Node:SchemaSmith)-[r:TEST_RELATIONSHIP]->(n2:OtherNode:SchemaSmith)
+MATCH (n1:Node:SchemaSmith), (n2:OtherNode:SchemaSmith)
+CREATE (n1)-[r:TEST_RELATIONSHIP]->(n2)
 SET r.propOne = "string"
 SET r.propTwo = false;
   
-CREATE (n1:OtherNode:SchemaSmith)-[r:TEST_RELATIONSHIP]->(n2:Node:SchemaSmith)
+MATCH (n1:OtherNode:SchemaSmith), (n2:Node:SchemaSmith)
+CREATE (n1)-[r:TEST_RELATIONSHIP]->(n2)
 SET r.propOne = "string"
 SET r.propTwo = false;
   
-CREATE (n1:Node:SchemaSmith)<-[r:TEST_RELATIONSHIP]-(n2:Directionless:SchemaSmith)
+MATCH (n1:Node:SchemaSmith), (n2:Directionless:SchemaSmith)
+CREATE (n1)<-[r:TEST_RELATIONSHIP]-(n2)
 SET r.propOne = "string"
 SET r.propTwo = false;
 ]

@@ -2,7 +2,7 @@
 using SchemaSmith.Domain;
 using Index = SchemaSmith.Domain.Index;
 
-namespace SchemaSmith.CypherGenerator;
+namespace SchemaSmith.CypherStatementExtensions;
 
 internal static class IndexExtensions
 {

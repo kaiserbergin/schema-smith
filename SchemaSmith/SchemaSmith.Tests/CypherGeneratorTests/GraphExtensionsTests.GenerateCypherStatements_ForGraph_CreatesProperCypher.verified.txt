@@ -1,0 +1,48 @@
+﻿[  
+CREATE CONSTRAINT Constraint1 IF NOT EXISTS
+FOR (n:one) 
+ REQUIRE (
+ n.one,
+ n.two
+)
+IS NODE KEY;
+  
+CREATE CONSTRAINT Constraint2 IF NOT EXISTS
+FOR (n:one) 
+ REQUIRE (
+ n.three
+)
+IS UNIQUE;
+  
+CREATE BTREE INDEX IF NOT EXISTS
+FOR (i:two) ON
+(
+i.indexed
+);
+  
+CREATE (n:one:SchemaSmith)
+SET n.one = "string"
+SET n.two = "string"
+SET n.three = "string";
+  
+CREATE (n:two:SchemaSmith)
+SET n.indexed = "string";
+  
+MATCH (n1:one:SchemaSmith), (n2:two:SchemaSmith)
+CREATE (n1)-[r:REL_ONE]->(n2);
+  
+MATCH (n1:two:SchemaSmith), (n2:one:SchemaSmith)
+CREATE (n1)-[r:REL_ONE]->(n2);
+  
+MATCH (n1:one:SchemaSmith), (n2:one:SchemaSmith)
+CREATE (n1)<-[r:REL_ONE]-(n2);
+  
+MATCH (n1:one:SchemaSmith), (n2:two:SchemaSmith)
+CREATE (n1)-[r:REL_TWO]->(n2);
+  
+MATCH (n1:two:SchemaSmith), (n2:one:SchemaSmith)
+CREATE (n1)-[r:REL_TWO]->(n2);
+  
+MATCH (n1:one:SchemaSmith), (n2:one:SchemaSmith)
+CREATE (n1)<-[r:REL_TWO]-(n2);
+]

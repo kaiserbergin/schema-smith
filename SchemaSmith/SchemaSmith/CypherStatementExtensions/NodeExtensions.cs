@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using SchemaSmith.Domain;
 
-namespace SchemaSmith.CypherGenerator;
+namespace SchemaSmith.CypherStatementExtensions;
 
 internal static class NodeExtensions
 {
