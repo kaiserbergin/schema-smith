@@ -14,7 +14,7 @@ FOR (n:one)
 )
 IS UNIQUE;
   
-CREATE BTREE INDEX IF NOT EXISTS
+CREATE BTREE INDEX Index1 IF NOT EXISTS
 FOR (i:two) ON
 (
 i.indexed
@@ -45,4 +45,7 @@ CREATE (n1)-[r:REL_TWO]->(n2);
   
 MATCH (n1:one:SchemaSmith), (n2:one:SchemaSmith)
 CREATE (n1)<-[r:REL_TWO]-(n2);
+  
+MATCH (n:SchemaSmith)
+DETACH DELETE n;
 ]

@@ -23,7 +23,7 @@ internal static class IndexExtensions
     {
         var sb = new StringBuilder();
 
-        sb.Append($"CREATE {_indexTypeToQueryFragment[index.Type]} INDEX IF NOT EXISTS");
+        sb.Append($"CREATE {_indexTypeToQueryFragment[index.Type]} INDEX {index.Name} IF NOT EXISTS");
 
         switch (index.Entity.Type)
         {

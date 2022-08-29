@@ -1,4 +1,4 @@
-﻿CREATE RANGE INDEX IF NOT EXISTS
+﻿CREATE RANGE INDEX GenerateCypher_RangeIndexForNode_CreatesProperCypher IF NOT EXISTS
 FOR (i:Node) ON
 (
 i.rangeProp,

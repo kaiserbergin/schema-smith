@@ -1,4 +1,5 @@
 ﻿using SchemaSmith.Domain;
+using SchemaSmith.Queries.Provider;
 
 namespace SchemaSmith.CypherStatementExtensions;
 
@@ -12,6 +13,7 @@ public static class GraphExtensions
         statements.AddRange(graph.Indexes.Select(x => x.GenerateCypher()));
         statements.AddRange(graph.Nodes.Select(x => x.GenerateCypher()));
         statements.AddRange(graph.Relationships.SelectMany(x => x.GenerateCypher()));
+        statements.Add(QueryProvider.DeleteSchemaSmithEntities);
 
         return statements;
     }

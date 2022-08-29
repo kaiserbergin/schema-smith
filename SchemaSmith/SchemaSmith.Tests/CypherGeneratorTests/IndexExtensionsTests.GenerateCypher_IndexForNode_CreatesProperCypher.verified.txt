@@ -1,4 +1,4 @@
-﻿CREATE BTREE INDEX IF NOT EXISTS
+﻿CREATE BTREE INDEX GenerateCypher_IndexForNode_CreatesProperCypher IF NOT EXISTS
 FOR (i:Node) ON
 (
 i.someProp,
