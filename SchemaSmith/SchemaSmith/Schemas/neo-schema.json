@@ -29,10 +29,7 @@
                 "properties": {
                   "type": "array",
                   "description": "List of properties associated with the label",
-                  "items": { "$ref": "#/$defs/properties" },
-                  "required": [
-                    "name"
-                  ]
+                  "items": { "$ref": "#/$defs/properties" }
                 }
               },
               "required": [
@@ -53,10 +50,7 @@
                 "properties": {
                   "type": "array",
                   "description": "List of properties associated with the label",
-                  "items": { "$ref": "#/$defs/properties" },
-                  "required": [
-                    "name"
-                  ]
+                  "items": { "$ref": "#/$defs/properties" }
                 },
                 "connections": {
                   "type": "array",

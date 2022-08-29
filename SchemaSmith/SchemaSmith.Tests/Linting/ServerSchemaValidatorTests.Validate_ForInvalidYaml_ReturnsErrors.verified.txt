@@ -1,0 +1,1170 @@
+﻿[
+  {
+    Errors: {
+      NJsonSchema.JsonSchema: [
+        {
+          Errors: {
+            NJsonSchema.JsonSchema: [
+              {
+                Errors: {
+                  NJsonSchema.JsonSchema: [
+                    {
+                      Kind: NotInEnumeration,
+                      Property: type,
+                      Path: #/graphs[0].nodes[0].properties[0].type,
+                      HasLineInfo: true,
+                      LineNumber: 1,
+                      LinePosition: 130,
+                      Schema: {
+                        type: string,
+                        x-readOnly: false,
+                        x-writeOnly: false,
+                        description: Property data type.,
+                        uniqueItems: false,
+                        x-deprecated: false,
+                        x-abstract: false,
+                        x-enumFlags: false,
+                        enum: [
+                          string,
+                          integer,
+                          float,
+                          boolean,
+                          point,
+                          date,
+                          time,
+                          localTime,
+                          dateTime,
+                          localDateTime,
+                          duration,
+                          list(string),
+                          list(integer),
+                          list(float),
+                          list(boolean),
+                          list(point),
+                          list(date),
+                          list(time),
+                          list(localTime),
+                          list(dateTime),
+                          list(localDateTime),
+                          list(duration)
+                        ]
+                      }
+                    }
+                  ]
+                },
+                Kind: ArrayItemNotValid,
+                Property: [0],
+                Path: #/graphs[0].nodes[0].properties[0],
+                HasLineInfo: true,
+                LineNumber: 1,
+                LinePosition: 99,
+                Schema: {
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              }
+            ]
+          },
+          Kind: ArrayItemNotValid,
+          Property: [0],
+          Path: #/graphs[0].nodes[0],
+          HasLineInfo: true,
+          LineNumber: 1,
+          LinePosition: 66,
+          Schema: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              label
+            ],
+            properties: {
+              label: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Label for a given node,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              properties: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of properties associated with the label,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              }
+            }
+          }
+        },
+        {
+          Errors: {
+            NJsonSchema.JsonSchema: [
+              {
+                Errors: {
+                  NJsonSchema.JsonSchema: [
+                    {
+                      Kind: NotInEnumeration,
+                      Property: type,
+                      Path: #/graphs[0].nodes[1].properties[0].type,
+                      HasLineInfo: true,
+                      LineNumber: 1,
+                      LinePosition: 679,
+                      Schema: {
+                        type: string,
+                        x-readOnly: false,
+                        x-writeOnly: false,
+                        description: Property data type.,
+                        uniqueItems: false,
+                        x-deprecated: false,
+                        x-abstract: false,
+                        x-enumFlags: false,
+                        enum: [
+                          string,
+                          integer,
+                          float,
+                          boolean,
+                          point,
+                          date,
+                          time,
+                          localTime,
+                          dateTime,
+                          localDateTime,
+                          duration,
+                          list(string),
+                          list(integer),
+                          list(float),
+                          list(boolean),
+                          list(point),
+                          list(date),
+                          list(time),
+                          list(localTime),
+                          list(dateTime),
+                          list(localDateTime),
+                          list(duration)
+                        ]
+                      }
+                    }
+                  ]
+                },
+                Kind: ArrayItemNotValid,
+                Property: [0],
+                Path: #/graphs[0].nodes[1].properties[0],
+                HasLineInfo: true,
+                LineNumber: 1,
+                LinePosition: 652,
+                Schema: {
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              }
+            ]
+          },
+          Kind: ArrayItemNotValid,
+          Property: [1],
+          Path: #/graphs[0].nodes[1],
+          HasLineInfo: true,
+          LineNumber: 1,
+          LinePosition: 611,
+          Schema: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              label
+            ],
+            properties: {
+              label: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Label for a given node,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              properties: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of properties associated with the label,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              }
+            }
+          }
+        },
+        {
+          Errors: {
+            NJsonSchema.JsonSchema: [
+              {
+                Kind: PropertyRequired,
+                Property: type,
+                Path: #/graphs[0].relationships[0].type,
+                HasLineInfo: true,
+                LineNumber: 1,
+                LinePosition: 704,
+                Schema: {
+                  type: object,
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false,
+                  required: [
+                    type,
+                    connections
+                  ],
+                  properties: {
+                    type: {
+                      type: string,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: Relationship name, used to create / define relationships,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    },
+                    properties: {
+                      type: array,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: List of properties associated with the label,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false,
+                      items: {
+                        uniqueItems: false,
+                        x-deprecated: false,
+                        x-abstract: false,
+                        x-enumFlags: false
+                      }
+                    },
+                    connections: {
+                      type: array,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: List of connections with the format: LabelName->OtherLabelName,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false,
+                      items: {
+                        type: string,
+                        uniqueItems: false,
+                        x-deprecated: false,
+                        x-abstract: false,
+                        x-enumFlags: false
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          Kind: ArrayItemNotValid,
+          Property: [0],
+          Path: #/graphs[0].relationships[0],
+          HasLineInfo: true,
+          LineNumber: 1,
+          LinePosition: 704,
+          Schema: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              type,
+              connections
+            ],
+            properties: {
+              type: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Relationship name, used to create / define relationships,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              properties: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of properties associated with the label,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              },
+              connections: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of connections with the format: LabelName->OtherLabelName,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  type: string,
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              }
+            }
+          }
+        },
+        {
+          Errors: {
+            NJsonSchema.JsonSchema: [
+              {
+                Kind: PropertyRequired,
+                Property: type,
+                Path: #/graphs[0].relationships[1].type,
+                HasLineInfo: true,
+                LineNumber: 1,
+                LinePosition: 813,
+                Schema: {
+                  type: object,
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false,
+                  required: [
+                    type,
+                    connections
+                  ],
+                  properties: {
+                    type: {
+                      type: string,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: Relationship name, used to create / define relationships,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    },
+                    properties: {
+                      type: array,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: List of properties associated with the label,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false,
+                      items: {
+                        uniqueItems: false,
+                        x-deprecated: false,
+                        x-abstract: false,
+                        x-enumFlags: false
+                      }
+                    },
+                    connections: {
+                      type: array,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: List of connections with the format: LabelName->OtherLabelName,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false,
+                      items: {
+                        type: string,
+                        uniqueItems: false,
+                        x-deprecated: false,
+                        x-abstract: false,
+                        x-enumFlags: false
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          Kind: ArrayItemNotValid,
+          Property: [1],
+          Path: #/graphs[0].relationships[1],
+          HasLineInfo: true,
+          LineNumber: 1,
+          LinePosition: 813,
+          Schema: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              type,
+              connections
+            ],
+            properties: {
+              type: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Relationship name, used to create / define relationships,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              properties: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of properties associated with the label,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              },
+              connections: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of connections with the format: LabelName->OtherLabelName,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  type: string,
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              }
+            }
+          }
+        },
+        {
+          Errors: {
+            NJsonSchema.JsonSchema: [
+              {
+                Kind: PropertyRequired,
+                Property: id,
+                Path: #/graphs[0].constraints[2].entity.id,
+                HasLineInfo: true,
+                LineNumber: 1,
+                LinePosition: 1257,
+                Schema: {
+                  type: object,
+                  x-readOnly: false,
+                  x-writeOnly: false,
+                  description: Entity that the constraint will be created for.,
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false,
+                  required: [
+                    type,
+                    id,
+                    properties
+                  ],
+                  properties: {
+                    type: {
+                      type: string,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    },
+                    id: {
+                      type: string,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: Entity id. (Label for Nodes, Type for Relationships),
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    },
+                    properties: {
+                      type: array,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: Properties used for the constraint.,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false,
+                      items: {
+                        type: string,
+                        uniqueItems: false,
+                        x-deprecated: false,
+                        x-abstract: false,
+                        x-enumFlags: false
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          Kind: ArrayItemNotValid,
+          Property: [2],
+          Path: #/graphs[0].constraints[2],
+          HasLineInfo: true,
+          LineNumber: 1,
+          LinePosition: 1209,
+          Schema: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              name,
+              type,
+              entity
+            ],
+            properties: {
+              name: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Constraint name used for your graph,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              type: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Type of constraint,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                enum: [
+                  node-key,
+                  unique,
+                  existence
+                ]
+              },
+              entity: {
+                type: object,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Entity that the constraint will be created for.,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                required: [
+                  type,
+                  id,
+                  properties
+                ],
+                properties: {
+                  type: {
+                    type: string,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false
+                  },
+                  id: {
+                    type: string,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    description: Entity id. (Label for Nodes, Type for Relationships),
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false
+                  },
+                  properties: {
+                    type: array,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    description: Properties used for the constraint.,
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false,
+                    items: {
+                      type: string,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          Errors: {
+            NJsonSchema.JsonSchema: [
+              {
+                Kind: PropertyRequired,
+                Property: id,
+                Path: #/graphs[0].indexes[3].entity.id,
+                HasLineInfo: true,
+                LineNumber: 1,
+                LinePosition: 1742,
+                Schema: {
+                  type: object,
+                  x-readOnly: false,
+                  x-writeOnly: false,
+                  description: Entity that the constraint will be created for.,
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false,
+                  required: [
+                    type,
+                    id,
+                    properties
+                  ],
+                  properties: {
+                    type: {
+                      type: string,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    },
+                    id: {
+                      type: string,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: Entity id. (Label for Nodes, Type for Relationships),
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    },
+                    properties: {
+                      type: array,
+                      x-readOnly: false,
+                      x-writeOnly: false,
+                      description: Properties used for the constraint.,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false,
+                      items: {
+                        type: string,
+                        uniqueItems: false,
+                        x-deprecated: false,
+                        x-abstract: false,
+                        x-enumFlags: false
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          Kind: ArrayItemNotValid,
+          Property: [3],
+          Path: #/graphs[0].indexes[3],
+          HasLineInfo: true,
+          LineNumber: 1,
+          LinePosition: 1692,
+          Schema: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              name,
+              type,
+              entity
+            ],
+            properties: {
+              name: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Index name used for your graph,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              type: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Type of index,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                enum: [
+                  b-tree,
+                  text,
+                  point,
+                  range
+                ]
+              },
+              entity: {
+                type: object,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Entity that the constraint will be created for.,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                required: [
+                  type,
+                  id,
+                  properties
+                ],
+                properties: {
+                  type: {
+                    type: string,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false
+                  },
+                  id: {
+                    type: string,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    description: Entity id. (Label for Nodes, Type for Relationships),
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false
+                  },
+                  properties: {
+                    type: array,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    description: Properties used for the constraint.,
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false,
+                    items: {
+                      type: string,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    Kind: ArrayItemNotValid,
+    Property: [0],
+    Path: #/graphs[0],
+    HasLineInfo: true,
+    LineNumber: 1,
+    LinePosition: 38,
+    Schema: {
+      type: object,
+      uniqueItems: false,
+      x-deprecated: false,
+      x-abstract: false,
+      x-enumFlags: false,
+      required: [
+        name
+      ],
+      properties: {
+        name: {
+          type: string,
+          x-readOnly: false,
+          x-writeOnly: false,
+          description: Graph name,
+          uniqueItems: false,
+          x-deprecated: false,
+          x-abstract: false,
+          x-enumFlags: false
+        },
+        nodes: {
+          type: array,
+          x-readOnly: false,
+          x-writeOnly: false,
+          description: List of node labels with associated properties,
+          uniqueItems: false,
+          x-deprecated: false,
+          x-abstract: false,
+          x-enumFlags: false,
+          items: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              label
+            ],
+            properties: {
+              label: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Label for a given node,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              properties: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of properties associated with the label,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              }
+            }
+          }
+        },
+        relationships: {
+          type: array,
+          x-readOnly: false,
+          x-writeOnly: false,
+          description: List of relationships in your graph,
+          uniqueItems: false,
+          x-deprecated: false,
+          x-abstract: false,
+          x-enumFlags: false,
+          items: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              type,
+              connections
+            ],
+            properties: {
+              type: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Relationship name, used to create / define relationships,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              properties: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of properties associated with the label,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              },
+              connections: {
+                type: array,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: List of connections with the format: LabelName->OtherLabelName,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                items: {
+                  type: string,
+                  uniqueItems: false,
+                  x-deprecated: false,
+                  x-abstract: false,
+                  x-enumFlags: false
+                }
+              }
+            }
+          }
+        },
+        constraints: {
+          type: array,
+          x-readOnly: false,
+          x-writeOnly: false,
+          description: Constraints on your graph,
+          uniqueItems: false,
+          x-deprecated: false,
+          x-abstract: false,
+          x-enumFlags: false,
+          items: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              name,
+              type,
+              entity
+            ],
+            properties: {
+              name: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Constraint name used for your graph,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              type: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Type of constraint,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                enum: [
+                  node-key,
+                  unique,
+                  existence
+                ]
+              },
+              entity: {
+                type: object,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Entity that the constraint will be created for.,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                required: [
+                  type,
+                  id,
+                  properties
+                ],
+                properties: {
+                  type: {
+                    type: string,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false
+                  },
+                  id: {
+                    type: string,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    description: Entity id. (Label for Nodes, Type for Relationships),
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false
+                  },
+                  properties: {
+                    type: array,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    description: Properties used for the constraint.,
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false,
+                    items: {
+                      type: string,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        indexes: {
+          type: array,
+          x-readOnly: false,
+          x-writeOnly: false,
+          description: Indexes on your graph,
+          uniqueItems: false,
+          x-deprecated: false,
+          x-abstract: false,
+          x-enumFlags: false,
+          items: {
+            type: object,
+            uniqueItems: false,
+            x-deprecated: false,
+            x-abstract: false,
+            x-enumFlags: false,
+            required: [
+              name,
+              type,
+              entity
+            ],
+            properties: {
+              name: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Index name used for your graph,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false
+              },
+              type: {
+                type: string,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Type of index,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                enum: [
+                  b-tree,
+                  text,
+                  point,
+                  range
+                ]
+              },
+              entity: {
+                type: object,
+                x-readOnly: false,
+                x-writeOnly: false,
+                description: Entity that the constraint will be created for.,
+                uniqueItems: false,
+                x-deprecated: false,
+                x-abstract: false,
+                x-enumFlags: false,
+                required: [
+                  type,
+                  id,
+                  properties
+                ],
+                properties: {
+                  type: {
+                    type: string,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false
+                  },
+                  id: {
+                    type: string,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    description: Entity id. (Label for Nodes, Type for Relationships),
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false
+                  },
+                  properties: {
+                    type: array,
+                    x-readOnly: false,
+                    x-writeOnly: false,
+                    description: Properties used for the constraint.,
+                    uniqueItems: false,
+                    x-deprecated: false,
+                    x-abstract: false,
+                    x-enumFlags: false,
+                    items: {
+                      type: string,
+                      uniqueItems: false,
+                      x-deprecated: false,
+                      x-abstract: false,
+                      x-enumFlags: false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]

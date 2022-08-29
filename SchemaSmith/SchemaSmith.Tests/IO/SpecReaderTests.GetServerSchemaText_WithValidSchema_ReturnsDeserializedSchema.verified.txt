@@ -1,12 +1,11 @@
-﻿
-serverUrl: some-url
+﻿serverUrl: some-url
 graphs:
   - name: neo4j
     nodes:
       - label: Test
         properties:
           - name: id
-            type: rainbow
+            type: string
           - name: stringProp
             type: string
           - name: intProp
@@ -29,18 +28,40 @@ graphs:
             type: localDateTime
           - name: durationProp
             type: duration
+          - name: listStringProp
+            type: list(string)
+          - name: listIntProp
+            type: list(integer)
+          - name: listFloatProp
+            type: list(float)
+          - name: listBoolProp
+            type: list(boolean)
+          - name: listPointProp
+            type: list(point)
+          - name: listDateProp
+            type: list(date)
+          - name: listTimeProp
+            type: list(time)
+          - name: listLocalTimeProp
+            type: list(localTime)
+          - name: listDateTimeProp
+            type: list(dateTime)
+          - name: listLocalDateTimeProp
+            type: list(localDateTime)
+          - name: listDurationProp
+            type: list(duration)
       - label: AnotherLabel
         properties:
           - name: id
-            type: pop
+            type: string
     relationships:
-      - name: SELF_CARE
+      - type: SELF_CARE
         properties:
           - name: relProp
             type: string
         connections:
           - Test->Test
-      - name: RELATED_TO
+      - type: RELATED_TO
         connections:
           - Test->AnotherLabel
           - AnotherLabel->Test
@@ -60,12 +81,18 @@ graphs:
           id: SELF_CARE
           properties:
             - stringProp
-            - intProp
       - name: Test_UC
         type: unique
         entity:
           type: node
-          name: Test
+          id: Test
+          properties:
+            - id
+      - name: Test_EC
+        type: existence
+        entity:
+          type: node
+          id: Test
           properties:
             - id
     indexes:
@@ -97,6 +124,6 @@ graphs:
         type: point
         entity:
           type: node
-          name: Test
+          id: Test
           properties:
             - pointProp
