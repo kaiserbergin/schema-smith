@@ -27,7 +27,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="IO\good-schema.yml">
+      <None Update="Schemas\good-schema.yml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Schemas\bad-schema.yml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>

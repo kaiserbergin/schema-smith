@@ -1,0 +1,233 @@
+﻿{
+  graphs: [
+    {
+      constraints: [
+        {
+          entity: {
+            id: AnotherLabel,
+            properties: [
+              id
+            ],
+            type: node
+          },
+          name: AnotherLabel_NK,
+          type: node-key
+        },
+        {
+          entity: {
+            id: SELF_CARE,
+            properties: [
+              stringProp
+            ],
+            type: relationship
+          },
+          name: SELF_CARE_EC,
+          type: existence
+        },
+        {
+          entity: {
+            id: Test,
+            properties: [
+              id
+            ],
+            type: node
+          },
+          name: Test_UC,
+          type: unique
+        },
+        {
+          entity: {
+            id: Test,
+            properties: [
+              id
+            ],
+            type: node
+          },
+          name: Test_EC,
+          type: existence
+        }
+      ],
+      indexes: [
+        {
+          entity: {
+            id: Test,
+            properties: [
+              id,
+              intProp
+            ],
+            type: node
+          },
+          name: Test_BI,
+          type: b-tree
+        },
+        {
+          entity: {
+            id: SELF_CARE,
+            properties: [
+              relProp
+            ],
+            type: relationship
+          },
+          name: SELF_CARE_TXT,
+          type: text
+        },
+        {
+          entity: {
+            id: Test,
+            properties: [
+              id,
+              intProp,
+              floatProp
+            ],
+            type: node
+          },
+          name: Test_RI,
+          type: range
+        },
+        {
+          entity: {
+            id: Test,
+            properties: [
+              pointProp
+            ],
+            type: node
+          },
+          name: Test_POINT,
+          type: point
+        }
+      ],
+      name: neo4j,
+      nodes: [
+        {
+          label: Test,
+          properties: [
+            {
+              name: id,
+              type: string
+            },
+            {
+              name: stringProp,
+              type: string
+            },
+            {
+              name: intProp,
+              type: integer
+            },
+            {
+              name: floatProp,
+              type: float
+            },
+            {
+              name: boolProp,
+              type: boolean
+            },
+            {
+              name: pointProp,
+              type: point
+            },
+            {
+              name: dateProp,
+              type: date
+            },
+            {
+              name: timeProp,
+              type: time
+            },
+            {
+              name: localTimeProp,
+              type: localTime
+            },
+            {
+              name: dateTimeProp,
+              type: dateTime
+            },
+            {
+              name: localDateTimeProp,
+              type: localDateTime
+            },
+            {
+              name: durationProp,
+              type: duration
+            },
+            {
+              name: listStringProp,
+              type: list(string)
+            },
+            {
+              name: listIntProp,
+              type: list(integer)
+            },
+            {
+              name: listFloatProp,
+              type: list(float)
+            },
+            {
+              name: listBoolProp,
+              type: list(boolean)
+            },
+            {
+              name: listPointProp,
+              type: list(point)
+            },
+            {
+              name: listDateProp,
+              type: list(date)
+            },
+            {
+              name: listTimeProp,
+              type: list(time)
+            },
+            {
+              name: listLocalTimeProp,
+              type: list(localTime)
+            },
+            {
+              name: listDateTimeProp,
+              type: list(dateTime)
+            },
+            {
+              name: listLocalDateTimeProp,
+              type: list(localDateTime)
+            },
+            {
+              name: listDurationProp,
+              type: list(duration)
+            }
+          ]
+        },
+        {
+          label: AnotherLabel,
+          properties: [
+            {
+              name: id,
+              type: string
+            }
+          ]
+        }
+      ],
+      relationships: [
+        {
+          connections: [
+            Test->Test
+          ],
+          properties: [
+            {
+              name: relProp,
+              type: string
+            }
+          ],
+          type: SELF_CARE
+        },
+        {
+          connections: [
+            Test->AnotherLabel,
+            AnotherLabel->Test,
+            AnotherLabel->AnotherLabel
+          ],
+          type: RELATED_TO
+        }
+      ]
+    }
+  ],
+  serverUrl: some-url
+}
