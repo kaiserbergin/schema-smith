@@ -16,7 +16,7 @@ public class GraphExtensionsTests
         const string labelOne = "one";
         const string labelTwo = "two";
 
-        var graph = new Graph
+        var graph = new GraphSchema
         {
             Name = "neo4j",
             Nodes = new[]

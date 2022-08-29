@@ -1,0 +1,234 @@
+﻿{
+  ServerUrl: some-url,
+  Graphs: [
+    {
+      Name: neo4j,
+      Nodes: [
+        {
+          Label: Test,
+          Properties: [
+            {
+              Name: id,
+              Type: string
+            },
+            {
+              Name: stringProp,
+              Type: string
+            },
+            {
+              Name: intProp,
+              Type: integer
+            },
+            {
+              Name: floatProp,
+              Type: float
+            },
+            {
+              Name: boolProp,
+              Type: boolean
+            },
+            {
+              Name: pointProp,
+              Type: point
+            },
+            {
+              Name: dateProp,
+              Type: date
+            },
+            {
+              Name: timeProp,
+              Type: time
+            },
+            {
+              Name: localTimeProp,
+              Type: localTime
+            },
+            {
+              Name: dateTimeProp,
+              Type: dateTime
+            },
+            {
+              Name: localDateTimeProp,
+              Type: localDateTime
+            },
+            {
+              Name: durationProp,
+              Type: duration
+            },
+            {
+              Name: listStringProp,
+              Type: list(string)
+            },
+            {
+              Name: listIntProp,
+              Type: list(integer)
+            },
+            {
+              Name: listFloatProp,
+              Type: list(float)
+            },
+            {
+              Name: listBoolProp,
+              Type: list(boolean)
+            },
+            {
+              Name: listPointProp,
+              Type: list(point)
+            },
+            {
+              Name: listDateProp,
+              Type: list(date)
+            },
+            {
+              Name: listTimeProp,
+              Type: list(time)
+            },
+            {
+              Name: listLocalTimeProp,
+              Type: list(localTime)
+            },
+            {
+              Name: listDateTimeProp,
+              Type: list(dateTime)
+            },
+            {
+              Name: listLocalDateTimeProp,
+              Type: list(localDateTime)
+            },
+            {
+              Name: listDurationProp,
+              Type: list(duration)
+            }
+          ]
+        },
+        {
+          Label: AnotherLabel,
+          Properties: [
+            {
+              Name: id,
+              Type: string
+            }
+          ]
+        }
+      ],
+      Relationships: [
+        {
+          Type: SELF_CARE,
+          Properties: [
+            {
+              Name: relProp,
+              Type: string
+            }
+          ],
+          Connections: [
+            Test->Test
+          ]
+        },
+        {
+          Type: RELATED_TO,
+          Properties: [],
+          Connections: [
+            Test->AnotherLabel,
+            AnotherLabel->Test,
+            AnotherLabel->AnotherLabel
+          ]
+        }
+      ],
+      Constraints: [
+        {
+          Name: AnotherLabel_NK,
+          Type: node-key,
+          Entity: {
+            Type: node,
+            Id: AnotherLabel,
+            Properties: [
+              id
+            ]
+          }
+        },
+        {
+          Name: SELF_CARE_EC,
+          Type: existence,
+          Entity: {
+            Type: relationship,
+            Id: SELF_CARE,
+            Properties: [
+              stringProp
+            ]
+          }
+        },
+        {
+          Name: Test_UC,
+          Type: unique,
+          Entity: {
+            Type: node,
+            Id: Test,
+            Properties: [
+              id
+            ]
+          }
+        },
+        {
+          Name: Test_EC,
+          Type: existence,
+          Entity: {
+            Type: node,
+            Id: Test,
+            Properties: [
+              id
+            ]
+          }
+        }
+      ],
+      Indexes: [
+        {
+          Name: Test_BI,
+          Type: b-tree,
+          Entity: {
+            Type: node,
+            Id: Test,
+            Properties: [
+              id,
+              intProp
+            ]
+          }
+        },
+        {
+          Name: SELF_CARE_TXT,
+          Type: text,
+          Entity: {
+            Type: relationship,
+            Id: SELF_CARE,
+            Properties: [
+              relProp
+            ]
+          }
+        },
+        {
+          Name: Test_RI,
+          Type: range,
+          Entity: {
+            Type: node,
+            Id: Test,
+            Properties: [
+              id,
+              intProp,
+              floatProp
+            ]
+          }
+        },
+        {
+          Name: Test_POINT,
+          Type: point,
+          Entity: {
+            Type: node,
+            Id: Test,
+            Properties: [
+              pointProp
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

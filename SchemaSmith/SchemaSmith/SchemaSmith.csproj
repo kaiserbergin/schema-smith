@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Graphr.Neo4j" Version="0.1.2" />
+      <PackageReference Include="Graphr.Neo4j" Version="0.*" />
+      <PackageReference Include="YamlDotNet" Version="12.*" />
     </ItemGroup>
 
     <ItemGroup>

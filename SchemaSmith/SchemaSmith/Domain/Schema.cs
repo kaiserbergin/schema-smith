@@ -2,261 +2,261 @@ using System.Runtime.Serialization;
 
 namespace SchemaSmith.Domain;
 
-internal class Server
+public class ServerSchema
 {
     /// <summary>
     /// Url for you Neo4j Database Server
     /// </summary>
-    internal string ServerUrl { get; init; } = null!;
+    public string ServerUrl { get; init; } = null!;
 
     /// <summary>
     /// List of graphs associated to your server
     /// </summary>
-    internal IEnumerable<Graph> Graphs { get; init; } = Enumerable.Empty<Graph>();
+    public IEnumerable<GraphSchema> Graphs { get; init; } = Enumerable.Empty<GraphSchema>();
 }
 
-internal class Graph
+public class GraphSchema
 {
     /// <summary>
     /// Graph name
     /// </summary>
-    internal string Name { get; init; } = null!;
+    public string Name { get; init; } = null!;
 
     /// <summary>
     /// List of node labels with associated properties
     /// </summary>
-    internal IEnumerable<Node> Nodes { get; init; } = Enumerable.Empty<Node>();
+    public IEnumerable<Node> Nodes { get; init; } = Enumerable.Empty<Node>();
 
     /// <summary>
     /// List of relationships in your graph
     /// </summary>
-    internal IEnumerable<Relationship> Relationships { get; init; } = Enumerable.Empty<Relationship>();
+    public IEnumerable<Relationship> Relationships { get; init; } = Enumerable.Empty<Relationship>();
 
     /// <summary>
     /// Constraints on your graph
     /// </summary>
-    internal IEnumerable<Constraint> Constraints { get; init; } = Enumerable.Empty<Constraint>();
+    public IEnumerable<Constraint> Constraints { get; init; } = Enumerable.Empty<Constraint>();
 
     /// <summary>
     /// Indexes on your graph
     /// </summary>
-    internal IEnumerable<Index> Indexes { get; init; } = Enumerable.Empty<Index>();
+    public IEnumerable<Index> Indexes { get; init; } = Enumerable.Empty<Index>();
 }
 
-internal class Node
+public class Node
 {
     /// <summary>
     /// Label for a given node
     /// </summary>
-    internal string Label { get; init; } = null!;
+    public string Label { get; init; } = null!;
 
     /// <summary>
     /// List of properties associated with the label
     /// </summary>
-    internal IEnumerable<Property> Properties { get; init; } = Enumerable.Empty<Property>();
+    public IEnumerable<Property> Properties { get; init; } = Enumerable.Empty<Property>();
 }
 
-internal class Relationship
+public class Relationship
 {
     /// <summary>
     /// Relationship name, used to create / define relationships
     /// </summary>
-    internal string Type { get; init; } = null!;
+    public string Type { get; init; } = null!;
 
     /// <summary>
     /// List of properties associated with the label
     /// </summary>
-    internal IEnumerable<Property> Properties { get; init; } = Enumerable.Empty<Property>();
+    public IEnumerable<Property> Properties { get; init; } = Enumerable.Empty<Property>();
 
     /// <summary>
     /// List of connections with the format: LabelName-&gt;OtherLabelName
     /// </summary>
-    internal IEnumerable<string> Connections { get; init; } = Enumerable.Empty<string>();
+    public IEnumerable<string> Connections { get; init; } = Enumerable.Empty<string>();
 }
 
-internal class Constraint
+public class Constraint
 {
     /// <summary>
     /// Constraint name used for your graph
     /// </summary>
-    internal string Name { get; init; } = null!;
+    public string Name { get; init; } = null!;
 
     /// <summary>
     /// Type of constraint
     /// </summary>
-    internal ConstraintType Type { get; init; }
+    public ConstraintType Type { get; init; }
 
     /// <summary>
     /// Entity that the constraint will be created for.
     /// </summary>
-    internal Entity Entity { get; init; } = new();
+    public Entity Entity { get; init; } = new();
 }
 
-internal enum ConstraintType
+public enum ConstraintType
 {
     [EnumMember(Value = @"node-key")]
-    NodeKey,
+    NodeKey = 1,
     [EnumMember(Value = @"unique")]
-    Unique,
+    Unique = 2,
     [EnumMember(Value = @"existence")]
-    Existence
+    Existence = 3
 }
 
-internal class Index
+public class Index
 {
     /// <summary>
     /// Index name used for your graph
     /// </summary>
-    internal string Name { get; init; } = null!;
+    public string Name { get; init; } = null!;
 
     /// <summary>
     /// Type of index
     /// </summary>
-    internal IndexType Type { get; init; }
+    public IndexType Type { get; init; }
 
     /// <summary>
     /// Entity that the constraint will be created for.
     /// </summary>
-    internal Entity Entity { get; set; } = new();
+    public Entity Entity { get; set; } = new();
 }
 
-internal enum IndexType
+public enum IndexType
 {
     [EnumMember(Value = @"b-tree")]
-    BTree,
+    BTree = 1,
     [EnumMember(Value = @"text")]
-    Text,
+    Text = 2,
     [EnumMember(Value = @"point")]
-    Point,
+    Point = 3,
     [EnumMember(Value = @"range")]
-    Range,
+    Range = 4,
 }
 
 /// <summary>
 /// Property on an entity.
 /// </summary>
-internal class Property
+public class Property
 {
     /// <summary>
     /// Property name.
     /// </summary>
-    internal string Name { get; init; } = null!;
+    public string Name { get; init; } = null!;
 
     /// <summary>
     /// Property data type.
     /// </summary>
-    internal PropertyType Type { get; init; } = PropertyType.String;
+    public PropertyType Type { get; init; } = PropertyType.String;
 }
 
-internal class Entity
+public class Entity
 {
-    internal EntityType Type { get; init; }
+    public EntityType Type { get; init; }
 
     /// <summary>
     /// Entity id. (Label for Nodes, Type for Relationships)
     /// </summary>
-    internal string Id { get; init; } = null!;
+    public string Id { get; init; } = null!;
 
     /// <summary>
     /// Properties used for the constraint.
     /// </summary>
-    internal IEnumerable<string> Properties { get; init; } = Enumerable.Empty<string>();
+    public IEnumerable<string> Properties { get; init; } = Enumerable.Empty<string>();
 }
 
-internal enum EntityType
+public enum EntityType
 {
     [EnumMember(Value = @"node")]
-    Node,
+    Node = 1,
     [EnumMember(Value = @"relationship")]
-    Relationship
+    Relationship = 2
 }
 
-internal enum PropertyType
+public enum PropertyType
 {
     [EnumMember(Value = @"string")]
-    String = 0,
+    String = 1,
 
 
     [EnumMember(Value = @"integer")]
-    Integer = 1,
+    Integer = 2,
 
 
     [EnumMember(Value = @"float")]
-    Float = 2,
+    Float = 3,
 
 
     [EnumMember(Value = @"boolean")]
-    Boolean = 3,
+    Boolean = 4,
 
 
     [EnumMember(Value = @"point")]
-    Point = 4,
+    Point = 5,
 
 
     [EnumMember(Value = @"date")]
-    Date = 5,
+    Date = 6,
 
 
     [EnumMember(Value = @"time")]
-    Time = 6,
+    Time = 7,
 
 
     [EnumMember(Value = @"localTime")]
-    LocalTime = 7,
+    LocalTime = 8,
 
 
     [EnumMember(Value = @"dateTime")]
-    DateTime = 8,
+    DateTime = 9,
 
 
     [EnumMember(Value = @"localDateTime")]
-    LocalDateTime = 9,
+    LocalDateTime = 10,
 
 
     [EnumMember(Value = @"duration")]
-    Duration = 10,
+    Duration = 11,
 
 
     [EnumMember(Value = @"list(string)")]
-    ListString = 11,
+    ListString = 12,
 
 
     [EnumMember(Value = @"list(integer)")]
-    ListInteger = 12,
+    ListInteger = 13,
 
 
     [EnumMember(Value = @"list(float)")]
-    ListFloat = 13,
+    ListFloat = 14,
 
 
     [EnumMember(Value = @"list(boolean)")]
-    ListBoolean = 14,
+    ListBoolean = 15,
 
 
     [EnumMember(Value = @"list(point)")]
-    ListPoint = 15,
+    ListPoint = 16,
 
 
     [EnumMember(Value = @"list(date)")]
-    ListDate = 16,
+    ListDate = 17,
 
 
     [EnumMember(Value = @"list(time)")]
-    ListTime = 17,
+    ListTime = 18,
 
 
     [EnumMember(Value = @"list(localTime)")]
-    ListLocalTime = 18,
+    ListLocalTime = 19,
 
 
     [EnumMember(Value = @"list(dateTime)")]
-    ListDateTime = 19,
+    ListDateTime = 20,
 
 
     [EnumMember(Value = @"list(localDateTime)")]
-    ListLocalDateTime = 20,
+    ListLocalDateTime = 21,
 
 
     [EnumMember(Value = @"list(duration)")]
-    ListDuration = 21,
+    ListDuration = 22
 }
