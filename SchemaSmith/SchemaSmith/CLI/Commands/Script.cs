@@ -16,13 +16,18 @@ internal class Script
             description: "Script out the cypher statements"
         )
         {
-            SchemaFileOptions.NeoSchemaFileInfo
+            SchemaFileOptions.NeoSchemaFileInfo,
+            SchemaFileOptions.OutputCypherInfo,
         };
 
-        ScriptCommand.SetHandler(ScriptCypher, SchemaFileOptions.NeoSchemaFileInfo);
+        ScriptCommand.SetHandler(
+            ScriptCypher, 
+            SchemaFileOptions.NeoSchemaFileInfo,
+            SchemaFileOptions.OutputCypherInfo
+            );
     }
 
-    internal static void ScriptCypher(FileInfo file)
+    internal static void ScriptCypher(FileInfo file, FileInfo? outputFileInfo)
     {
         Console.ResetColor();
 
@@ -34,7 +39,25 @@ internal class Script
             .SelectMany(schema => schema.GenerateCypherStatements())
             .ToList();
 
-        cypherStatements.ForEach(Console.WriteLine);
+        // The type is optional because it is a parameter for 
+        //  the command line, but we have a default value set
+        //  for it regardless.
+        using var outputFile = File.Open(outputFileInfo!.FullName, FileMode.Create);
+        using var streamWriter = new StreamWriter(outputFile);
+        
+        cypherStatements.ForEach(streamWriter.WriteLine);
+        
+        streamWriter.Close();
+        outputFile.Close();
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"  \x2714  Cypher script generated at: {outputFileInfo.FullName}!");
+        
+        // TODO: Add verbosity stuff.
+        // Console.ForegroundColor = ConsoleColor.White;
+        // File.ReadLines(outputFileInfo.FullName)
+        //     .ToList()
+        //     .ForEach(Console.WriteLine);
 
         Console.ResetColor();
     }
