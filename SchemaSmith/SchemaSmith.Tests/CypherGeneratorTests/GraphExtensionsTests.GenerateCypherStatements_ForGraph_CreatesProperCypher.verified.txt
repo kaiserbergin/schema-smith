@@ -1,23 +1,25 @@
 ﻿[  
 CREATE CONSTRAINT Constraint1 IF NOT EXISTS
 FOR (n:one) 
- REQUIRE (
- n.one,
- n.two
+REQUIRE
+(
+   n.one,
+   n.two
 )
 IS NODE KEY;
   
 CREATE CONSTRAINT Constraint2 IF NOT EXISTS
 FOR (n:one) 
- REQUIRE (
- n.three
+REQUIRE
+(
+   n.three
 )
 IS UNIQUE;
   
 CREATE BTREE INDEX Index1 IF NOT EXISTS
 FOR (i:two) ON
 (
-i.indexed
+  i.indexed
 );
   
 CREATE (n:one:SchemaSmith)

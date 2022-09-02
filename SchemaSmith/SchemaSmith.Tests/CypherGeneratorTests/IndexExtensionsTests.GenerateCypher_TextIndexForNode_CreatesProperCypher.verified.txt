@@ -1,5 +1,5 @@
 ﻿CREATE TEXT INDEX GenerateCypher_TextIndexForNode_CreatesProperCypher IF NOT EXISTS
 FOR (i:Node) ON
 (
-i.textIndex
+  i.textIndex
 );

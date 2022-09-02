@@ -179,7 +179,6 @@
     }
   },
   "required": [
-    "serverUrl",
     "graphs"
   ],
   "$defs": {

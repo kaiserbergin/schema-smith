@@ -1,5 +1,5 @@
 ﻿CREATE POINT INDEX GenerateCypher_IndexForNode_CreatesProperCypher IF NOT EXISTS
 FOR (i:Node) ON
 (
-i.point
+  i.point
 );

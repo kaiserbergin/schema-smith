@@ -1,6 +1,6 @@
 ﻿CREATE BTREE INDEX GenerateCypher_IndexForRelationship_CreatesProperCypher IF NOT EXISTS
 FOR ()-[i:Node]-() ON
 (
-i.someProp,
-i.someOtherProp
+  i.someProp,
+  i.someOtherProp
 );

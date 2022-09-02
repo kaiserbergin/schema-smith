@@ -1,7 +1,8 @@
 ﻿CREATE CONSTRAINT GenerateCypher_WithNodeKeyConstraint_CreatesProperCypher IF NOT EXISTS
 FOR (n:PokemonTrainer) 
- REQUIRE (
- n.trainerId,
- n.internationalId
+REQUIRE
+(
+   n.trainerId,
+   n.internationalId
 )
 IS NODE KEY;

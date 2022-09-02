@@ -53,12 +53,12 @@ internal static class ConstraintExtensions
     {
         var propCount = 0;
         
-        sb.Append("\n REQUIRE (");
+        sb.Append("\nREQUIRE\n(");
 
         foreach (var property in constraint.Entity.Properties)
         {
             sb.Append(propCount == 0 ? "\n " : ",\n ");
-            sb.Append($"n.{property}");
+            sb.Append($"  n.{property}");
 
             propCount++;
         }

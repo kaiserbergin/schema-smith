@@ -44,7 +44,7 @@ internal static class IndexExtensions
         foreach (var property in index.Entity.Properties)
         {
             sb.Append(propCount == 0 ? "\n" : ",\n");
-            sb.Append($"i.{property}");
+            sb.Append($"  i.{property}");
 
             propCount++;
         }
