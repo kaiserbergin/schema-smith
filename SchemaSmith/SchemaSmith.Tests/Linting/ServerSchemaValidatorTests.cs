@@ -19,7 +19,7 @@ public class ServerSchemaValidatorTests
         var schemaPath = $"{_specPath}/good-schema.yml";
 
         // Act
-        var result = ServerSchemaValidator.ValidateJson(schemaPath);
+        var result = ServerSchemaValidator.ValidateNeoSpec(schemaPath);
 
         // Assert
         result.Should().BeEmpty();
@@ -32,7 +32,7 @@ public class ServerSchemaValidatorTests
         var schemaPath = $"{_specPath}/bad-schema.yml";
 
         // Act
-        var result = ServerSchemaValidator.ValidateJson(schemaPath);
+        var result = ServerSchemaValidator.ValidateNeoSpec(schemaPath);
 
         // Assert
         await Verifier.Verify(result);

@@ -11,7 +11,7 @@ internal static class ServerSchemaValidator
 {
     private static readonly string _jsonSchemaPath = $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!}/Schemas/neo-schema.json";
     
-    internal static IEnumerable<ValidationError> ValidateJson(string filePath)
+    internal static IEnumerable<ValidationError> ValidateNeoSpec(string filePath)
     {
         var schema = JsonSchema.FromFileAsync(_jsonSchemaPath).GetAwaiter().GetResult();
         var json = SpecReader.GetServerSchemaAsJsonFromPath(filePath);
