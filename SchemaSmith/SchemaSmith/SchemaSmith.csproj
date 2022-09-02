@@ -9,10 +9,10 @@
 
     <ItemGroup>
       <PackageReference Include="Graphr.Neo4j" Version="0.*" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-      <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14" />
-      <PackageReference Include="NJsonSchema" Version="10.7.2" />
-      <PackageReference Include="NJsonSchema.Yaml" Version="10.7.2" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+      <PackageReference Include="Newtonsoft.Json.Schema" Version="3.*" />
+      <PackageReference Include="NJsonSchema" Version="10.*" />
+      <PackageReference Include="NJsonSchema.Yaml" Version="10.*" />
       <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
       <PackageReference Include="YamlDotNet" Version="12.*" />
     </ItemGroup>

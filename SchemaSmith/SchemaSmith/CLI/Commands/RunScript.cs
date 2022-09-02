@@ -1,0 +1,118 @@
+﻿using System.CommandLine;
+using System.Text;
+using SchemaSmith.CLI.Options;
+using Graphr.Neo4j.Configuration;
+using Graphr.Neo4j.Driver;
+using Neo4j.Driver;
+
+namespace SchemaSmith.CLI.Commands;
+
+internal class RunScript
+{
+    internal static readonly Command RunScriptCommand;
+
+    static RunScript()
+    {
+        RunScriptCommand = new Command(
+            name: "run-script",
+            description: "Runs cypher script at the desired location.")
+        {
+            SchemaSmithFileOptions.CypherScriptInfo,
+            Neo4jConnectionOptions.ServerUrl,
+            Neo4jConnectionOptions.Username,
+            Neo4jConnectionOptions.Password
+        };
+
+        RunScriptCommand.SetHandler(
+            RunCypher,
+            SchemaSmithFileOptions.CypherScriptInfo,
+            Neo4jConnectionOptions.ServerUrl,
+            Neo4jConnectionOptions.Username,
+            Neo4jConnectionOptions.Password
+        );
+    }
+
+    private static void RunCypher(
+        FileInfo cypherScript,
+        Uri serverUrl,
+        string username,
+        string password)
+    {
+        var settings = new NeoDriverConfigurationSettings
+        {
+            Url = serverUrl.ToString(),
+            Username = username,
+            Password = password,
+            VerifyConnectivity = true
+        };
+
+        var driver = new DriverProvider(settings).Driver;
+
+        // TODO: Update Graphr.Neo4j to expose a way to create via static method
+
+        var sb = new StringBuilder();
+        string? dbName = null;
+
+        File.ReadLines(cypherScript.FullName)
+            .ToList()
+            .ForEach(line =>
+            {
+                var useDbPosition = line.IndexOf(":use ", StringComparison.Ordinal);
+
+                if (useDbPosition > -1)
+                {
+                    dbName = line[5..^1];
+                    sb.Clear();
+                    return;
+                }
+
+                sb.Append(line);
+                sb.AppendLine();
+
+                if (!line.Contains(';')) 
+                    return;
+                
+                Console.WriteLine(sb.ToString());
+                WriteAsync(driver, settings, dbName, sb.ToString()).GetAwaiter().GetResult();
+                sb.Clear();
+            });
+    }
+
+    private static async Task<List<IRecord>> WriteAsync(
+        IDriver driver,
+        NeoDriverConfigurationSettings settings,
+        string dbName,
+        string cypherStatement,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (settings.VerifyConnectivity)
+            await driver.VerifyConnectivityAsync();
+
+        await using var session = driver.AsyncSession(config => config.WithDatabase(dbName));
+
+        var records = new List<IRecord>();
+
+        try
+        {
+            await session.WriteTransactionAsync(async tx =>
+                {
+                    var reader = await tx.RunAsync(cypherStatement);
+
+                    while (await reader.FetchAsync())
+                    {
+                        cancellationToken.ThrowIfCancellationRequested();
+
+                        records.Add(reader.Current);
+                    }
+                },
+                x => x.WithTimeout(settings.ConnectionTimeout));
+        }
+        finally
+        {
+            await session.CloseAsync();
+        }
+
+        return records;
+    }
+}

@@ -1,4 +1,7 @@
 ﻿[  
+:use neo4j
+
+  
 CREATE CONSTRAINT Constraint1 IF NOT EXISTS
 FOR (n:one) 
 REQUIRE

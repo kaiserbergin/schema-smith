@@ -13,35 +13,37 @@ internal class Script
     {
         ScriptCommand = new Command(
             name: "script",
-            description: "Script out the cypher statements"
+            description: "Script out the cypher statements."
         )
         {
-            SchemaFileOptions.NeoSchemaFileInfo,
-            SchemaFileOptions.OutputCypherInfo,
+            SchemaSmithFileOptions.NeoSchemaFileInfo,
+            SchemaSmithFileOptions.OutputCypherInfo,
         };
 
         ScriptCommand.SetHandler(
             ScriptCypher, 
-            SchemaFileOptions.NeoSchemaFileInfo,
-            SchemaFileOptions.OutputCypherInfo
+            SchemaSmithFileOptions.NeoSchemaFileInfo,
+            SchemaSmithFileOptions.OutputCypherInfo
             );
     }
 
     internal static void ScriptCypher(FileInfo file, FileInfo? outputFileInfo)
     {
+        // The type is optional because it is a parameter for 
+        //  the command line, but we have a default value set
+        //  for it regardless.
+        Program.CypherFile = outputFileInfo!;
+        
         Console.ResetColor();
 
         Lint.LintNeoSchema(file);
 
-        var serverSchema = SpecReader.GetServerSchemaFromPath(file.FullName);
-        var cypherStatements = serverSchema
+        Program.ServerSchema = SpecReader.GetServerSchemaFromPath(file.FullName);
+        var cypherStatements = Program.ServerSchema
             .Graphs
             .SelectMany(schema => schema.GenerateCypherStatements())
             .ToList();
-
-        // The type is optional because it is a parameter for 
-        //  the command line, but we have a default value set
-        //  for it regardless.
+        
         using var outputFile = File.Open(outputFileInfo!.FullName, FileMode.Create);
         using var streamWriter = new StreamWriter(outputFile);
         

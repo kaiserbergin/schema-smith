@@ -16,10 +16,10 @@ internal class Lint
              description: "Lint neo4j schema file."
          )
          {
-             SchemaFileOptions.NeoSchemaFileInfo
+             SchemaSmithFileOptions.NeoSchemaFileInfo
          };       
         
-        LintCommand.SetHandler(LintNeoSchema, SchemaFileOptions.NeoSchemaFileInfo);
+        LintCommand.SetHandler(LintNeoSchema, SchemaSmithFileOptions.NeoSchemaFileInfo);
     }
 
     internal static void LintNeoSchema(FileInfo file)

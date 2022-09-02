@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace SchemaSmith.CLI.Options;
 
-internal class SchemaFileOptions
+internal class SchemaSmithFileOptions
 {
     internal static readonly Option<FileInfo> NeoSchemaFileInfo = new Option<FileInfo>(
             aliases: new[] { "--file", "-f" },
@@ -26,4 +26,14 @@ internal class SchemaFileOptions
                 return fileInfo;
             })
         .LegalFilePathsOnly();
+
+    internal static readonly Option<FileInfo> CypherScriptInfo = new Option<FileInfo>(
+            aliases: new[] { "--file", "-f" },
+            description: "Cypher script file path.")
+        {
+            Arity = ArgumentArity.ExactlyOne
+        }
+        .ExistingOnly()
+        .LegalFilePathsOnly();
+
 }
