@@ -12,9 +12,12 @@ public class YamlStringEnumConverter : IYamlTypeConverter
 
     public object ReadYaml(IParser parser, Type type)
     {
-        var parsedEnum = parser.Expect<Scalar>();
+        var parsedEnum = parser.Consume<Scalar>();
         var serializableValues = type.GetMembers()
-            .Select(m => new KeyValuePair<string, MemberInfo>(m.GetCustomAttributes<EnumMemberAttribute>(true).Select(ema => ema.Value).FirstOrDefault(), m))
+            .Where(m => m.GetCustomAttributes<EnumMemberAttribute>(true).Select(ema => ema.Value).Any())
+            .Select(m => 
+                new KeyValuePair<string, MemberInfo> (
+                    m.GetCustomAttributes<EnumMemberAttribute>(true).Select(ema => ema.Value).FirstOrDefault()!, m))
             .Where(pa => !string.IsNullOrEmpty(pa.Key)).ToDictionary(pa => pa.Key, pa => pa.Value);
         if (!serializableValues.ContainsKey(parsedEnum.Value))
         {
@@ -24,10 +27,10 @@ public class YamlStringEnumConverter : IYamlTypeConverter
         return Enum.Parse(type, serializableValues[parsedEnum.Value].Name);
     }
 
-    public void WriteYaml(IEmitter emitter, object value, Type type)
+    public void WriteYaml(IEmitter emitter, object? value, Type type)
     {
-        var enumMember = type.GetMember(value.ToString()).FirstOrDefault();
+        var enumMember = type.GetMember(value?.ToString() ?? throw new ArgumentNullException()).FirstOrDefault();
         var yamlValue = enumMember?.GetCustomAttributes<EnumMemberAttribute>(true).Select(ema => ema.Value).FirstOrDefault() ?? value.ToString();
-        emitter.Emit(new Scalar(yamlValue));
+        emitter.Emit(new Scalar(yamlValue!));
     }
 }

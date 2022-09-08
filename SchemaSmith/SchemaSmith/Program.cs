@@ -6,8 +6,8 @@ namespace SchemaSmith;
 
 internal class Program
 {
-    internal static ServerSchema ServerSchema;
-    internal static FileInfo CypherFile;
+    internal static ServerSchema? ServerSchema;
+    internal static FileInfo? CypherFile;
     static async Task<int> Main(string[] args)
     {
         Console.OutputEncoding = System.Text.Encoding.Unicode;
@@ -65,6 +65,6 @@ internal class Program
         {
             Console.WriteLine(line);
             await Task.Delay(delay * line.Length);
-        };
+        }
     }
 }

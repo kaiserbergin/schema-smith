@@ -9,6 +9,7 @@ public class Neo4jConnectionOptions
         description: "Neo4j server url."
     )
     {
+        IsRequired = true,
         Arity = ArgumentArity.ExactlyOne
     };
 
@@ -17,6 +18,7 @@ public class Neo4jConnectionOptions
         description: "Username to run scripts with."
     )
     {
+        IsRequired = true,
         Arity = ArgumentArity.ExactlyOne
     };
     
@@ -25,6 +27,7 @@ public class Neo4jConnectionOptions
         description: "Username to run scripts with."
     )
     {
+        IsRequired = true,
         Arity = ArgumentArity.ExactlyOne
     };
 }

@@ -5,6 +5,11 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>schemasmith</ToolCommandName>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
+        <VersionPrefix>0.0.1</VersionPrefix>
+        <VersionSuffix>alpha</VersionSuffix>
     </PropertyGroup>
 
     <ItemGroup>

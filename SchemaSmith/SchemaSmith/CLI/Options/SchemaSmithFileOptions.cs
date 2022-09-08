@@ -6,10 +6,14 @@ namespace SchemaSmith.CLI.Options;
 internal class SchemaSmithFileOptions
 {
     internal static readonly Option<FileInfo> NeoSchemaFileInfo = new Option<FileInfo>(
-            aliases: new[] { "--file", "-f" },
-            description: "Neo4j schema file path.")
+                aliases: new[] { "--file", "-f" },
+                description: "Neo4j schema file path.")
+        {
+            IsRequired = true
+        }
         .ExistingOnly()
         .LegalFilePathsOnly();
+        
 
     internal static readonly Option<FileInfo?> OutputCypherInfo = new Option<FileInfo?>(
             aliases: new[] { "--output", "-o" },
@@ -31,6 +35,7 @@ internal class SchemaSmithFileOptions
             aliases: new[] { "--file", "-f" },
             description: "Cypher script file path.")
         {
+            IsRequired = true,
             Arity = ArgumentArity.ExactlyOne
         }
         .ExistingOnly()

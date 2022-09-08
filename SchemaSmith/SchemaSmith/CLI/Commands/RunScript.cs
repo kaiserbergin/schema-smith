@@ -71,6 +71,9 @@ internal class RunScript
 
                 if (!line.Contains(';')) 
                     return;
+
+                if (dbName == null)
+                    throw new ArgumentNullException("Database name not found");
                 
                 Console.WriteLine(sb.ToString());
                 WriteAsync(driver, settings, dbName, sb.ToString()).GetAwaiter().GetResult();
