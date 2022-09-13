@@ -10,6 +10,11 @@
         <PackageOutputPath>./nupkg</PackageOutputPath>
         <VersionPrefix>0.0.1</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
+        <Title>SchemaSmith</Title>
+        <Description>Simplify development of neo4j schemas and scripts</Description>
+        <Authors>Donovan Bergin</Authors>
+        <PackageTags>neo4j</PackageTags>
+        <PackageProjectUrl>https://github.com/kaiserbergin/schema-smith</PackageProjectUrl>
     </PropertyGroup>
 
     <ItemGroup>

@@ -10,7 +10,7 @@ databases in the future.
 Simply install via nuget in your favorite IDE (it's Rider), or use the command line.
 
 ```powershell
-dotnet tool install -g schemasmith
+dotnet tool install -g schemasmith --prerelease
 ```
 
 ## Use
