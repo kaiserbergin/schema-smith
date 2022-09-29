@@ -43,6 +43,8 @@ public class GraphSchema
     public IEnumerable<Index> Indexes { get; init; } = Enumerable.Empty<Index>();
 }
 
+
+
 public class Node
 {
     /// <summary>

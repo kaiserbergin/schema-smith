@@ -1,0 +1,38 @@
+﻿[
+  {
+    Severity: Warning,
+    Message: Node labels must be PascalCase. Found test
+  },
+  {
+    Severity: Warning,
+    Message: Node properties must be PascalCase or snake_case. Found ID_IS_COOL on test
+  },
+  {
+    Severity: Warning,
+    Message: Node properties must be PascalCase or snake_case. Found _wow on test
+  },
+  {
+    Severity: Warning,
+    Message: Node properties must be PascalCase or snake_case. Found numberAfterOkay1 on test
+  },
+  {
+    Severity: Warning,
+    Message: Node properties must be PascalCase or snake_case. Found 1numberBeforeBad on test
+  },
+  {
+    Severity: Warning,
+    Message: Relationship types must be SCREAMING_SNAKE_CASE. Found PascalNotAcceptable
+  },
+  {
+    Severity: Warning,
+    Message: Relationship properties must be camelCase or snake_case. Found BAD_PROPERTY on PascalNotAcceptable
+  },
+  {
+    Severity: Warning,
+    Message: Constraint names must be Pascal_Snake_Case. Found SNAKE_CASE_BAD
+  },
+  {
+    Severity: Warning,
+    Message: Index names must be Pascal_Snake_Case. Found SNAKE_CASE_BAD
+  }
+]

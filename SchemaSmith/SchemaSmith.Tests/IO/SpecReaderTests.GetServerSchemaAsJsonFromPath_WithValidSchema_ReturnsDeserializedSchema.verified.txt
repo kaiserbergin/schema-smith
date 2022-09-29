@@ -214,6 +214,10 @@
             {
               name: relProp,
               type: string
+            },
+            {
+              name: stringProp,
+              type: string
             }
           ],
           type: SELF_CARE

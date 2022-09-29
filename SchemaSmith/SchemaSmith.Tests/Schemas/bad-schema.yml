@@ -33,6 +33,10 @@ graphs:
         properties:
           - name: id
             type: pop
+      - label: not_Pascal_CASE
+        properties:
+          - name: BAD_NAME$
+            type: bool
     relationships:
       - name: SELF_CARE
         properties:
@@ -45,6 +49,7 @@ graphs:
           - Test->AnotherLabel
           - AnotherLabel->Test
           - AnotherLabel->AnotherLabel
+      - name: badname
     constraints:
       - name: AnotherLabel_NK
         type: node-key
@@ -68,6 +73,7 @@ graphs:
           name: Test
           properties:
             - id
+      - name: wrongCase
     indexes:
       - name: Test_BI
         type: b-tree
@@ -100,3 +106,4 @@ graphs:
           name: Test
           properties:
             - pointProp
+      - name: wrongCase

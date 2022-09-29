@@ -39,6 +39,7 @@ internal class Script
         Lint.LintNeoSchema(file);
 
         Program.ServerSchema = SpecReader.GetServerSchemaFromPath(file.FullName);
+        
         var cypherStatements = Program.ServerSchema
             .Graphs
             .SelectMany(schema => schema.GenerateCypherStatements())

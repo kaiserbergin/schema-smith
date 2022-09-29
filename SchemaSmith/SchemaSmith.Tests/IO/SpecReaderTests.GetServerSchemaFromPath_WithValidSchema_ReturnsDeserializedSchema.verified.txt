@@ -118,6 +118,10 @@
             {
               Name: relProp,
               Type: string
+            },
+            {
+              Name: stringProp,
+              Type: string
             }
           ],
           Connections: [

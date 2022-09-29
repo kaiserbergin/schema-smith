@@ -1,0 +1,41 @@
+﻿serverUrl: some-url
+graphs:
+  - name: neo4j
+    nodes:
+      - label: test
+        properties:
+          - name: ID_IS_COOL
+            type: string
+          - name: _wow
+            type: string
+          - name: numberAfterOkay1
+            type: integer
+          - name: 1numberBeforeBad
+            type: float
+          - name: snake_okay
+            type: boolean
+    relationships:
+      - type: PascalNotAcceptable
+        properties:
+          - name: relProp
+            type: string
+          - name: BAD_PROPERTY
+            type: string
+        connections:
+          - Test->Test
+    constraints:
+      - name: SNAKE_CASE_BAD
+        type: existence
+        entity:
+          type: relationship
+          id: SELF_CARE
+          properties:
+            - stringProp
+    indexes:
+      - name: SNAKE_CASE_BAD
+        type: text
+        entity:
+          type: relationship
+          id: SELF_CARE
+          properties:
+            - relProp

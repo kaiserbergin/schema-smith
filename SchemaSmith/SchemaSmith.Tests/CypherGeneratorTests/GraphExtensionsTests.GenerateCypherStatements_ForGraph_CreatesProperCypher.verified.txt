@@ -1,5 +1,5 @@
 ﻿[  
-:use neo4j
+:use neo4j;
 
   
 CREATE CONSTRAINT Constraint1 IF NOT EXISTS

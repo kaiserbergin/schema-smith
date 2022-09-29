@@ -59,6 +59,8 @@ graphs:
         properties:
           - name: relProp
             type: string
+          - name: stringProp
+            type: string
         connections:
           - Test->Test
       - type: RELATED_TO

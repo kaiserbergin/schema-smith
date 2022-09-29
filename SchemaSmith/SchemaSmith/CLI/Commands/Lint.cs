@@ -1,6 +1,7 @@
 ﻿using System.CommandLine;
 using NJsonSchema.Validation;
 using SchemaSmith.CLI.Options;
+using SchemaSmith.IO;
 using SchemaSmith.Linting;
 
 namespace SchemaSmith.CLI.Commands;
@@ -25,26 +26,55 @@ internal class Lint
     internal static void LintNeoSchema(FileInfo file)
     {
         List<ValidationError> validationErrors = ServerSchemaValidator
-            .ValidateNeoSpec(file.FullName)
+            .ValidateNeoSpecStructure(file.FullName)
             .ToList();
 
-        Console.ResetColor();
+        Program.ServerSchema = SpecReader.GetServerSchemaFromPath(file.FullName);
 
-        if (validationErrors.Count == 0)
+        List<ValidationEvent> validationEvents = NamingConventionValidator
+            .ValidateNamingConventions(Program.ServerSchema)
+            .ToList();
+
+        List<ValidationEvent> validationEventsErrorLevel = validationEvents
+            .Where(e => e.Severity is ValidationSeverity.Error)
+            .ToList();
+        
+        Console.ResetColor();
+        
+        if (validationErrors.Count == 0 && validationEvents.Count == 0)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("  \x2714  Schema checks out!");
         }
         else
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("  \x274C  Schema has errors:");
+            if (validationErrors.Count > 0 || validationEventsErrorLevel.Count > 0)
+                Console.ForegroundColor = ConsoleColor.Red;
+            else
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            
+            Console.WriteLine("  \x274C  Schema has issues:");
+            
             validationErrors.ForEach(Console.WriteLine);
-        }
+            
+            validationEvents
+                .Where(e => e.Severity is ValidationSeverity.Error)
+                .ToList()
+                .ForEach(Console.WriteLine);
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            
+            validationEvents
+                .Where(e => e.Severity is ValidationSeverity.Warning)
+                .ToList()
+                .ForEach(Console.WriteLine);
+            
+            Console.ResetColor();
+        } 
+        
         Console.ResetColor();
         
-        if (validationErrors.Any())
+        if (validationErrors.Any() || validationEvents.Any())
             Environment.Exit(1);
     }
 }

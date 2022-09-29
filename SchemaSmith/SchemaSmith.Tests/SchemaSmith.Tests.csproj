@@ -33,6 +33,9 @@
       <None Update="Schemas\bad-schema.yml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Schemas\bad-naming-conventions.yml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
