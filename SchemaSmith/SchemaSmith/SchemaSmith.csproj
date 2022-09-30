@@ -8,7 +8,7 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>schemasmith</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
-        <VersionPrefix>0.0.1</VersionPrefix>
+        <VersionPrefix>0.0.2</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <Title>SchemaSmith</Title>
         <Description>Simplify development of neo4j schemas and scripts</Description>
