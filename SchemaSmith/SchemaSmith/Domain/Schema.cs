@@ -147,7 +147,7 @@ public class Property
     /// <summary>
     /// Property data type.
     /// </summary>
-    public PropertyType Type { get; init; } = PropertyType.String;
+    public NeoDataType Type { get; init; } = NeoDataType.String;
 }
 
 public class Entity
@@ -173,7 +173,7 @@ public enum EntityType
     Relationship = 2
 }
 
-public enum PropertyType
+public enum NeoDataType
 {
     [EnumMember(Value = @"string")]
     String = 1,

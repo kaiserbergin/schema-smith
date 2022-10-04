@@ -20,12 +20,12 @@ public class RelationshipGeneratorTests
                 new Property
                 {
                     Name = "propOne",
-                    Type = PropertyType.String
+                    Type = NeoDataType.String
                 },
                 new Property
                 {
                     Name = "propTwo",
-                    Type = PropertyType.Boolean
+                    Type = NeoDataType.Boolean
                 }
             },
             Connections = new[]

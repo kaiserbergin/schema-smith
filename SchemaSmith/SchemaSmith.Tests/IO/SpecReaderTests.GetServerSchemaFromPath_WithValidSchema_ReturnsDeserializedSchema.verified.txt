@@ -151,7 +151,7 @@
           }
         },
         {
-          Name: SELF_CARE_EC,
+          Name: Self_Care_EC,
           Type: existence,
           Entity: {
             Type: relationship,
@@ -198,7 +198,7 @@
           }
         },
         {
-          Name: SELF_CARE_TXT,
+          Name: Self_Care_Txt,
           Type: text,
           Entity: {
             Type: relationship,

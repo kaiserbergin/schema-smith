@@ -1,0 +1,18 @@
+﻿[
+  {
+    Severity: Error,
+    Message: Did not find required property: two in mapping node.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected valid property key, but found: four instead.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  }
+]

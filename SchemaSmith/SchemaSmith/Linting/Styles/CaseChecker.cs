@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace SchemaSmith.Linting;
+namespace SchemaSmith.Linting.Styles;
 
 internal static class CaseChecker
 {
@@ -13,8 +13,11 @@ internal static class CaseChecker
         internal static string _pascalSnake = @"^[A-Z](?=[A-Z|a-z|/d|_]*)(?!.*__)[A-Z|a-z|/d|_]*$";
     }
 
-    internal static CaseType GetCase(string s)
+    internal static CaseType GetCase(string? s)
     {
+        if (s is null)
+            return CaseType.Any;
+        
         if (Regex.Match(s, CasePatterns._pascal).Success)
             return CaseType.PascalCase;
         
@@ -30,17 +33,18 @@ internal static class CaseChecker
         if (Regex.Match(s, CasePatterns._pascalSnake).Success)
             return CaseType.PascalSnakeCase;
         
-        return CaseType.Invalid;
+        return CaseType.Any;
     }
 }
 
 
+[Flags]
 internal enum CaseType
 {
-    Invalid,
-    PascalCase,
-    CamelCase,
-    SnakeCase,
-    PascalSnakeCase,
-    ScreamingSnakeCase,
+    Any = 1,
+    PascalCase = 2,
+    CamelCase = 4,
+    SnakeCase = 8,
+    PascalSnakeCase = 16,
+    ScreamingSnakeCase = 32,
 }

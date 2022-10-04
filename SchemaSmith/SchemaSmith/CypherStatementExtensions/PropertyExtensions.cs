@@ -4,30 +4,30 @@ namespace SchemaSmith.CypherStatementExtensions;
 
 internal static class PropertyExtensions
 {
-    private static readonly Dictionary<PropertyType, string> _defaultPropertyValues = new()
+    private static readonly Dictionary<NeoDataType, string> _defaultPropertyValues = new()
     {
-        { PropertyType.String, "\"string\"" },
-        { PropertyType.Integer, "0" },
-        { PropertyType.Float, "1.0" },
-        { PropertyType.Boolean, "false" },
-        { PropertyType.Point, "point({ latitude: 0, longitude: 0 })" },
-        { PropertyType.Date, "date()" },
-        { PropertyType.Time, "time()" },
-        { PropertyType.LocalTime, "localtime()" },
-        { PropertyType.DateTime, "datetime()" },
-        { PropertyType.LocalDateTime, "localdatetime()" },
-        { PropertyType.Duration, "duration('P14DT16H12M')" },
-        { PropertyType.ListString, "[ \"string\" ]" },
-        { PropertyType.ListInteger, "[ 0 ]" },
-        { PropertyType.ListFloat, "[ 1.0 ]" },
-        { PropertyType.ListBoolean, "[ false ]" },
-        { PropertyType.ListPoint, "[ point({ latitude: 0, longitude: 0 }) ]" },
-        { PropertyType.ListDate, "[ date() ]" },
-        { PropertyType.ListTime, "[ time() ]" },
-        { PropertyType.ListLocalTime, "[ localtime() ]" },
-        { PropertyType.ListDateTime, "[ datetime() ]" },
-        { PropertyType.ListLocalDateTime, "[ localdatetime() ]" },
-        { PropertyType.ListDuration, "[ duration('P14DT16H12M') ]" }
+        { NeoDataType.String, "\"string\"" },
+        { NeoDataType.Integer, "0" },
+        { NeoDataType.Float, "1.0" },
+        { NeoDataType.Boolean, "false" },
+        { NeoDataType.Point, "point({ latitude: 0, longitude: 0 })" },
+        { NeoDataType.Date, "date()" },
+        { NeoDataType.Time, "time()" },
+        { NeoDataType.LocalTime, "localtime()" },
+        { NeoDataType.DateTime, "datetime()" },
+        { NeoDataType.LocalDateTime, "localdatetime()" },
+        { NeoDataType.Duration, "duration('P14DT16H12M')" },
+        { NeoDataType.ListString, "[ \"string\" ]" },
+        { NeoDataType.ListInteger, "[ 0 ]" },
+        { NeoDataType.ListFloat, "[ 1.0 ]" },
+        { NeoDataType.ListBoolean, "[ false ]" },
+        { NeoDataType.ListPoint, "[ point({ latitude: 0, longitude: 0 }) ]" },
+        { NeoDataType.ListDate, "[ date() ]" },
+        { NeoDataType.ListTime, "[ time() ]" },
+        { NeoDataType.ListLocalTime, "[ localtime() ]" },
+        { NeoDataType.ListDateTime, "[ datetime() ]" },
+        { NeoDataType.ListLocalDateTime, "[ localdatetime() ]" },
+        { NeoDataType.ListDuration, "[ duration('P14DT16H12M') ]" }
     };
 
     internal static string GenerateDefaultPropertyValue(this Property property) =>

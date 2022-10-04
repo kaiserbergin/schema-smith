@@ -1,0 +1,10 @@
+﻿[
+  {
+    Severity: Error,
+    Message: Expected YamlNodeType of Sequence, but found Scalar.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  }
+]

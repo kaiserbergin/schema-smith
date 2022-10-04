@@ -36,6 +36,51 @@
       <None Update="Schemas\bad-naming-conventions.yml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Linting\Neo4j\Validation\NamingConventionValidatorTests.Validate_ForInvalidYaml_ReturnsErrors.verified.txt">
+        <ParentFile>NamingConventionValidatorTests</ParentFile>
+        <DependentUpon>NamingConventionValidatorTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\Neo4j\Validation\ServerSchemaValidatorTests.Validate_ForInvalidYaml_ReturnsErrors.verified.txt">
+        <ParentFile>ServerSchemaValidatorTests</ParentFile>
+        <DependentUpon>ServerSchemaValidatorTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\SequenceNodeValidationDefinitionTests.Validate_InvalidNodeType_ReturnsValidationEvents.DotNet6_0.received.txt">
+        <DependentUpon>SequenceNodeValidationDefinitionExtensionTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\SequenceNodeValidationDefinitionTests.Validate_InvalidNodeType_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>SequenceNodeValidationDefinitionExtensionTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\SequenceNodeValidationDefinitionTests.Validate_WithIssues_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>SequenceNodeValidationDefinitionExtensionTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\MappingNodeValidationDefinitionExtensions.Validate_InvalidNodeType_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>MappingNodeValidationDefinitionExtensionsTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\MappingNodeValidationDefinitionExtensions.Validate_InvalidRequiredProperties_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>MappingNodeValidationDefinitionExtensionsTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\SequenceNodeValidationDefinitionExtensionTests.Validate_InvalidNodeType_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>SequenceNodeValidationDefinitionTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\SequenceNodeValidationDefinitionExtensionTests.Validate_WithIssues_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>SequenceNodeValidationDefinitionTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\ScalarNodeValidationDefinitionExtensionsTests.Validate_BadCaseStyle_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>ScalarNodeValidationDefinitionTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\ScalarNodeValidationDefinitionExtensionsTests.Validate_ComboCompliant_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>ScalarNodeValidationDefinitionTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\ScalarNodeValidationDefinitionExtensionsTests.Validate_ComboOffender_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>ScalarNodeValidationDefinitionTests.cs</DependentUpon>
+      </None>
+      <None Update="Linting\YamlNodes\ScalarNodeValidationDefinitionExtensionsTests.Validate_InvalidNodeType_ReturnsValidationEvents.verified.txt">
+        <DependentUpon>ScalarNodeValidationDefinitionTests.cs</DependentUpon>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Linting\Neo4j\YamlNodes" />
     </ItemGroup>
 
 </Project>

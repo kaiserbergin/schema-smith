@@ -1,15 +1,14 @@
 ﻿using System.IO;
 using System.Reflection;
 using FluentAssertions;
-using SchemaSmith.IO;
-using SchemaSmith.Linting;
+using SchemaSmith.Linting.Neo4j.Validation;
 using VerifyXunit;
 using Xunit;
 
-namespace SchemaSmith.Tests.Linting;
+namespace SchemaSmith.Tests.Linting.Neo4j.Validation;
 
 [UsesVerify]
-public class NamingConventionValidatorTests
+public class ServerSchemaValidatorTests
 {
     private static readonly string _specPath = $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!}/Schemas";
     
@@ -18,10 +17,9 @@ public class NamingConventionValidatorTests
     {
         // Arrange
         var schemaPath = $"{_specPath}/good-schema.yml";
-        var serverSchema = SpecReader.GetServerSchemaFromPath(schemaPath);
 
         // Act
-        var result = NamingConventionValidator.ValidateNamingConventions(serverSchema);
+        var result = ServerSchemaValidator.ValidateNeoSpecStructure(schemaPath);
 
         // Assert
         result.Should().BeEmpty();
@@ -31,11 +29,10 @@ public class NamingConventionValidatorTests
     public async void Validate_ForInvalidYaml_ReturnsErrors()
     {
         // Arrange
-        var schemaPath = $"{_specPath}/bad-naming-conventions.yml";
-        var serverSchema = SpecReader.GetServerSchemaFromPath(schemaPath);
+        var schemaPath = $"{_specPath}/bad-schema.yml";
 
         // Act
-        var result = NamingConventionValidator.ValidateNamingConventions(serverSchema);
+        var result = ServerSchemaValidator.ValidateNeoSpecStructure(schemaPath);
 
         // Assert
         await Verifier.Verify(result);

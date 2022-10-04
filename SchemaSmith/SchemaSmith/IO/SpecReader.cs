@@ -1,4 +1,6 @@
-﻿using SchemaSmith.Domain;
+﻿using System.Text;
+using SchemaSmith.Domain;
+using YamlDotNet.RepresentationModel;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -24,6 +26,43 @@ internal static class SpecReader
             .WithTypeConverter(_converter)
             .JsonCompatible()
             .Build();
+    }
+
+    internal static YamlMappingNode GetYamlStream(string filePath)
+    {
+        var sb = new StringBuilder();
+        
+        // Setup the input
+        var input = new StringReader(GetServerSchemaText(filePath));
+
+        // Load the stream
+        var yaml = new YamlStream();
+        yaml.Load(input);
+
+        // Examine the stream
+        var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
+        
+        foreach (var entry in mapping.Children)
+        {
+            sb.AppendLine();
+            
+            sb.AppendLine(entry.Value.NodeType.ToString());
+            
+            sb.AppendLine($"Start Line: {entry.Key.Start.Line}");
+            sb.AppendLine($"Start Column: {entry.Key.Start.Column}");
+            sb.AppendLine($"Start Index: {entry.Key.Start.Index}");
+            
+            sb.AppendLine($"End Line: {entry.Key.End.Line}");
+            sb.AppendLine($"End Column: {entry.Key.End.Column}");
+            sb.AppendLine($"End Index: {entry.Key.End.Index}");
+            
+            sb.AppendLine(((YamlScalarNode)entry.Key).Value);
+            sb.AppendLine(entry.Key.ToString());
+        }
+        
+        var test = sb.ToString();
+
+        return mapping;
     }
 
     internal static string GetServerSchemaText(string filePath)

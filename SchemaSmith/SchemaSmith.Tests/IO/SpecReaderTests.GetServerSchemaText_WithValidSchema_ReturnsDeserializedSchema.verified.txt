@@ -76,7 +76,7 @@ graphs:
           id: AnotherLabel
           properties:
             - id
-      - name: SELF_CARE_EC
+      - name: Self_Care_EC
         type: existence
         entity:
           type: relationship
@@ -106,7 +106,7 @@ graphs:
           properties:
             - id
             - intProp
-      - name: SELF_CARE_TXT
+      - name: Self_Care_Txt
         type: text
         entity:
           type: relationship

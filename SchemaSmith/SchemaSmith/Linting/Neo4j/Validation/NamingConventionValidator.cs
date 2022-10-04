@@ -1,7 +1,9 @@
 ﻿using SchemaSmith.Domain;
+using SchemaSmith.Linting.Styles;
+using SchemaSmith.Linting.ValidationComponents;
 using Index = SchemaSmith.Domain.Index;
 
-namespace SchemaSmith.Linting;
+namespace SchemaSmith.Linting.Neo4j.Validation;
 
 internal static class NamingConventionValidator
 {

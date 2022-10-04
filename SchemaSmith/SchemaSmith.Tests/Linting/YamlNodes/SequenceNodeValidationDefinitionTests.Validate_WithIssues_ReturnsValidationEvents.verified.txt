@@ -1,0 +1,26 @@
+﻿[
+  {
+    Severity: Error,
+    Message: Duplicate sequence key value of "one" for property SEQUENCE_KEY.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected sequence item key of SEQUENCE_KEY, but found none.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected sequence of mapping nodes, but found node of <Scalar> type.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  }
+]

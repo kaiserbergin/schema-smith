@@ -17,7 +17,7 @@ public class NodeExtensionTests
         var node = new Node
         {
             Label = "Node",
-            Properties = Enum.GetValues<PropertyType>()
+            Properties = Enum.GetValues<NeoDataType>()
                 .Select(x => new Property
                 {
                     Name = nameof(x),

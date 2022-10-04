@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using SchemaSmith.Linting;
+using SchemaSmith.Linting.Styles;
 using Xunit;
 
-namespace SchemaSmith.Tests.Linting;
+namespace SchemaSmith.Tests.Linting.Styles;
 
 public class CaseCheckerTests
 {
@@ -18,15 +18,15 @@ public class CaseCheckerTests
     }
     
     [Theory]
-    [InlineData("snake__case", CaseType.Invalid)]
-    [InlineData("not_A_CamelCaseOrSnake", CaseType.Invalid)]
-    [InlineData("SCREAMING__SNAKE", CaseType.Invalid)]
-    [InlineData("Pascal__Snake_is_BEST", CaseType.Invalid)]
-    [InlineData("Pascal_Snake__Is_Best", CaseType.Invalid)]
-    [InlineData("kebab-case", CaseType.Invalid)]
-    [InlineData("1dontStartWithNumber", CaseType.Invalid)]
-    [InlineData("no-Special?Characters*I$SaidExcept_", CaseType.Invalid)]
-    [InlineData("def NoSpaces", CaseType.Invalid)]
+    [InlineData("snake__case", CaseType.Any)]
+    [InlineData("not_A_CamelCaseOrSnake", CaseType.Any)]
+    [InlineData("SCREAMING__SNAKE", CaseType.Any)]
+    [InlineData("Pascal__Snake_is_BEST", CaseType.Any)]
+    [InlineData("Pascal_Snake__Is_Best", CaseType.Any)]
+    [InlineData("kebab-case", CaseType.Any)]
+    [InlineData("1dontStartWithNumber", CaseType.Any)]
+    [InlineData("no-Special?Characters*I$SaidExcept_", CaseType.Any)]
+    [InlineData("def NoSpaces", CaseType.Any)]
     internal void GetCase_WithInvalidCasing_ReturnsInvalidCaseType(string s, CaseType expectedCase)
     {
         CaseChecker.GetCase(s).Should().Be(expectedCase);

@@ -52,4 +52,15 @@ public class SpecReaderTests
         // Assert
         await Verifier.VerifyJson(serverSchema);
     }
+
+    [Fact]
+    public async void TestyTest()
+    {
+        // Arrange
+        var buildDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
+        var specPath = $@"{buildDir}/Schemas/good-schema.yml";
+
+        // Act
+        SpecReader.GetYamlStream(specPath);
+    }
 }

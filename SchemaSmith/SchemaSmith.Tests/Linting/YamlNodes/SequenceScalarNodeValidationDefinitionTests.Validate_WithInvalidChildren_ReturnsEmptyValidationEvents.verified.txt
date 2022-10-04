@@ -1,0 +1,18 @@
+﻿[
+  {
+    Severity: Error,
+    Message: Expected casing style of [CamelCase] but found [ScreamingSnakeCase] for "SREAMING_CAMEL_NOT".,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected sequence of scalar nodes, but found node of <Mapping> type.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  }
+]

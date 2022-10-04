@@ -1,0 +1,6 @@
+﻿[
+  {
+    Severity: Error,
+    Message: Expected YamlNodeType of Mapping, but found Scalar.
+  }
+]

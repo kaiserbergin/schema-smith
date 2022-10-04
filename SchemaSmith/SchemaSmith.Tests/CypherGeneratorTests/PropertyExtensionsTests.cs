@@ -14,7 +14,7 @@ public class PropertyExtensionsTests
     public async void GenerateDefaultPropertyValue_WithAllTypes_GeneratesDefaultValues()
     {
         // Arrange
-        var properties = Enum.GetValues<PropertyType>()
+        var properties = Enum.GetValues<NeoDataType>()
             .Select(x => new Property
             {
                 Name = nameof(x),

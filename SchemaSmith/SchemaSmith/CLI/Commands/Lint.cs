@@ -3,6 +3,9 @@ using NJsonSchema.Validation;
 using SchemaSmith.CLI.Options;
 using SchemaSmith.IO;
 using SchemaSmith.Linting;
+using SchemaSmith.Linting.Neo4j;
+using SchemaSmith.Linting.Neo4j.Validation;
+using SchemaSmith.Linting.ValidationComponents;
 
 namespace SchemaSmith.CLI.Commands;
 

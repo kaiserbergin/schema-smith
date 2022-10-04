@@ -29,24 +29,24 @@ public class GraphExtensionsTests
                         new Property
                         {
                             Name = "one",
-                            Type = PropertyType.String
+                            Type = NeoDataType.String
                         },
                         new Property
                         {
                             Name = "two",
-                            Type = PropertyType.String
+                            Type = NeoDataType.String
                         },
                         new Property
                         {
                             Name = "three",
-                            Type = PropertyType.String
+                            Type = NeoDataType.String
                         }
                     }
                 },
                 new Node
                 {
                     Label = labelTwo,
-                    Properties = new[] { new Property { Name = "indexed", Type = PropertyType.String } }
+                    Properties = new[] { new Property { Name = "indexed", Type = NeoDataType.String } }
                 }
             },
             Relationships = new[]

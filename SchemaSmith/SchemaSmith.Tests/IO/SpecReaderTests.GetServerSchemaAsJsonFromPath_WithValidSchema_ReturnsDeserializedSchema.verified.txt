@@ -21,7 +21,7 @@
             ],
             type: relationship
           },
-          name: SELF_CARE_EC,
+          name: Self_Care_EC,
           type: existence
         },
         {
@@ -68,7 +68,7 @@
             ],
             type: relationship
           },
-          name: SELF_CARE_TXT,
+          name: Self_Care_Txt,
           type: text
         },
         {

@@ -3,7 +3,7 @@ using NJsonSchema;
 using NJsonSchema.Validation;
 using SchemaSmith.IO;
 
-namespace SchemaSmith.Linting;
+namespace SchemaSmith.Linting.Neo4j.Validation;
 
 internal static class ServerSchemaValidator
 {
