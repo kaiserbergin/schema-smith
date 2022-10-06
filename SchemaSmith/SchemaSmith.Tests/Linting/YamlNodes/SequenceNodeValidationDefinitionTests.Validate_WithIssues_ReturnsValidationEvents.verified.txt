@@ -17,6 +17,14 @@
   },
   {
     Severity: Error,
+    Message: Did not find required property: "SEQUENCE_KEY" in mapping node.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
     Message: Expected sequence of mapping nodes, but found node of <Scalar> type.,
     Position: {
       Item1: 1,

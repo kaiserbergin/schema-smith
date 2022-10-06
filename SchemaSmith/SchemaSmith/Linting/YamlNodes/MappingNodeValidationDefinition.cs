@@ -12,6 +12,8 @@ internal class MappingNodeValidationDefinition : NodeValidationDefinition
 
     internal Dictionary<string, NodeValidationDefinition> AllowedProperties { get; init; } = new();
 
+    internal ValidationSeverity AllowedPropertiesSeverity = ValidationSeverity.Error;
+
     internal override List<ValidationEvent> Validate(YamlNode node)
     {
         var validationEvents = new List<ValidationEvent>();
@@ -46,7 +48,7 @@ internal class MappingNodeValidationDefinition : NodeValidationDefinition
                         new ValidationEvent
                         {
                             Severity = ValidationSeverity.Error,
-                            Message = $"Expected scalar node for mapping key, but found: {scalarKeyNode.NodeType} instead.",
+                            Message = $"Expected scalar node for mapping key, but found: \"{scalarKeyNode.NodeType}\" instead.",
                             Position = (scalarKeyNode.Start.Line, scalarKeyNode.Start.Column)
                         }
                     );
@@ -59,8 +61,8 @@ internal class MappingNodeValidationDefinition : NodeValidationDefinition
                     validationEvents.Add(
                         new ValidationEvent
                         {
-                            Severity = ValidationSeverity.Error,
-                            Message = $"Expected valid property key, but found: {scalarKeyNode.Value} instead.",
+                            Severity = AllowedPropertiesSeverity,
+                            Message = $"Expected valid property key, but found: \"{scalarKeyNode.Value}\" instead.",
                             Position = (scalarKeyNode.Start.Line, scalarKeyNode.Start.Column)
                         }
                     );
@@ -79,7 +81,7 @@ internal class MappingNodeValidationDefinition : NodeValidationDefinition
                     new ValidationEvent
                     {
                         Severity = ValidationSeverity.Error,
-                        Message = $"Expected scalar node for mapping key, but found: {yamlNodeKvp.Key.NodeType} instead.",
+                        Message = $"Expected scalar node for mapping key, but found: <{yamlNodeKvp.Key.NodeType}> instead.",
                         Position = (yamlNodeKvp.Key.Start.Line, yamlNodeKvp.Key.Start.Column)
                     }
                 );
@@ -101,7 +103,7 @@ internal class MappingNodeValidationDefinition : NodeValidationDefinition
                     new ValidationEvent
                     {
                         Severity = ValidationSeverity.Error,
-                        Message = $"Did not find required property: {requiredProperty} in mapping node.",
+                        Message = $"Did not find required property: \"{requiredProperty}\" in mapping node.",
                         Position = (mappingNode.Start.Line, mappingNode.Start.Column)
                     }
                 );

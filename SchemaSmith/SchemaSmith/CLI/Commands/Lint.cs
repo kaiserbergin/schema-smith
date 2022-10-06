@@ -1,9 +1,5 @@
 ﻿using System.CommandLine;
-using NJsonSchema.Validation;
 using SchemaSmith.CLI.Options;
-using SchemaSmith.IO;
-using SchemaSmith.Linting;
-using SchemaSmith.Linting.Neo4j;
 using SchemaSmith.Linting.Neo4j.Validation;
 using SchemaSmith.Linting.ValidationComponents;
 
@@ -28,61 +24,41 @@ internal class Lint
 
     internal static void LintNeoSchema(FileInfo file)
     {
-        List<ValidationError> validationErrors = ServerSchemaValidator
-            .ValidateNeoSpecStructure(file.FullName)
-            .ToList();
+        List<ValidationEvent> validationEvents = NeoSpecValidator.ValidateNeo4jSpec(file.FullName);
 
-        List<ValidationEvent> validationEvents = new List<ValidationEvent>();
-
-        if (validationErrors.Count == 0)
-        {
-            Program.ServerSchema = SpecReader.GetServerSchemaFromPath(file.FullName);
-            validationEvents = NamingConventionValidator
-                .ValidateNamingConventions(Program.ServerSchema)
-                .ToList();
-        }
-
-
-        List<ValidationEvent> validationEventsErrorLevel = validationEvents
+        var validationEventsErrorLevel = validationEvents
             .Where(e => e.Severity is ValidationSeverity.Error)
             .ToList();
 
         Console.ResetColor();
 
-        if (validationErrors.Count == 0 && validationEvents.Count == 0)
+        if (validationEvents.Count == 0)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("  \x2714  Schema checks out!");
+            Console.WriteLine("Schema checks out!");
         }
         else
         {
-            if (validationErrors.Count > 0 || validationEventsErrorLevel.Count > 0)
-                Console.ForegroundColor = ConsoleColor.Red;
-            else
-                Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = validationEventsErrorLevel.Any(e => e.Severity is ValidationSeverity.Error) 
+                ? ConsoleColor.Red : ConsoleColor.Yellow;
 
-            Console.WriteLine("  \x274C  Schema has issues:");
-
-            validationErrors.ForEach(Console.WriteLine);
+            Console.WriteLine("Schema has issues:\n");
 
             validationEvents
-                .Where(e => e.Severity is ValidationSeverity.Error)
                 .ToList()
-                .ForEach(Console.WriteLine);
+                .ForEach(e =>
+                {
+                    Console.ForegroundColor = e.Severity switch
+                    {
+                        ValidationSeverity.Error => ConsoleColor.Red,
+                        _ => ConsoleColor.Yellow,
+                    };
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(e.ToString());
+                });
 
-            validationEvents
-                .Where(e => e.Severity is ValidationSeverity.Warning)
-                .ToList()
-                .ForEach(Console.WriteLine);
-
-            Console.ResetColor();
+            if (validationEvents.Count > 0)
+                Environment.Exit(1);
         }
-
-        Console.ResetColor();
-
-        if (validationErrors.Any() || validationEvents.Any())
-            Environment.Exit(1);
     }
 }

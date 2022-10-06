@@ -20,18 +20,4 @@ internal class Program
 
         return await rootCommand.InvokeAsync(args);
     }
-
-    internal static async Task ReadFile(
-        FileInfo file, int delay, ConsoleColor fgColor, bool lightMode)
-    {
-        Console.BackgroundColor = lightMode ? ConsoleColor.White : ConsoleColor.Black;
-        Console.ForegroundColor = fgColor;
-        List<string> lines = File.ReadLines(file.FullName).ToList();
-        
-        foreach (string line in lines)
-        {
-            Console.WriteLine(line);
-            await Task.Delay(delay * line.Length);
-        }
-    }
 }

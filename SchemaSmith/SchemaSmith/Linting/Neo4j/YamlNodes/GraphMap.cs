@@ -1,4 +1,6 @@
-﻿using SchemaSmith.Linting.YamlNodes;
+﻿using SchemaSmith.Linting.ValidationComponents;
+using SchemaSmith.Linting.YamlNodes;
+using YamlDotNet.RepresentationModel;
 
 namespace SchemaSmith.Linting.Neo4j.YamlNodes;
 
@@ -13,10 +15,16 @@ internal class GraphMap : MappingNodeValidationDefinition
         
         AllowedProperties = new Dictionary<string, NodeValidationDefinition>
         {
-            { "nodes", new SequenceMapNodeValidationDefinition() },
-            { "relationships", new SequenceMapNodeValidationDefinition() },
-            { "constraints", new SequenceMapNodeValidationDefinition() },
-            { "indexes", new SequenceMapNodeValidationDefinition() },
+            { "nodes", new MapNodesSequenceMap() },
+            { "relationships", new RelationshipSequenceMap() },
+            { "constraints", new ConstraintSequence() },
+            { "indexes", new IndexSequence() },
         };
-    }   
+    }
+
+    internal override List<ValidationEvent> Validate(YamlNode node)
+    {
+        NeoSchemaTracker.Init();
+        return base.Validate(node);
+    }
 }

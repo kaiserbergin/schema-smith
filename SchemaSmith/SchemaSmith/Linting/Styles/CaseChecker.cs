@@ -17,26 +17,25 @@ internal static class CaseChecker
     {
         if (s is null)
             return CaseType.Any;
-        
+
         if (Regex.Match(s, CasePatterns._pascal).Success)
             return CaseType.PascalCase;
-        
-        if (Regex.Match(s, CasePatterns._snakeCase).Success)
-            return CaseType.SnakeCase;
 
         if (Regex.Match(s, CasePatterns._camelCase).Success)
             return CaseType.CamelCase;
-       
+
+        if (Regex.Match(s, CasePatterns._snakeCase).Success)
+            return CaseType.SnakeCase;
+
         if (Regex.Match(s, CasePatterns._screamingSnakeCasePattern).Success)
             return CaseType.ScreamingSnakeCase;
-        
+
         if (Regex.Match(s, CasePatterns._pascalSnake).Success)
             return CaseType.PascalSnakeCase;
-        
+
         return CaseType.Any;
     }
 }
-
 
 [Flags]
 internal enum CaseType

@@ -12,6 +12,8 @@ internal class SequenceMapNodeValidationDefinition : NodeValidationDefinition
     
     internal string SequenceItemKey { get; init; } = null!;
 
+    internal ValidationSeverity SequenceItemKeySeverity = ValidationSeverity.Error;
+
     internal override List<ValidationEvent> Validate(YamlNode node)
     {
         var validationEvents = new List<ValidationEvent>();
@@ -27,6 +29,7 @@ internal class SequenceMapNodeValidationDefinition : NodeValidationDefinition
             if (childNode is YamlMappingNode yamlMappingNode)
             {
                 ValidateMappingNode(yamlMappingNode, validationEvents, usedKeys);
+                validationEvents.AddRange(ChildValidationDefinition.Validate(childNode));
             }
             else
             {
@@ -51,7 +54,7 @@ internal class SequenceMapNodeValidationDefinition : NodeValidationDefinition
             validationEvents.Add(
                 new ValidationEvent
                 {
-                    Severity = ValidationSeverity.Error,
+                    Severity = SequenceItemKeySeverity,
                     Message = $"Expected sequence item key of {SequenceItemKey}, but found none.",
                     Position = (yamlMappingNode.Start.Line, yamlMappingNode.Start.Column)
                 }
@@ -67,7 +70,7 @@ internal class SequenceMapNodeValidationDefinition : NodeValidationDefinition
             validationEvents.Add(
                 new ValidationEvent
                 {
-                    Severity = ValidationSeverity.Error,
+                    Severity = SequenceItemKeySeverity,
                     Message = $"Duplicate sequence key value of \"{keyValue}\" for property {SequenceItemKey}.",
                     Position = (keyProperty.Start.Line, keyProperty.Start.Column)
                 }

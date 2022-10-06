@@ -1,7 +1,16 @@
 ﻿[
   {
     Severity: Error,
-    Message: Did not find required property: two in mapping node.,
+    Message:
+Expected valid value for entry, but found "notMatched". Valid values are: 
+[value,prop,roi].,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Message: Expected casing style of [CamelCase] but found [ScreamingSnakeCase] for "BAD_CASE".,
     Position: {
       Item1: 1,
       Item2: 1
@@ -9,7 +18,55 @@
   },
   {
     Severity: Error,
-    Message: Expected valid property key, but found: four instead.,
+    Message: Expected YamlNodeType of Sequence, but found Scalar.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected valid property key, but found: "not allowed" instead.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Duplicate sequence key value of "duplicate" for property id.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected sequence item key of id, but found none.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Did not find required property: "id" in mapping node.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected valid property key, but found: "requiredNotPresent" instead.,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected valid property key, but found: "not allowed" instead.,
     Position: {
       Item1: 1,
       Item2: 1

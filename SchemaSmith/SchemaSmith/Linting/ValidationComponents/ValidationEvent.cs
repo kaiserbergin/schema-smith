@@ -16,7 +16,6 @@ public record ValidationEvent
 
 public enum ValidationSeverity
 {
-    Information,
     Warning,
     Error
 }

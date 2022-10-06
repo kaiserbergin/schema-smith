@@ -12,9 +12,15 @@ internal class ScalarNodeValidationDefinition : NodeValidationDefinition
 
     internal virtual CaseType CaseType { get; init; } = CaseType.Any;
 
+    internal ValidationSeverity CaseTypeSeverity { get; init; } = ValidationSeverity.Warning;
+
     internal HashSet<string>? AllowedEnumeration { get; init; }
+
+    internal ValidationSeverity AllowedEnumerationSeverity = ValidationSeverity.Error;
     
     internal string? RegexConstraint { get; set; }
+
+    internal ValidationSeverity RegexConstraintSeverity = ValidationSeverity.Error;
 
     internal override List<ValidationEvent> Validate(YamlNode node)
     {
@@ -22,19 +28,16 @@ internal class ScalarNodeValidationDefinition : NodeValidationDefinition
         
         if (!node.Validate(NodeType, validationEvents))
             return validationEvents;
-
-        if (CaseType is CaseType.Any)
-            return validationEvents;
-
+        
         var scalarNode = (YamlScalarNode)node;
         var casing = CaseChecker.GetCase(scalarNode.Value);
 
-        if (!CaseType.HasFlag(casing))
+        if (CaseType is not CaseType.Any && !CaseType.HasFlag(casing))
         {
             validationEvents.Add(
                 new ValidationEvent
                 {
-                    Severity = ValidationSeverity.Error,
+                    Severity = CaseTypeSeverity,
                     Message = $"Expected casing style of [{CaseType}] but found [{casing}] for \"{scalarNode.Value}\".",
                     Position = (scalarNode.Start.Line, node.Start.Column)
                 }
@@ -46,7 +49,7 @@ internal class ScalarNodeValidationDefinition : NodeValidationDefinition
             validationEvents.Add(
                 new ValidationEvent
                 {
-                    Severity = ValidationSeverity.Error,
+                    Severity = AllowedEnumerationSeverity,
                     Message = $"Expected valid value for entry, but found \"{scalarNode.Value}\". Valid values are: \n[{string.Join(',', AllowedEnumeration)}].",
                     Position = (scalarNode.Start.Line, node.Start.Column)
                 }
@@ -58,7 +61,7 @@ internal class ScalarNodeValidationDefinition : NodeValidationDefinition
             validationEvents.Add(
                 new ValidationEvent
                 {
-                    Severity = ValidationSeverity.Error,
+                    Severity = RegexConstraintSeverity,
                     Message = $"Expected valid value for entry, but found \"{scalarNode.Value}\". Valid values should match: {RegexConstraint}",
                     Position = (scalarNode.Start.Line, node.Start.Column)
                 }

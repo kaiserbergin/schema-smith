@@ -20,6 +20,16 @@ public class SequenceNodeValidationDefinitionTests
         _definition = new SequenceMapNodeValidationDefinition
         {
             SequenceItemKey = SEQUENCE_KEY,
+            ChildValidationDefinition = new MappingNodeValidationDefinition
+            {
+                RequiredProperties = new Dictionary<string, NodeValidationDefinition>
+                {
+                    {
+                        SEQUENCE_KEY, 
+                        new ScalarNodeValidationDefinition { CaseType = CaseType.CamelCase }
+                    }
+                }
+            }
         };
     }
 

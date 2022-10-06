@@ -38,18 +38,18 @@ graphs:
           - name: BAD_NAME$
             type: bool
     relationships:
-      - name: SELF_CARE
+      - type: SELF_CARE
         properties:
           - name: relProp
             type: string
         connections:
           - Test->Test
-      - name: RELATED_TO
+      - type: RELATED_TO
         connections:
           - Test->AnotherLabel
           - AnotherLabel->Test
           - AnotherLabel->AnotherLabel
-      - name: badname
+      - type: badname
     constraints:
       - name: AnotherLabel_NK
         type: node-key
@@ -70,10 +70,16 @@ graphs:
         type: unique
         entity:
           type: node
-          name: Test
+          id: Test
           properties:
             - id
       - name: wrongCase
+        type: unique
+        entity:
+          type: node
+          id: Missing
+          properties:
+            - id
     indexes:
       - name: Test_BI
         type: b-tree

@@ -23,6 +23,14 @@ graphs:
             type: string
         connections:
           - Test->Test
+      - type: SELF_CARE
+        properties:
+          - name: relProp
+            type: string
+          - name: stringProp
+            type: string
+        connections:
+          - Test->Test
     constraints:
       - name: SNAKE_CASE_BAD
         type: existence

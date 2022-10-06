@@ -1,0 +1,27 @@
+﻿[
+  {
+    Message: Expected casing style of [CamelCase] but found [Any] for "DONT_even_MatCh_a-th1ng!".,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message:
+Expected valid value for entry, but found "DONT_even_MatCh_a-th1ng!". Valid values are: 
+[somePickle,sourPickle,sweetPickle].,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  },
+  {
+    Severity: Error,
+    Message: Expected valid value for entry, but found "DONT_even_MatCh_a-th1ng!". Valid values should match: Pickle,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  }
+]

@@ -7,6 +7,6 @@ internal class PropertySequenceMap : SequenceMapNodeValidationDefinition
     public PropertySequenceMap()
     {
         SequenceItemKey = "name";
-        ChildValidationDefinition = new MappingNodeValidationDefinition();
+        ChildValidationDefinition = new PropertyMap();
     }
 }

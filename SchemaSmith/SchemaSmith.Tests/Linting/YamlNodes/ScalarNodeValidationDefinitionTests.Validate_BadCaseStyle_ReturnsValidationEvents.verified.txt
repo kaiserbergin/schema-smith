@@ -1,0 +1,9 @@
+﻿[
+  {
+    Message: Expected casing style of [CamelCase, SnakeCase] but found [ScreamingSnakeCase] for "YOU_DONT_WORK_HERE".,
+    Position: {
+      Item1: 1,
+      Item2: 1
+    }
+  }
+]
