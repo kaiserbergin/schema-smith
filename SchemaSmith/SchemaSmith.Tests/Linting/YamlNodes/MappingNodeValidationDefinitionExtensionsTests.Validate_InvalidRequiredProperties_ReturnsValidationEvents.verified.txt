@@ -10,7 +10,7 @@ Expected valid value for entry, but found "notMatched". Valid values are:
     }
   },
   {
-    Message: Expected casing style of [CamelCase] but found [ScreamingSnakeCase] for "BAD_CASE".,
+    Message: Expected casing style of [CamelCase] but found [Any, ScreamingSnakeCase] for "BAD_CASE".,
     Position: {
       Item1: 1,
       Item2: 1

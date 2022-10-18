@@ -15,25 +15,27 @@ internal static class CaseChecker
 
     internal static CaseType GetCase(string? s)
     {
+        var caseType = CaseType.Any;
+
         if (s is null)
-            return CaseType.Any;
+            return caseType;
+        
+        if (Regex.Match(s, CasePatterns._snakeCase).Success)
+            caseType |= CaseType.SnakeCase;
+        
+        if (Regex.Match(s, CasePatterns._screamingSnakeCasePattern).Success)
+            caseType |= CaseType.ScreamingSnakeCase;
 
         if (Regex.Match(s, CasePatterns._pascal).Success)
-            return CaseType.PascalCase;
+            caseType |= CaseType.PascalCase;
 
         if (Regex.Match(s, CasePatterns._camelCase).Success)
-            return CaseType.CamelCase;
+            caseType |= CaseType.CamelCase;
 
-        if (Regex.Match(s, CasePatterns._snakeCase).Success)
-            return CaseType.SnakeCase;
+        if (Regex.Match(s, CasePatterns._pascalSnake).Success && !caseType.HasFlag(CaseType.ScreamingSnakeCase))
+            caseType |= CaseType.PascalSnakeCase;
 
-        if (Regex.Match(s, CasePatterns._screamingSnakeCasePattern).Success)
-            return CaseType.ScreamingSnakeCase;
-
-        if (Regex.Match(s, CasePatterns._pascalSnake).Success)
-            return CaseType.PascalSnakeCase;
-
-        return CaseType.Any;
+        return caseType;
     }
 }
 

@@ -32,7 +32,7 @@ internal class ScalarNodeValidationDefinition : NodeValidationDefinition
         var scalarNode = (YamlScalarNode)node;
         var casing = CaseChecker.GetCase(scalarNode.Value);
 
-        if (CaseType is not CaseType.Any && !CaseType.HasFlag(casing))
+        if (CaseType is not CaseType.Any && (CaseType & casing) == 0)
         {
             validationEvents.Add(
                 new ValidationEvent

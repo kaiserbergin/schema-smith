@@ -1,6 +1,6 @@
 ﻿[
   {
-    Message: Expected casing style of [CamelCase] but found [ScreamingSnakeCase] for "SREAMING_CAMEL_NOT".,
+    Message: Expected casing style of [CamelCase] but found [Any, ScreamingSnakeCase] for "SREAMING_CAMEL_NOT".,
     Position: {
       Item1: 1,
       Item2: 1
