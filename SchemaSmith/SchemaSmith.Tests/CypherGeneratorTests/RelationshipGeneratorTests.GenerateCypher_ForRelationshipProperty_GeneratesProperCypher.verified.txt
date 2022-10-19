@@ -1,26 +1,26 @@
 ﻿[  
 MATCH (n1:Node:SchemaSmith), (n2:Node:SchemaSmith)
 CREATE (n1)-[r:TEST_RELATIONSHIP]->(n2)
-SET r.propOne = "string"
+SET r.propOne = Guid_1
 SET r.propTwo = false;
   
 MATCH (n1:Node:SchemaSmith), (n2:Node:SchemaSmith)
 CREATE (n1)<-[r:TEST_RELATIONSHIP]-(n2)
-SET r.propOne = "string"
+SET r.propOne = Guid_2
 SET r.propTwo = false;
   
 MATCH (n1:Node:SchemaSmith), (n2:OtherNode:SchemaSmith)
 CREATE (n1)-[r:TEST_RELATIONSHIP]->(n2)
-SET r.propOne = "string"
+SET r.propOne = Guid_3
 SET r.propTwo = false;
   
 MATCH (n1:OtherNode:SchemaSmith), (n2:Node:SchemaSmith)
 CREATE (n1)-[r:TEST_RELATIONSHIP]->(n2)
-SET r.propOne = "string"
+SET r.propOne = Guid_4
 SET r.propTwo = false;
   
 MATCH (n1:Node:SchemaSmith), (n2:Directionless:SchemaSmith)
 CREATE (n1)<-[r:TEST_RELATIONSHIP]-(n2)
-SET r.propOne = "string"
+SET r.propOne = Guid_5
 SET r.propTwo = false;
 ]

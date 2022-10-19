@@ -1,5 +1,6 @@
 ﻿using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
+using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
 using Xunit;
 
@@ -28,7 +29,7 @@ public class IndexExtensionsTests
         var cypherStatement = index.GenerateCypher();
 
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
     
     [Fact]
@@ -51,7 +52,7 @@ public class IndexExtensionsTests
         var cypherStatement = index.GenerateCypher();
 
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
     
     [Fact]
@@ -74,7 +75,7 @@ public class IndexExtensionsTests
         var cypherStatement = index.GenerateCypher();
 
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
     
     [Fact]
@@ -97,7 +98,7 @@ public class IndexExtensionsTests
         var cypherStatement = index.GenerateCypher();
 
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
     
     [Fact]
@@ -120,6 +121,6 @@ public class IndexExtensionsTests
         var cypherStatement = index.GenerateCypher();
 
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
+using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
 using Xunit;
 
@@ -29,7 +30,7 @@ public class NodeExtensionTests
         var cypherStatement = node.GenerateCypher();
 
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
     
     [Fact]
@@ -46,6 +47,6 @@ public class NodeExtensionTests
         var cypherStatement = node.GenerateCypher();
 
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
 }
