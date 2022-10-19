@@ -2,6 +2,7 @@
 using VerifyXunit;
 using Xunit;
 using SchemaSmith.Domain;
+using SchemaSmith.Tests.Fixtures;
 
 namespace SchemaSmith.Tests.CypherGeneratorTests;
 
@@ -28,7 +29,7 @@ public class ConstraintExtensionsTests
         var cypherStatement = constraint.GenerateCypher();
         
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
     
     [Fact]
@@ -51,7 +52,7 @@ public class ConstraintExtensionsTests
         var cypherStatement = constraint.GenerateCypher();
         
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
     
     [Fact]
@@ -74,7 +75,7 @@ public class ConstraintExtensionsTests
         var cypherStatement = constraint.GenerateCypher();
         
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
     
     [Fact]
@@ -97,6 +98,6 @@ public class ConstraintExtensionsTests
         var cypherStatement = constraint.GenerateCypher();
         
         // Assert
-        await Verifier.Verify(cypherStatement);
+        await Verifier.Verify(cypherStatement, VerifyFixture.VerifySettings);
     }
 }

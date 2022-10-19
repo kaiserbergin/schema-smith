@@ -26,12 +26,12 @@ FOR (i:two) ON
 );
   
 CREATE (n:one:SchemaSmith)
-SET n.one = "string"
-SET n.two = "string"
-SET n.three = "string";
+SET n.one = Guid_1
+SET n.two = Guid_2
+SET n.three = Guid_3;
   
 CREATE (n:two:SchemaSmith)
-SET n.indexed = "string";
+SET n.indexed = Guid_4;
   
 MATCH (n1:one:SchemaSmith), (n2:two:SchemaSmith)
 CREATE (n1)-[r:REL_ONE]->(n2);

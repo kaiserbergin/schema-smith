@@ -10,25 +10,28 @@ public class CaseCheckerTests
     [InlineData("snake_case_with_more_things", CaseType.SnakeCase)]
     [InlineData("PascalCase", CaseType.PascalCase)]
     [InlineData("camelCase", CaseType.CamelCase)]
+    [InlineData("c", CaseType.CamelCase)]
     [InlineData("SCREAMING_SNAKE_CASE", CaseType.ScreamingSnakeCase)]
+    [InlineData("SCREAMINGSNAKE", CaseType.ScreamingSnakeCase)]
+    [InlineData("S", CaseType.ScreamingSnakeCase)]
     [InlineData("Pascal_Snake_Is_Best", CaseType.PascalSnakeCase)]
     internal void GetCase_WithValidCasing_ReturnsCorrectCaseType(string s, CaseType expectedCase)
     {
-        CaseChecker.GetCase(s).Should().Be(expectedCase);
+        CaseChecker.GetCase(s).HasFlag(expectedCase).Should().BeTrue();
     }
     
     [Theory]
-    [InlineData("snake__case", CaseType.Any)]
-    [InlineData("not_A_CamelCaseOrSnake", CaseType.Any)]
-    [InlineData("SCREAMING__SNAKE", CaseType.Any)]
-    [InlineData("Pascal__Snake_is_BEST", CaseType.Any)]
-    [InlineData("Pascal_Snake__Is_Best", CaseType.Any)]
-    [InlineData("kebab-case", CaseType.Any)]
-    [InlineData("1dontStartWithNumber", CaseType.Any)]
-    [InlineData("no-Special?Characters*I$SaidExcept_", CaseType.Any)]
-    [InlineData("def NoSpaces", CaseType.Any)]
-    internal void GetCase_WithInvalidCasing_ReturnsInvalidCaseType(string s, CaseType expectedCase)
+    [InlineData("snake__case")]
+    [InlineData("not_A_CamelCaseOrSnake")]
+    [InlineData("SCREAMING__SNAKE")]
+    [InlineData("Pascal__Snake_is_BEST")]
+    [InlineData("Pascal_Snake__Is_Best")]
+    [InlineData("kebab-case")]
+    [InlineData("1dontStartWithNumber")]
+    [InlineData("no-Special?Characters*I$SaidExcept_")]
+    [InlineData("def NoSpaces")]
+    internal void GetCase_WithInvalidCasing_ReturnsInvalidCaseType(string s)
     {
-        CaseChecker.GetCase(s).Should().Be(expectedCase);
+        CaseChecker.GetCase(s).Should().Be(CaseType.Any);
     }
 }

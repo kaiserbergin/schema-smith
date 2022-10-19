@@ -2,6 +2,7 @@
 using System.Linq;
 using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
+using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
 using Xunit;
 
@@ -25,6 +26,6 @@ public class PropertyExtensionsTests
         var defaultValues = properties.Select(x => x.GenerateDefaultPropertyValue()).ToList();
 
         // Assert
-        await Verifier.Verify(defaultValues);
+        await Verifier.Verify(defaultValues, VerifyFixture.VerifySettings);
     }
 }

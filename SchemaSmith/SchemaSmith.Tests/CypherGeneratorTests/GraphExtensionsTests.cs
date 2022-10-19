@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
+using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
 using Xunit;
 
@@ -109,6 +110,6 @@ public class GraphExtensionsTests
         var cypherStatements = graph.GenerateCypherStatements();
 
         // Assert
-        await Verifier.Verify(cypherStatements);
+        await Verifier.Verify(cypherStatements, VerifyFixture.VerifySettings);
     }
 }

@@ -26,7 +26,7 @@ internal static class NamingConventionValidator
     {
         foreach (var node in nodes)
         {
-            if (CaseChecker.GetCase(node.Label) is not CaseType.PascalCase)
+            if (!CaseChecker.GetCase(node.Label).HasFlag(CaseType.PascalCase))
                 events.Add(new ValidationEvent
                 {
                     Severity = ValidationSeverity.Warning,
@@ -41,7 +41,8 @@ internal static class NamingConventionValidator
     {
         foreach (var property in node.Properties)
         {
-            if (CaseChecker.GetCase(property.Name) is not CaseType.CamelCase and not CaseType.SnakeCase)
+            var caseTypes = CaseChecker.GetCase(property.Name);
+            if (!caseTypes.HasFlag(CaseType.CamelCase) && !caseTypes.HasFlag(CaseType.SnakeCase))
                 events.Add(new ValidationEvent
                 {
                     Severity = ValidationSeverity.Warning,
@@ -54,7 +55,7 @@ internal static class NamingConventionValidator
     {
         foreach (var relationship in relationships)
         {
-            if (CaseChecker.GetCase(relationship.Type) is not CaseType.ScreamingSnakeCase)
+            if (!CaseChecker.GetCase(relationship.Type).HasFlag(CaseType.ScreamingSnakeCase))
                 events.Add(new ValidationEvent
                 {
                     Severity = ValidationSeverity.Warning,
@@ -69,7 +70,8 @@ internal static class NamingConventionValidator
     {
         foreach (var property in relationship.Properties)
         {
-            if (CaseChecker.GetCase(property.Name) is not CaseType.CamelCase and not CaseType.SnakeCase)
+            var caseTypes = CaseChecker.GetCase(property.Name);
+            if (!caseTypes.HasFlag(CaseType.CamelCase) && !caseTypes.HasFlag(CaseType.SnakeCase))
                 events.Add(new ValidationEvent
                 {
                     Severity = ValidationSeverity.Warning,
@@ -82,7 +84,7 @@ internal static class NamingConventionValidator
     {
         foreach (var constraint in constraints)
         {
-            if (CaseChecker.GetCase(constraint.Name) is not CaseType.PascalSnakeCase)
+            if (!CaseChecker.GetCase(constraint.Name).HasFlag(CaseType.PascalSnakeCase))
                 events.Add(new ValidationEvent
                 {
                     Severity = ValidationSeverity.Warning,
@@ -95,7 +97,7 @@ internal static class NamingConventionValidator
     {
         foreach (var index in indexes)
         {
-            if (CaseChecker.GetCase(index.Name) is not CaseType.PascalSnakeCase)
+            if (!CaseChecker.GetCase(index.Name).HasFlag(CaseType.PascalSnakeCase))
                 events.Add(new ValidationEvent
                 {
                     Severity = ValidationSeverity.Warning,
