@@ -3,6 +3,8 @@ using System.Text;
 using SchemaSmith.CLI.Options;
 using Graphr.Neo4j.Configuration;
 using Graphr.Neo4j.Driver;
+using Graphr.Neo4j.Graphr;
+using Graphr.Neo4j.QueryExecution;
 using Neo4j.Driver;
 
 namespace SchemaSmith.CLI.Commands;
@@ -46,9 +48,8 @@ internal class RunScript
             VerifyConnectivity = true
         };
 
-        var driver = new DriverProvider(settings).Driver;
-
-        // TODO: Update Graphr.Neo4j to expose a way to create via static method
+        var driverProvider = new DriverProvider(settings);
+        var queryExecutor = new QueryExecutor(driverProvider, settings);
 
         var sb = new StringBuilder();
         string? dbName = null;
@@ -76,46 +77,51 @@ internal class RunScript
                     throw new ArgumentNullException("Database name not found");
                 
                 Console.WriteLine(sb.ToString());
-                WriteAsync(driver, settings, dbName, sb.ToString()).GetAwaiter().GetResult();
+
+                var neoGraphr = new NeoGraphr(queryExecutor)
+                    .WithSessionConfig(builder => builder.WithDatabase(dbName));
+
+                neoGraphr.WriteAsync(sb.ToString()).GetAwaiter().GetResult();
+                
                 sb.Clear();
             });
     }
 
-    private static async Task<List<IRecord>> WriteAsync(
-        IDriver driver,
-        NeoDriverConfigurationSettings settings,
-        string dbName,
-        string cypherStatement,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (settings.VerifyConnectivity)
-            await driver.VerifyConnectivityAsync();
-
-        await using var session = driver.AsyncSession(config => config.WithDatabase(dbName));
-
-        var records = new List<IRecord>();
-
-        try
-        {
-            await session.WriteTransactionAsync(async tx =>
-                {
-                    var reader = await tx.RunAsync(cypherStatement);
-
-                    while (await reader.FetchAsync())
-                    {
-                        cancellationToken.ThrowIfCancellationRequested();
-
-                        records.Add(reader.Current);
-                    }
-                },
-                x => x.WithTimeout(settings.ConnectionTimeout));
-        }
-        finally
-        {
-            await session.CloseAsync();
-        }
-
-        return records;
-    }
+    // private static async Task<List<IRecord>> WriteAsync(
+    //     IDriver driver,
+    //     NeoDriverConfigurationSettings settings,
+    //     string dbName,
+    //     string cypherStatement,
+    //     CancellationToken cancellationToken = default
+    // )
+    // {
+    //     if (settings.VerifyConnectivity)
+    //         await driver.VerifyConnectivityAsync();
+    //
+    //     await using var session = driver.AsyncSession(config => config.WithDatabase(dbName));
+    //
+    //     var records = new List<IRecord>();
+    //
+    //     try
+    //     {
+    //         await session.WriteTransactionAsync(async tx =>
+    //             {
+    //                 var reader = await tx.RunAsync(cypherStatement);
+    //
+    //                 while (await reader.FetchAsync())
+    //                 {
+    //                     cancellationToken.ThrowIfCancellationRequested();
+    //
+    //                     records.Add(reader.Current);
+    //                 }
+    //             },
+    //             x => x.WithTimeout(settings.ConnectionTimeout));
+    //     }
+    //     finally
+    //     {
+    //         await session.CloseAsync();
+    //     }
+    //
+    //     return records;
+    // }
 }

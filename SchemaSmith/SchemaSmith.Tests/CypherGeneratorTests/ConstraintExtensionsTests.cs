@@ -1,4 +1,5 @@
-﻿using SchemaSmith.CypherStatementExtensions;
+﻿using System.Collections.Generic;
+using SchemaSmith.CypherStatementExtensions;
 using VerifyXunit;
 using Xunit;
 using SchemaSmith.Domain;
@@ -21,7 +22,7 @@ public class ConstraintExtensionsTests
             {
                 Type = EntityType.Node,
                 Id = "PokemonTrainer",
-                Properties = new[] { "trainerId", "internationalId" }
+                Properties = new List<string>() { "trainerId", "internationalId" }
             }
         };
         
@@ -44,7 +45,7 @@ public class ConstraintExtensionsTests
             {
                 Type = EntityType.Node,
                 Id = "PokemonTrainer",
-                Properties = new[] { "trainerId", "internationalId" }
+                Properties = new List<string>() { "trainerId", "internationalId" }
             }
         };
         
@@ -67,7 +68,7 @@ public class ConstraintExtensionsTests
             {
                 Type = EntityType.Node,
                 Id = "PokemonTrainer",
-                Properties = new[] { "trainerId" }
+                Properties = new List<string>() { "trainerId" }
             }
         };
         
@@ -90,7 +91,7 @@ public class ConstraintExtensionsTests
             {
                 Type = EntityType.Relationship,
                 Id = "BELONGS_TO_LEAGUE",
-                Properties = new[] { "joined" }
+                Properties = new List<string>() { "joined" }
             }
         };
         

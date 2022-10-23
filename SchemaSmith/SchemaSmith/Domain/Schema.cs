@@ -12,7 +12,7 @@ public class ServerSchema
     /// <summary>
     /// List of graphs associated to your server
     /// </summary>
-    public IEnumerable<GraphSchema> Graphs { get; init; } = Enumerable.Empty<GraphSchema>();
+    public List<GraphSchema> Graphs { get; init; } = new List<GraphSchema>();
 }
 
 public class GraphSchema
@@ -25,22 +25,22 @@ public class GraphSchema
     /// <summary>
     /// List of node labels with associated properties
     /// </summary>
-    public IEnumerable<Node> Nodes { get; init; } = Enumerable.Empty<Node>();
+    public List<Node> Nodes { get; init; } = new List<Node>();
 
     /// <summary>
     /// List of relationships in your graph
     /// </summary>
-    public IEnumerable<Relationship> Relationships { get; init; } = Enumerable.Empty<Relationship>();
+    public List<Relationship> Relationships { get; init; } = new List<Relationship>();
 
     /// <summary>
     /// Constraints on your graph
     /// </summary>
-    public IEnumerable<Constraint> Constraints { get; init; } = Enumerable.Empty<Constraint>();
+    public List<Constraint> Constraints { get; init; } = new List<Constraint>();
 
     /// <summary>
     /// Indexes on your graph
     /// </summary>
-    public IEnumerable<Index> Indexes { get; init; } = Enumerable.Empty<Index>();
+    public List<Index> Indexes { get; init; } = new List<Index>();
 }
 
 
@@ -55,7 +55,7 @@ public class Node
     /// <summary>
     /// List of properties associated with the label
     /// </summary>
-    public IEnumerable<Property> Properties { get; init; } = Enumerable.Empty<Property>();
+    public List<Property> Properties { get; init; } = new List<Property>();
 }
 
 public class Relationship
@@ -68,12 +68,12 @@ public class Relationship
     /// <summary>
     /// List of properties associated with the label
     /// </summary>
-    public IEnumerable<Property> Properties { get; init; } = Enumerable.Empty<Property>();
+    public List<Property> Properties { get; init; } = new List<Property>();
 
     /// <summary>
     /// List of connections with the format: LabelName-&gt;OtherLabelName
     /// </summary>
-    public IEnumerable<string> Connections { get; init; } = Enumerable.Empty<string>();
+    public List<string> Connections { get; init; } = new List<string>();
 }
 
 public class Constraint
@@ -162,7 +162,7 @@ public class Entity
     /// <summary>
     /// Properties used for the constraint.
     /// </summary>
-    public IEnumerable<string> Properties { get; init; } = Enumerable.Empty<string>();
+    public List<string> Properties { get; init; } = new List<string>();
 }
 
 public enum EntityType

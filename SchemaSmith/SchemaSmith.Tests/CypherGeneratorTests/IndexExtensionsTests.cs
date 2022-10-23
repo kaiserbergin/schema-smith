@@ -1,4 +1,5 @@
-﻿using SchemaSmith.CypherStatementExtensions;
+﻿using System.Collections.Generic;
+using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
 using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
@@ -21,7 +22,7 @@ public class IndexExtensionsTests
             {
                 Type = EntityType.Node,
                 Id = "Node",
-                Properties = new[] { "someProp", "someOtherProp" }
+                Properties = new List<string>() { "someProp", "someOtherProp" }
             }
         };
 
@@ -44,7 +45,7 @@ public class IndexExtensionsTests
             {
                 Type = EntityType.Relationship,
                 Id = "Node",
-                Properties = new[] { "someProp", "someOtherProp" }
+                Properties = new List<string>() { "someProp", "someOtherProp" }
             }
         };
 
@@ -67,7 +68,7 @@ public class IndexExtensionsTests
             {
                 Type = EntityType.Node,
                 Id = "Node",
-                Properties = new[] { "textIndex" }
+                Properties = new List<string>() { "textIndex" }
             }
         };
 
@@ -90,7 +91,7 @@ public class IndexExtensionsTests
             {
                 Type = EntityType.Node,
                 Id = "Node",
-                Properties = new[] { "point" }
+                Properties = new List<string>() { "point" }
             }
         };
 
@@ -113,7 +114,7 @@ public class IndexExtensionsTests
             {
                 Type = EntityType.Node,
                 Id = "Node",
-                Properties = new[] { "rangeProp", "rangeProp2" }
+                Properties = new List<string>() { "rangeProp", "rangeProp2" }
             }
         };
 
