@@ -23,7 +23,7 @@ public class NodeExtensionTests
                 {
                     Name = nameof(x),
                     Type = x
-                })
+                }).ToList()
         };
 
         // Act
@@ -40,7 +40,6 @@ public class NodeExtensionTests
         var node = new Node
         {
             Label = "Node",
-            Properties = Enumerable.Empty<Property>()
         };
 
         // Act

@@ -1,0 +1,94 @@
+﻿[
+  {
+    Name: Node_BTREE,
+    Type: b-tree,
+    Entity: {
+      Type: node,
+      Id: Test,
+      Properties: [
+        tree1,
+        tree2
+      ]
+    }
+  },
+  {
+    Name: Node_POINT,
+    Type: point,
+    Entity: {
+      Type: node,
+      Id: Test,
+      Properties: [
+        location
+      ]
+    }
+  },
+  {
+    Name: Node_RANGE,
+    Type: range,
+    Entity: {
+      Type: node,
+      Id: Test,
+      Properties: [
+        range1,
+        range2
+      ]
+    }
+  },
+  {
+    Name: Node_TEXT,
+    Type: text,
+    Entity: {
+      Type: node,
+      Id: Test,
+      Properties: [
+        text
+      ]
+    }
+  },
+  {
+    Name: Relationship_BTREE,
+    Type: b-tree,
+    Entity: {
+      Type: relationship,
+      Id: REL,
+      Properties: [
+        tree1,
+        tree2
+      ]
+    }
+  },
+  {
+    Name: Relationship_POINT,
+    Type: point,
+    Entity: {
+      Type: relationship,
+      Id: REL,
+      Properties: [
+        location
+      ]
+    }
+  },
+  {
+    Name: Relationship_RANGE,
+    Type: range,
+    Entity: {
+      Type: relationship,
+      Id: REL,
+      Properties: [
+        range1,
+        range2
+      ]
+    }
+  },
+  {
+    Name: Relationship_TEXT,
+    Type: text,
+    Entity: {
+      Type: relationship,
+      Id: REL,
+      Properties: [
+        text
+      ]
+    }
+  }
+]

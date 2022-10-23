@@ -30,4 +30,13 @@ public class Neo4jConnectionOptions
         IsRequired = true,
         Arity = ArgumentArity.ExactlyOne
     };
+    
+    internal static readonly Option<Uri> DatabaseName = new Option<Uri>(
+        aliases: new[] { "--database-name", "-d" },
+        description: "Neo4j database name."
+    )
+    {
+        IsRequired = true,
+        Arity = ArgumentArity.ExactlyOne
+    };
 }

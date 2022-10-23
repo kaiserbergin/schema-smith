@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
 using SchemaSmith.Tests.Fixtures;
@@ -20,12 +21,12 @@ public class GraphExtensionsTests
         var graph = new GraphSchema
         {
             Name = "neo4j",
-            Nodes = new[]
+            Nodes = new List<Node>()
             {
                 new Node
                 {
                     Label = labelOne,
-                    Properties = new[]
+                    Properties = new List<Property>()
                     {
                         new Property
                         {
@@ -47,25 +48,23 @@ public class GraphExtensionsTests
                 new Node
                 {
                     Label = labelTwo,
-                    Properties = new[] { new Property { Name = "indexed", Type = NeoDataType.String } }
+                    Properties = new List<Property>() { new Property { Name = "indexed", Type = NeoDataType.String } }
                 }
             },
-            Relationships = new[]
+            Relationships = new List<Relationship>()
             {
                 new Relationship
                 {
                     Type = "REL_ONE",
-                    Properties = Enumerable.Empty<Property>(),
-                    Connections = new[] { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
+                    Connections = new List<string>() { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
                 },
                 new Relationship
                 {
                     Type = "REL_TWO",
-                    Properties = Enumerable.Empty<Property>(),
-                    Connections = new[] { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
+                    Connections = new List<string>() { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
                 }
             },
-            Constraints = new[]
+            Constraints = new List<Constraint>()
             {
                 new Constraint
                 {
@@ -75,7 +74,7 @@ public class GraphExtensionsTests
                     {
                         Type = EntityType.Node,
                         Id = labelOne,
-                        Properties = new[] { "one", "two" }
+                        Properties = new List<string>() { "one", "two" }
                     }
                 },
                 new Constraint
@@ -86,11 +85,11 @@ public class GraphExtensionsTests
                     {
                         Type = EntityType.Node,
                         Id = labelOne,
-                        Properties = new[] { "three" }
+                        Properties = new List<string>() { "three" }
                     }
                 }
             },
-            Indexes = new[]
+            Indexes = new List<Index>()
             {
                 new Index
                 {
@@ -100,7 +99,7 @@ public class GraphExtensionsTests
                     {
                         Type = EntityType.Node,
                         Id = labelTwo,
-                        Properties = new[] { "indexed" }
+                        Properties = new List<string>() { "indexed" }
                     }
                 }
             }

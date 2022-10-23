@@ -1,4 +1,5 @@
-﻿using SchemaSmith.CypherStatementExtensions;
+﻿using System.Collections.Generic;
+using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
 using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
@@ -16,7 +17,7 @@ public class RelationshipGeneratorTests
         var relationship = new Relationship
         {
             Type = "TEST_RELATIONSHIP",
-            Properties = new[]
+            Properties = new List<Property>()
             {
                 new Property
                 {
@@ -29,7 +30,7 @@ public class RelationshipGeneratorTests
                     Type = NeoDataType.Boolean
                 }
             },
-            Connections = new[]
+            Connections = new List<string>()
             {
                 "Node->Node",
                 "Node<-Node",

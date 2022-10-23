@@ -1,0 +1,46 @@
+﻿[
+  {
+    Name: REL_RPE,
+    Type: existence,
+    Entity: {
+      Type: relationship,
+      Id: REL,
+      Properties: [
+        rpe
+      ]
+    }
+  },
+  {
+    Name: Test_NK,
+    Type: node-key,
+    Entity: {
+      Type: node,
+      Id: Test,
+      Properties: [
+        nk
+      ]
+    }
+  },
+  {
+    Name: Test_NPE,
+    Type: existence,
+    Entity: {
+      Type: node,
+      Id: Test,
+      Properties: [
+        npe
+      ]
+    }
+  },
+  {
+    Name: Test_UNP,
+    Type: unique,
+    Entity: {
+      Type: node,
+      Id: Test,
+      Properties: [
+        unp
+      ]
+    }
+  }
+]
