@@ -2,6 +2,9 @@ using System.Runtime.Serialization;
 
 namespace SchemaSmith.Domain;
 
+/// <summary>
+/// Represents your neo4j server schema
+/// </summary>
 public class ServerSchema
 {
     /// <summary>
@@ -15,6 +18,9 @@ public class ServerSchema
     public List<GraphSchema> Graphs { get; init; } = new List<GraphSchema>();
 }
 
+/// <summary>
+/// Graph schema that includes nodes, relationships, constraints, and indexes
+/// </summary>
 public class GraphSchema
 {
     /// <summary>
@@ -44,7 +50,9 @@ public class GraphSchema
 }
 
 
-
+/// <summary>
+/// Neo4j node, represented by a label and properties.
+/// </summary>
 public class Node
 {
     /// <summary>
@@ -152,6 +160,9 @@ public class Property
 
 public class Entity
 {
+    /// <summary>
+    /// Type of the entity
+    /// </summary>
     public EntityType Type { get; init; }
 
     /// <summary>
@@ -165,6 +176,9 @@ public class Entity
     public List<string> Properties { get; init; } = new List<string>();
 }
 
+/// <summary>
+/// Type of entity represented
+/// </summary>
 public enum EntityType
 {
     [EnumMember(Value = @"node")]

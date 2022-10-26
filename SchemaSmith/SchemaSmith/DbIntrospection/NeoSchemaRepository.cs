@@ -120,10 +120,14 @@ public class NeoSchemaRepository : INeoSchemaRepository
                         Properties = entity["properties"]
                             .As<Dictionary<string, object?>>()
                             .Select(propertyKvp =>
-                                new Property
                                 {
-                                    Name = propertyKvp.Key,
-                                    Type = NeoDataType.String
+                                    var props = propertyKvp.Value.As<Dictionary<string, object?>>();
+
+                                    return new Property
+                                    {
+                                        Name = propertyKvp.Key,
+                                        Type = ConvertToDataType(props["type"].As<string>())
+                                    };
                                 }
                             ).ToList()
                     });
@@ -179,12 +183,16 @@ public class NeoSchemaRepository : INeoSchemaRepository
                     var properties = entity["properties"]
                         .As<Dictionary<string, object?>>()
                         .Select(propertyKvp =>
-                            new Property
                             {
-                                Name = propertyKvp.Key,
-                                Type = NeoDataType.String
+                                var props = propertyKvp.Value.As<Dictionary<string, object?>>();
+
+                                return new Property
+                                {
+                                    Name = propertyKvp.Key,
+                                    Type = ConvertToDataType(props["type"].As<string>())
+                                };
                             }
-                        );
+                        ).ToList();
 
                     rel.Properties.AddRange(properties);
                 }
@@ -194,8 +202,21 @@ public class NeoSchemaRepository : INeoSchemaRepository
         return (nodes, relationships.Values.ToList());
     }
 
-    public List<Relationship> GetRelationships()
-    {
-        throw new NotImplementedException();
-    }
+    private NeoDataType ConvertToDataType(string recordDataType) =>
+        recordDataType switch
+        {
+            "LOCAL_DATE_TIME" => NeoDataType.LocalDateTime,
+            "DATE_TIME" => NeoDataType.DateTime,
+            "STRING" => NeoDataType.String,
+            "LIST" => NeoDataType.ListString,
+            "FLOAT" => NeoDataType.Float,
+            "DATE" => NeoDataType.Date,
+            "POINT" => NeoDataType.Point,
+            "INTEGER" => NeoDataType.Integer,
+            "DURATION" => NeoDataType.Duration,
+            "LOCAL_TIME" => NeoDataType.LocalTime,
+            "BOOLEAN" => NeoDataType.Boolean,
+            "TIME" => NeoDataType.Time,
+            _ => NeoDataType.String
+        };
 }

@@ -9,6 +9,9 @@
 # Verify Test Files
 *.received.txt
 
+# Script Output
+**/ScriptOutput/**/*
+
 # NBomber Test Results
 **/NBomber_Reports
 

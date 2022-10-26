@@ -31,7 +31,7 @@ public class Neo4jConnectionOptions
         Arity = ArgumentArity.ExactlyOne
     };
     
-    internal static readonly Option<Uri> DatabaseName = new Option<Uri>(
+    internal static readonly Option<string> DatabaseName = new Option<string>(
         aliases: new[] { "--database-name", "-d" },
         description: "Neo4j database name."
     )

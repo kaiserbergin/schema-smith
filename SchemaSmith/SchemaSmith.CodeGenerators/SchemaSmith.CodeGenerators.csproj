@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>CodeGenerators</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="java" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SchemaSmith\SchemaSmith.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="dotnet\GraphrGenerator.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>GraphrGenerator.tt</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="dotnet\GraphrGenerator.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>GraphrGenerator.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.CodeDom" Version="6.0.0" />
+    </ItemGroup>
+
+</Project>

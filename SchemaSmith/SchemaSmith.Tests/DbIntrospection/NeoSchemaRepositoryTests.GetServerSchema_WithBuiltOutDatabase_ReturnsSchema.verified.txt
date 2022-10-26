@@ -1,0 +1,134 @@
+﻿[
+  {
+    Name: neo4j,
+    Nodes: [
+      {
+        Label: Movie,
+        Properties: [
+          {
+            Name: tagline,
+            Type: string
+          },
+          {
+            Name: title,
+            Type: string
+          },
+          {
+            Name: released,
+            Type: integer
+          }
+        ]
+      },
+      {
+        Label: Person,
+        Properties: [
+          {
+            Name: born,
+            Type: integer
+          },
+          {
+            Name: name,
+            Type: string
+          }
+        ]
+      }
+    ],
+    Relationships: [
+      {
+        Type: ACTED_IN,
+        Properties: [
+          {
+            Name: roles,
+            Type: list(string)
+          }
+        ],
+        Connections: [
+          Movie<-Person,
+          Person->Movie
+        ]
+      },
+      {
+        Type: REVIEWED,
+        Properties: [
+          {
+            Name: summary,
+            Type: string
+          },
+          {
+            Name: rating,
+            Type: integer
+          }
+        ],
+        Connections: [
+          Movie<-Person,
+          Person->Movie
+        ]
+      },
+      {
+        Type: WROTE,
+        Connections: [
+          Movie<-Person,
+          Person->Movie
+        ]
+      },
+      {
+        Type: PRODUCED,
+        Connections: [
+          Movie<-Person,
+          Person->Movie
+        ]
+      },
+      {
+        Type: DIRECTED,
+        Connections: [
+          Movie<-Person,
+          Person->Movie
+        ]
+      },
+      {
+        Type: FOLLOWS,
+        Connections: [
+          Person->Person,
+          Person->Person
+        ]
+      }
+    ],
+    Constraints: [
+      {
+        Name: Person_UNP,
+        Type: unique,
+        Entity: {
+          Type: node,
+          Id: Person,
+          Properties: [
+            name
+          ]
+        }
+      }
+    ],
+    Indexes: [
+      {
+        Name: Person_BTREE,
+        Type: b-tree,
+        Entity: {
+          Type: node,
+          Id: Person,
+          Properties: [
+            age
+          ]
+        }
+      },
+      {
+        Name: Person_UNP,
+        Type: b-tree,
+        Entity: {
+          Type: node,
+          Id: Person,
+          Properties: [
+            name
+          ]
+        }
+      }
+    ]
+  }
+]

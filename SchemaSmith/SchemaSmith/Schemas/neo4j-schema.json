@@ -1,0 +1,242 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ServerSchema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "serverUrl": {
+      "type": "string"
+    },
+    "graphs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/GraphSchema"
+      }
+    }
+  },
+  "definitions": {
+    "GraphSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Node"
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Relationship"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Constraint"
+          }
+        },
+        "indexes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Index"
+          }
+        }
+      }
+    },
+    "Node": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        }
+      }
+    },
+    "Property": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/NeoDataType"
+        }
+      }
+    },
+    "NeoDataType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "String",
+        "Integer",
+        "Float",
+        "Boolean",
+        "Point",
+        "Date",
+        "Time",
+        "LocalTime",
+        "DateTime",
+        "LocalDateTime",
+        "Duration",
+        "ListString",
+        "ListInteger",
+        "ListFloat",
+        "ListBoolean",
+        "ListPoint",
+        "ListDate",
+        "ListTime",
+        "ListLocalTime",
+        "ListDateTime",
+        "ListLocalDateTime",
+        "ListDuration"
+      ],
+      "enum": [
+        "string",
+        "integer",
+        "float",
+        "boolean",
+        "point",
+        "date",
+        "time",
+        "localTime",
+        "dateTime",
+        "localDateTime",
+        "duration",
+        "list(string)",
+        "list(integer)",
+        "list(float)",
+        "list(boolean)",
+        "list(point)",
+        "list(date)",
+        "list(time)",
+        "list(localTime)",
+        "list(dateTime)",
+        "list(localDateTime)",
+        "list(duration)"
+      ]
+    },
+    "Relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/ConstraintType"
+        },
+        "entity": {
+          "$ref": "#/definitions/Entity"
+        }
+      }
+    },
+    "ConstraintType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "NodeKey",
+        "Unique",
+        "Existence"
+      ],
+      "enum": [
+        "node-key",
+        "unique",
+        "existence"
+      ]
+    },
+    "Entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/EntityType"
+        },
+        "id": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "EntityType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Node",
+        "Relationship"
+      ],
+      "enum": [
+        "node",
+        "relationship"
+      ]
+    },
+    "Index": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/IndexType"
+        },
+        "entity": {
+          "$ref": "#/definitions/Entity"
+        }
+      }
+    },
+    "IndexType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "BTree",
+        "Text",
+        "Point",
+        "Range"
+      ],
+      "enum": [
+        "b-tree",
+        "text",
+        "point",
+        "range"
+      ]
+    }
+  }
+}

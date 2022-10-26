@@ -45,7 +45,8 @@ internal class RunScript
             Url = serverUrl.ToString(),
             Username = username,
             Password = password,
-            VerifyConnectivity = true
+            VerifyConnectivity = true,
+            QueryTimeoutInMs = 10000
         };
 
         var driverProvider = new DriverProvider(settings);

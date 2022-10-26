@@ -37,7 +37,7 @@ internal class SchemaSmithFileOptions
             getDefaultValue: () =>
             {
                 var date = DateTime.UtcNow;
-                var fileInfo = new FileInfo($"./schema-smith/{date:yyyy_MM_dd_T_HH_mm_ss}__SchemaSmithSpec.yaml");
+                var fileInfo = new FileInfo($"./schema-smith-specs/{date:yyyy_MM_dd_T_HH_mm_ss}__SchemaSmithSpec.yaml");
                 
                 // TODO: Validation for directory stuff.
                 if (!fileInfo.Exists)

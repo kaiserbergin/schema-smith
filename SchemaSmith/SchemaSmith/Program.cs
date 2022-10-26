@@ -17,6 +17,7 @@ internal class Program
         rootCommand.AddCommand(Lint.LintCommand);
         rootCommand.AddCommand(Script.ScriptCommand);
         rootCommand.AddCommand(RunScript.RunScriptCommand);
+        rootCommand.AddCommand(Introspect.IntrospectCommand);
 
         return await rootCommand.InvokeAsync(args);
     }

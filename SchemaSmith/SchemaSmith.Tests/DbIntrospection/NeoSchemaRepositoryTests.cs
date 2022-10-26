@@ -114,7 +114,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     #region Nodes
     
     [Fact]
-    public async void GetNodes_WithNodes_ReturnsNodes()
+    public async void GetDatabaseEntities_WithNodesAndRelationships_ReturnsEntities()
     {
         // Arrange
         await _neoGraphr.WriteAsync(TestQueryProvider.PlayMovies);
@@ -128,7 +128,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     }
 
     [Fact]
-    public void GetNodes_WithoutNodes_ReturnsNoNodes()
+    public void GetDatabaseEntities_WithOutNodesOrRelationships_ReturnsNoEntities()
     {
         // Act
         var result = _repository.GetDatabaseEntities();
@@ -136,6 +136,40 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         // Assert
         result.Nodes.Should().BeEmpty();
         result.Relationships.Should().BeEmpty();
+    }
+
+    #endregion
+
+    #region Server Schema
+
+    [Fact]
+    public async void GetServerSchema_WithBuiltOutDatabase_ReturnsSchema()
+    {
+        // Arrange
+        var personIndex = "CREATE BTREE INDEX Person_BTREE FOR (n:Person) ON (n.age)";
+        var personConstraint = "CREATE CONSTRAINT Person_UNP FOR (n:Person) REQUIRE n.name IS UNIQUE";
+        
+        await _neoGraphr.WriteAsync(TestQueryProvider.PlayMovies);
+        await _neoGraphr.WriteAsync(personIndex);
+        await _neoGraphr.WriteAsync(personConstraint);
+        
+        // Act
+        var result = _repository.GetServerSchema();
+
+        // Assert
+        result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestcontainer.ConnectionString);
+        await Verifier.Verify(result.Graphs);
+    }
+
+    [Fact]
+    public async void GetServerSchema_WithEmptyDatabase_ReturnsSchema()
+    {
+        // Act
+        var result = _repository.GetServerSchema();
+
+        // Assert
+        result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestcontainer.ConnectionString);
+        await Verifier.Verify(result.Graphs);
     }
 
     #endregion

@@ -45,6 +45,9 @@ internal class Script
             .SelectMany(schema => schema.GenerateCypherStatements())
             .ToList();
         
+        if (!outputFileInfo.Exists)
+            Directory.CreateDirectory(outputFileInfo.Directory!.FullName);
+        
         using var outputFile = File.Open(outputFileInfo!.FullName, FileMode.Create);
         using var streamWriter = new StreamWriter(outputFile);
         

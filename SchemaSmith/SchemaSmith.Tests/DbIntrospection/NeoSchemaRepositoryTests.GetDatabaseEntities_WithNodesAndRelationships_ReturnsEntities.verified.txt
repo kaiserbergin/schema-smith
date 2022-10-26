@@ -164,14 +164,14 @@
       ]
     },
     {
-      Type: PRODUCED,
+      Type: WROTE,
       Connections: [
         Movie<-Person,
         Person->Movie
       ]
     },
     {
-      Type: WROTE,
+      Type: PRODUCED,
       Connections: [
         Movie<-Person,
         Person->Movie
