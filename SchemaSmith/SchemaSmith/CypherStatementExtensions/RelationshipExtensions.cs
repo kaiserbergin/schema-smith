@@ -3,11 +3,11 @@ using SchemaSmith.Domain;
 
 namespace SchemaSmith.CypherStatementExtensions;
 
-internal static class RelationshipExtensions
+public static class RelationshipExtensions
 {
-    private const string INCOMING_RELATIONSHIP = nameof(INCOMING_RELATIONSHIP);
-    private const string OUTGOING_RELATIONSHIP = nameof(OUTGOING_RELATIONSHIP);
-    private const string DIRECTIONLESS_RELATIONSHIP = nameof(DIRECTIONLESS_RELATIONSHIP);
+    public const string INCOMING_RELATIONSHIP = nameof(INCOMING_RELATIONSHIP);
+    public const string OUTGOING_RELATIONSHIP = nameof(OUTGOING_RELATIONSHIP);
+    public const string DIRECTIONLESS_RELATIONSHIP = nameof(DIRECTIONLESS_RELATIONSHIP);
 
     internal static IEnumerable<string> GenerateCypher(this Relationship relationship)
     {
@@ -40,7 +40,7 @@ internal static class RelationshipExtensions
         return cypherStatements;
     }
 
-    private static (string firstLabel, string direction, string secondLabel) GetRelationshipInfo(string connectionStr)
+    public static (string firstLabel, string direction, string secondLabel) GetRelationshipInfo(string connectionStr)
     {
         var dashPosition = connectionStr.IndexOf("-", StringComparison.InvariantCultureIgnoreCase);
         var direction = connectionStr.IndexOf('>') > -1 ? OUTGOING_RELATIONSHIP
