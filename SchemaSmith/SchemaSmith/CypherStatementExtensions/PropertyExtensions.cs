@@ -12,7 +12,7 @@ internal static class PropertyExtensions
 
     private static readonly Dictionary<NeoDataType, Func<string>> _defaultPropertyValues = new()
     {
-        { NeoDataType.String, () => _defaultGuid },
+        { NeoDataType.String, () => $"\"{_defaultGuid}\"" },
         { NeoDataType.Integer, () => _defaultInt },
         { NeoDataType.Float, () => _defaultFloat },
         { NeoDataType.Boolean, () => _defaultBool },

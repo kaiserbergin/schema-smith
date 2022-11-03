@@ -130,7 +130,6 @@
         },
         {
           Type: RELATED_TO,
-          Properties: [],
           Connections: [
             Test->AnotherLabel,
             AnotherLabel->Test,

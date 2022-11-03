@@ -1,5 +1,5 @@
 ﻿CREATE (n:Node:SchemaSmith)
-SET n.x = Guid_1
+SET n.x = "Guid_1"
 SET n.x = -9999
 SET n.x = -99.99
 SET n.x = false

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Reflection;
 using FluentAssertions;
 using SchemaSmith.Linting.Neo4j.Validation;
@@ -35,6 +36,6 @@ public class ServerSchemaValidatorTests
         var result = ServerSchemaValidator.ValidateNeoSpecStructure(schemaPath);
 
         // Assert
-        await Verifier.Verify(result);
+        result.Should().NotBeEmpty();
     }
 }

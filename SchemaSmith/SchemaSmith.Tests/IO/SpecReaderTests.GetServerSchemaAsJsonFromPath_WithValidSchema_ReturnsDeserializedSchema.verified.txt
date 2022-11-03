@@ -1,101 +1,7 @@
 ﻿{
+  serverUrl: some-url,
   graphs: [
     {
-      constraints: [
-        {
-          entity: {
-            id: AnotherLabel,
-            properties: [
-              id
-            ],
-            type: node
-          },
-          name: AnotherLabel_NK,
-          type: node-key
-        },
-        {
-          entity: {
-            id: SELF_CARE,
-            properties: [
-              stringProp
-            ],
-            type: relationship
-          },
-          name: Self_Care_EC,
-          type: existence
-        },
-        {
-          entity: {
-            id: Test,
-            properties: [
-              id
-            ],
-            type: node
-          },
-          name: Test_UC,
-          type: unique
-        },
-        {
-          entity: {
-            id: Test,
-            properties: [
-              id
-            ],
-            type: node
-          },
-          name: Test_EC,
-          type: existence
-        }
-      ],
-      indexes: [
-        {
-          entity: {
-            id: Test,
-            properties: [
-              id,
-              intProp
-            ],
-            type: node
-          },
-          name: Test_BI,
-          type: b-tree
-        },
-        {
-          entity: {
-            id: SELF_CARE,
-            properties: [
-              relProp
-            ],
-            type: relationship
-          },
-          name: Self_Care_Txt,
-          type: text
-        },
-        {
-          entity: {
-            id: Test,
-            properties: [
-              id,
-              intProp,
-              floatProp
-            ],
-            type: node
-          },
-          name: Test_RI,
-          type: range
-        },
-        {
-          entity: {
-            id: Test,
-            properties: [
-              pointProp
-            ],
-            type: node
-          },
-          name: Test_POINT,
-          type: point
-        }
-      ],
       name: neo4j,
       nodes: [
         {
@@ -207,9 +113,7 @@
       ],
       relationships: [
         {
-          connections: [
-            Test->Test
-          ],
+          type: SELF_CARE,
           properties: [
             {
               name: relProp,
@@ -220,18 +124,114 @@
               type: string
             }
           ],
-          type: SELF_CARE
+          connections: [
+            Test->Test
+          ]
         },
         {
+          type: RELATED_TO,
           connections: [
             Test->AnotherLabel,
             AnotherLabel->Test,
             AnotherLabel->AnotherLabel
-          ],
-          type: RELATED_TO
+          ]
+        }
+      ],
+      constraints: [
+        {
+          name: AnotherLabel_NK,
+          type: node-key,
+          entity: {
+            type: node,
+            id: AnotherLabel,
+            properties: [
+              id
+            ]
+          }
+        },
+        {
+          name: Self_Care_EC,
+          type: existence,
+          entity: {
+            type: relationship,
+            id: SELF_CARE,
+            properties: [
+              stringProp
+            ]
+          }
+        },
+        {
+          name: Test_UC,
+          type: unique,
+          entity: {
+            type: node,
+            id: Test,
+            properties: [
+              id
+            ]
+          }
+        },
+        {
+          name: Test_EC,
+          type: existence,
+          entity: {
+            type: node,
+            id: Test,
+            properties: [
+              id
+            ]
+          }
+        }
+      ],
+      indexes: [
+        {
+          name: Test_BI,
+          type: b-tree,
+          entity: {
+            type: node,
+            id: Test,
+            properties: [
+              id,
+              intProp
+            ]
+          }
+        },
+        {
+          name: Self_Care_Txt,
+          type: text,
+          entity: {
+            type: relationship,
+            id: SELF_CARE,
+            properties: [
+              relProp
+            ]
+          }
+        },
+        {
+          name: Test_RI,
+          type: range,
+          entity: {
+            type: node,
+            id: Test,
+            properties: [
+              id,
+              intProp,
+              floatProp
+            ]
+          }
+        },
+        {
+          name: Test_POINT,
+          type: point,
+          entity: {
+            type: node,
+            id: Test,
+            properties: [
+              pointProp
+            ]
+          }
         }
       ]
     }
-  ],
-  serverUrl: some-url
+  ]
 }
