@@ -8,7 +8,7 @@ internal class PropertyMap : MappingNodeValidationDefinition
     {
         RequiredProperties = new Dictionary<string, NodeValidationDefinition>
         {
-            { "name", new ScalarNodeValidationDefinition() },
+            { "name", new PropertyKey() },
             { "type", new PropertyScalarType()}
         };
     }
