@@ -22,6 +22,8 @@ command:
 ```powershell
 schemasmith --help
 ```
+To assist with building schemas in your favorite IDE or editor (it's VSCode), you can refernce
+the schema found [here](https://raw.githubusercontent.com/kaiserbergin/schema-smith/main/SchemaSmith/SchemaSmith/Schemas/neo4j-schema.json)
 
 ## But Why?
 
