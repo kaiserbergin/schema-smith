@@ -28,7 +28,7 @@ internal static class SpecReader
             .Build();
     }
 
-    internal static YamlMappingNode GetYamlStream(string filePath)
+    internal static YamlMappingNode GetYamlMapping(string filePath)
     {
         var sb = new StringBuilder();
         

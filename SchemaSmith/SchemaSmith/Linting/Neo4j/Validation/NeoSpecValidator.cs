@@ -8,7 +8,7 @@ internal class NeoSpecValidator
 {
     internal static List<ValidationEvent> ValidateNeo4jSpec(string filename)
     {
-        var root = SpecReader.GetYamlStream(filename);
+        var root = SpecReader.GetYamlMapping(filename);
 
         var validator = new ServerSchemaMap();
 

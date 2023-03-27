@@ -6,10 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith.Tests", "Schema
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith.YamlSchemaGenerator", "SchemaSmith.YamlSchemaGenerator\SchemaSmith.YamlSchemaGenerator.csproj", "{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith.CodeGenerators", "SchemaSmith.CodeGenerators\SchemaSmith.CodeGenerators.csproj", "{44392866-FB78-4296-A714-97229C77EB20}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith.CodeGenerators.Tests", "SchemaSmith.CodeGenerators.Tests\SchemaSmith.CodeGenerators.Tests.csproj", "{B2161A74-265C-49BF-AC20-AAA7DE7D6112}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,13 +24,5 @@ Global
 		{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44392866-FB78-4296-A714-97229C77EB20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44392866-FB78-4296-A714-97229C77EB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44392866-FB78-4296-A714-97229C77EB20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44392866-FB78-4296-A714-97229C77EB20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2161A74-265C-49BF-AC20-AAA7DE7D6112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2161A74-265C-49BF-AC20-AAA7DE7D6112}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2161A74-265C-49BF-AC20-AAA7DE7D6112}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2161A74-265C-49BF-AC20-AAA7DE7D6112}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

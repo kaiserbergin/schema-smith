@@ -61,6 +61,6 @@ public class SpecReaderTests
         var specPath = $@"{buildDir}/Schemas/good-schema.yml";
 
         // Act
-        SpecReader.GetYamlStream(specPath);
+        SpecReader.GetYamlMapping(specPath);
     }
 }
