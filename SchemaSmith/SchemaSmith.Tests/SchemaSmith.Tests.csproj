@@ -36,14 +36,6 @@
       <None Update="Schemas\bad-naming-conventions.yml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="Linting\Neo4j\Validation\NamingConventionValidatorTests.Validate_ForInvalidYaml_ReturnsErrors.verified.txt">
-        <ParentFile>NamingConventionValidatorTests</ParentFile>
-        <DependentUpon>NamingConventionValidatorTests.cs</DependentUpon>
-      </None>
-      <None Update="Linting\Neo4j\Validation\ServerSchemaValidatorTests.Validate_ForInvalidYaml_ReturnsErrors.verified.txt">
-        <ParentFile>ServerSchemaValidatorTests</ParentFile>
-        <DependentUpon>ServerSchemaValidatorTests.cs</DependentUpon>
-      </None>
       <None Update="Linting\YamlNodes\SequenceNodeValidationDefinitionTests.Validate_InvalidNodeType_ReturnsValidationEvents.DotNet6_0.received.txt">
         <DependentUpon>SequenceNodeValidationDefinitionExtensionTests.cs</DependentUpon>
       </None>
@@ -89,6 +81,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Linting\Neo4j\Validation" />
       <Folder Include="Linting\Neo4j\YamlNodes" />
     </ItemGroup>
 
