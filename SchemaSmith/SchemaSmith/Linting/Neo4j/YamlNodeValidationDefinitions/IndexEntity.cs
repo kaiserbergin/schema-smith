@@ -1,10 +1,8 @@
-﻿using Namotion.Reflection;
-using SchemaSmith.Linting.ValidationComponents;
+﻿using SchemaSmith.Linting.ValidationComponents;
 using SchemaSmith.Linting.YamlNodes;
-using YamlDotNet.Core.Tokens;
 using YamlDotNet.RepresentationModel;
 
-namespace SchemaSmith.Linting.Neo4j.YamlNodes;
+namespace SchemaSmith.Linting.Neo4j.YamlNodeValidationDefinitions;
 
 internal class IndexEntity : MappingNodeValidationDefinition
 {

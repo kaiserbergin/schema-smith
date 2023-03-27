@@ -1,5 +1,5 @@
 ﻿using SchemaSmith.IO;
-using SchemaSmith.Linting.Neo4j.YamlNodes;
+using SchemaSmith.Linting.Neo4j.YamlNodeValidationDefinitions;
 using SchemaSmith.Linting.ValidationComponents;
 
 namespace SchemaSmith.Linting.Neo4j.Validation;

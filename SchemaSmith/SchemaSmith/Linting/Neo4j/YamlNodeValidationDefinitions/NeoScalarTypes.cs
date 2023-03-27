@@ -1,7 +1,7 @@
 ﻿using SchemaSmith.Linting.Styles;
 using SchemaSmith.Linting.YamlNodes;
 
-namespace SchemaSmith.Linting.Neo4j.YamlNodes;
+namespace SchemaSmith.Linting.Neo4j.YamlNodeValidationDefinitions;
 
 internal class PropertyKey : ScalarNodeValidationDefinition
 {

@@ -1,8 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using SchemaSmith.Linting.ValidationComponents;
+﻿using SchemaSmith.Linting.ValidationComponents;
 using YamlDotNet.RepresentationModel;
 
-namespace SchemaSmith.Linting.Neo4j.YamlNodes;
+namespace SchemaSmith.Linting.Neo4j.YamlNodeValidationDefinitions;
 
 internal static class NeoSchemaTracker
 {
