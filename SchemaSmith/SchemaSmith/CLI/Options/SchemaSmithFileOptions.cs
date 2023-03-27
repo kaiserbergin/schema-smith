@@ -9,6 +9,7 @@ internal class SchemaSmithFileOptions
                 aliases: new[] { "--file", "-f" },
                 description: "Neo4j schema file path.")
         {
+            Arity = ArgumentArity.ExactlyOne,
             IsRequired = true
         }
         .ExistingOnly()
@@ -29,6 +30,9 @@ internal class SchemaSmithFileOptions
 
                 return fileInfo;
             })
+        {
+            Arity = ArgumentArity.ZeroOrOne
+        }
         .LegalFilePathsOnly();
     
     internal static readonly Option<FileInfo?> OutputSchemaSmithYamlInfo = new Option<FileInfo?>(
@@ -45,6 +49,9 @@ internal class SchemaSmithFileOptions
 
                 return fileInfo;
             })
+        {
+            Arity = ArgumentArity.ZeroOrOne
+        }
         .LegalFilePathsOnly();
 
     internal static readonly Option<FileInfo> CypherScriptInfo = new Option<FileInfo>(
