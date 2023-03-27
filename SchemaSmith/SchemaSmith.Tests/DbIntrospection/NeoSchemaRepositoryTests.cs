@@ -27,12 +27,6 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         _repository = new NeoSchemaRepository(_neo4JFixture.ConfigurationSettings);
     }
 
-    #region ServerSchema
-
-    
-
-    #endregion
-
     #region Constraints
 
     [Fact]
@@ -170,6 +164,20 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         // Assert
         result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestcontainer.ConnectionString);
         await Verifier.Verify(result.Graphs);
+    }
+
+    #endregion
+
+    #region Server Metadata
+
+    [Fact]
+    public async Task GetServerVersions_ReturnsVersion()
+    {
+        // Act
+        var result = _repository.GetVersion();
+
+        // Assert
+        await Verifier.Verify(result);
     }
 
     #endregion

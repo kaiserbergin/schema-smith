@@ -87,42 +87,4 @@ internal class RunScript
                 sb.Clear();
             });
     }
-
-    // private static async Task<List<IRecord>> WriteAsync(
-    //     IDriver driver,
-    //     NeoDriverConfigurationSettings settings,
-    //     string dbName,
-    //     string cypherStatement,
-    //     CancellationToken cancellationToken = default
-    // )
-    // {
-    //     if (settings.VerifyConnectivity)
-    //         await driver.VerifyConnectivityAsync();
-    //
-    //     await using var session = driver.AsyncSession(config => config.WithDatabase(dbName));
-    //
-    //     var records = new List<IRecord>();
-    //
-    //     try
-    //     {
-    //         await session.WriteTransactionAsync(async tx =>
-    //             {
-    //                 var reader = await tx.RunAsync(cypherStatement);
-    //
-    //                 while (await reader.FetchAsync())
-    //                 {
-    //                     cancellationToken.ThrowIfCancellationRequested();
-    //
-    //                     records.Add(reader.Current);
-    //                 }
-    //             },
-    //             x => x.WithTimeout(settings.ConnectionTimeout));
-    //     }
-    //     finally
-    //     {
-    //         await session.CloseAsync();
-    //     }
-    //
-    //     return records;
-    // }
 }

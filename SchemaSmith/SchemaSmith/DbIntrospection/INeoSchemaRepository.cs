@@ -11,4 +11,5 @@ public interface INeoSchemaRepository
     List<Index> GetIndexes();
     (List<Node> Nodes, List<Relationship> Relationships) GetDatabaseEntities();
     ServerSchema GetServerSchema();
+    string GetVersion();
 }

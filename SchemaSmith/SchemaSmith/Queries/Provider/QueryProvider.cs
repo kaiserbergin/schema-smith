@@ -9,6 +9,7 @@ internal static class QueryProvider
     internal static readonly string ShowIndexes;
     internal static readonly string ShowMetaSchema;
     internal static readonly string ShowPrivileges;
+    internal static readonly string GetVersions;
 
     private const string DB_INSPECTION_DIR = @"/DbInspection";
     private const string CLEANUP_DIR = @"/Cleanup";
@@ -26,5 +27,6 @@ internal static class QueryProvider
         ShowIndexes = File.ReadAllText(@$"{_queryDir}{DB_INSPECTION_DIR}/show-indexes.cypher");
         ShowMetaSchema = File.ReadAllText(@$"{_queryDir}{DB_INSPECTION_DIR}/show-meta-schema.cypher");
         ShowPrivileges = File.ReadAllText(@$"{_queryDir}{DB_INSPECTION_DIR}/show-privileges.cypher");
+        GetVersions = File.ReadAllText(@$"{_queryDir}{DB_INSPECTION_DIR}/get-versions.cypher");
     }
 }
