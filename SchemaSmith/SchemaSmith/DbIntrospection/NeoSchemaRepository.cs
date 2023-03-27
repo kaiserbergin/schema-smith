@@ -94,6 +94,29 @@ public class NeoSchemaRepository : INeoSchemaRepository
                 }
             }).ToList();
     }
+    
+    public string GetVersion()
+    {
+        var records = _neoGraphr.ReadAsync(QueryProvider.GetVersions).GetAwaiter().GetResult();
+
+        return records
+            .Select(record => record["version"].As<string>())
+            .Max();
+
+        // return records
+        //     .Where(record => _indexTypeMap.TryGetValue(record["type"].As<string>(), out _))
+        //     .Select(record => new Index
+        //     {
+        //         Name = record["name"].As<string>(),
+        //         Type = _indexTypeMap[record["type"].As<string>()],
+        //         Entity = new Entity
+        //         {
+        //             Type = record["entityType"].As<string>() == "NODE" ? EntityType.Node : EntityType.Relationship,
+        //             Id = record["labelsOrTypes"].As<List<string>>().FirstOrDefault(),
+        //             Properties = record["properties"].As<List<string>>()
+        //         }
+        //     }).ToList();
+    }
 
     public (List<Node> Nodes, List<Relationship> Relationships) GetDatabaseEntities()
     {
