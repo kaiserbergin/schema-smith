@@ -1,0 +1,228 @@
+﻿{
+  "type": "object",
+  "properties": {
+    "serverUrl": {
+      "type": "string",
+      "description": "Url for you Neo4j Database Server",
+      "format": "hostname"
+    },
+    "graphs": {
+      "type": "array",
+      "description": "List of graphs associated to your server",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Graph name"
+          },
+          "nodes": {
+            "type": "array",
+            "description": "List of node labels with associated properties",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "Label for a given node"
+                },
+                "properties": {
+                  "type": "array",
+                  "description": "List of properties associated with the label",
+                  "items": { "$ref": "#/$defs/properties" }
+                }
+              },
+              "required": [
+                "label"
+              ]
+            }
+          },
+          "relationships": {
+            "type": "array",
+            "description": "List of relationships in your graph",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Relationship name, used to create / define relationships"
+                },
+                "properties": {
+                  "type": "array",
+                  "description": "List of properties associated with the label",
+                  "items": { "$ref": "#/$defs/properties" }
+                },
+                "connections": {
+                  "type": "array",
+                  "description": "List of connections with the format: LabelName->OtherLabelName",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "type",
+                "connections"
+              ]
+            }
+          },
+          "constraints": {
+            "type": "array",
+            "description": "Constraints on your graph",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Constraint name used for your graph"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Type of constraint",
+                  "enum": [
+                    "node-key",
+                    "unique",
+                    "existence"
+                  ]
+                },
+                "entity": {
+                  "type": "object",
+                  "description": "Entity that the constraint will be created for.",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Entity id. (Label for Nodes, Type for Relationships)"
+                    },
+                    "properties": {
+                      "type": "array",
+                      "description": "Properties used for the constraint.",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "properties"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "entity"
+              ]
+            }
+          },
+          "indexes": {
+            "type": "array",
+            "description": "Indexes on your graph",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Index name used for your graph"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Type of index",
+                  "enum": [
+                    "b-tree",
+                    "text",
+                    "point",
+                    "range"
+                  ]
+                },
+                "entity": {
+                  "type": "object",
+                  "description": "Entity that the constraint will be created for.",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Entity id. (Label for Nodes, Type for Relationships)"
+                    },
+                    "properties": {
+                      "type": "array",
+                      "description": "Properties used for the constraint.",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "properties"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "entity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    }
+  },
+  "required": [
+    "graphs"
+  ],
+  "$defs": {
+    "properties": {
+      "type": "object",
+      "description": "Property on an entity.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Property name."
+        },
+        "type": {
+          "type": "string",
+          "description": "Property data type.",
+          "enum": [
+            "string",
+            "integer",
+            "float",
+            "boolean",
+            "point",
+            "date",
+            "time",
+            "localTime",
+            "dateTime",
+            "localDateTime",
+            "duration",
+            "list(string)",
+            "list(integer)",
+            "list(float)",
+            "list(boolean)",
+            "list(point)",
+            "list(date)",
+            "list(time)",
+            "list(localTime)",
+            "list(dateTime)",
+            "list(localDateTime)",
+            "list(duration)"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ]
+    }
+  }
+}

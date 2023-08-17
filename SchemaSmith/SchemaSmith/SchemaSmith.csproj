@@ -58,6 +58,9 @@
       <None Update="Queries\DbInspection\get-versions.cypher">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="Schemas\neo4j-schema.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

@@ -1,227 +1,241 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ServerSchema",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "serverUrl": {
-      "type": "string",
-      "description": "Url for you Neo4j Database Server",
-      "format": "hostname"
+      "type": "string"
     },
     "graphs": {
       "type": "array",
-      "description": "List of graphs associated to your server",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Graph name"
-          },
-          "nodes": {
-            "type": "array",
-            "description": "List of node labels with associated properties",
-            "items": {
-              "type": "object",
-              "properties": {
-                "label": {
-                  "type": "string",
-                  "description": "Label for a given node"
-                },
-                "properties": {
-                  "type": "array",
-                  "description": "List of properties associated with the label",
-                  "items": { "$ref": "#/$defs/properties" }
-                }
-              },
-              "required": [
-                "label"
-              ]
-            }
-          },
-          "relationships": {
-            "type": "array",
-            "description": "List of relationships in your graph",
-            "items": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "description": "Relationship name, used to create / define relationships"
-                },
-                "properties": {
-                  "type": "array",
-                  "description": "List of properties associated with the label",
-                  "items": { "$ref": "#/$defs/properties" }
-                },
-                "connections": {
-                  "type": "array",
-                  "description": "List of connections with the format: LabelName->OtherLabelName",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              },
-              "required": [
-                "type",
-                "connections"
-              ]
-            }
-          },
-          "constraints": {
-            "type": "array",
-            "description": "Constraints on your graph",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Constraint name used for your graph"
-                },
-                "type": {
-                  "type": "string",
-                  "description": "Type of constraint",
-                  "enum": [
-                    "node-key",
-                    "unique",
-                    "existence"
-                  ]
-                },
-                "entity": {
-                  "type": "object",
-                  "description": "Entity that the constraint will be created for.",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "id": {
-                      "type": "string",
-                      "description": "Entity id. (Label for Nodes, Type for Relationships)"
-                    },
-                    "properties": {
-                      "type": "array",
-                      "description": "Properties used for the constraint.",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "id",
-                    "properties"
-                  ]
-                }
-              },
-              "required": [
-                "name",
-                "type",
-                "entity"
-              ]
-            }
-          },
-          "indexes": {
-            "type": "array",
-            "description": "Indexes on your graph",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Index name used for your graph"
-                },
-                "type": {
-                  "type": "string",
-                  "description": "Type of index",
-                  "enum": [
-                    "b-tree",
-                    "text",
-                    "point",
-                    "range"
-                  ]
-                },
-                "entity": {
-                  "type": "object",
-                  "description": "Entity that the constraint will be created for.",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "id": {
-                      "type": "string",
-                      "description": "Entity id. (Label for Nodes, Type for Relationships)"
-                    },
-                    "properties": {
-                      "type": "array",
-                      "description": "Properties used for the constraint.",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "id",
-                    "properties"
-                  ]
-                }
-              },
-              "required": [
-                "name",
-                "type",
-                "entity"
-              ]
-            }
-          }
-        },
-        "required": [
-          "name"
-        ]
+        "$ref": "#/definitions/GraphSchema"
       }
     }
   },
-  "required": [
-    "graphs"
-  ],
-  "$defs": {
-    "properties": {
+  "definitions": {
+    "GraphSchema": {
       "type": "object",
-      "description": "Property on an entity.",
+      "additionalProperties": false,
       "properties": {
         "name": {
-          "type": "string",
-          "description": "Property name."
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Node"
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Relationship"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Constraint"
+          }
+        },
+        "indexes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Index"
+          }
+        }
+      }
+    },
+    "Node": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        }
+      }
+    },
+    "Property": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
         },
         "type": {
-          "type": "string",
-          "description": "Property data type.",
-          "enum": [
-            "string",
-            "integer",
-            "float",
-            "boolean",
-            "point",
-            "date",
-            "time",
-            "localTime",
-            "dateTime",
-            "localDateTime",
-            "duration",
-            "list(string)",
-            "list(integer)",
-            "list(float)",
-            "list(boolean)",
-            "list(point)",
-            "list(date)",
-            "list(time)",
-            "list(localTime)",
-            "list(dateTime)",
-            "list(localDateTime)",
-            "list(duration)"
-          ]
+          "$ref": "#/definitions/NeoDataType"
         }
-      },
-      "required": [
-        "name",
-        "type"
+      }
+    },
+    "NeoDataType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "String",
+        "Integer",
+        "Float",
+        "Boolean",
+        "Point",
+        "Date",
+        "Time",
+        "LocalTime",
+        "DateTime",
+        "LocalDateTime",
+        "Duration",
+        "ListString",
+        "ListInteger",
+        "ListFloat",
+        "ListBoolean",
+        "ListPoint",
+        "ListDate",
+        "ListTime",
+        "ListLocalTime",
+        "ListDateTime",
+        "ListLocalDateTime",
+        "ListDuration"
+      ],
+      "enum": [
+        "string",
+        "integer",
+        "float",
+        "boolean",
+        "point",
+        "date",
+        "time",
+        "localTime",
+        "dateTime",
+        "localDateTime",
+        "duration",
+        "list(string)",
+        "list(integer)",
+        "list(float)",
+        "list(boolean)",
+        "list(point)",
+        "list(date)",
+        "list(time)",
+        "list(localTime)",
+        "list(dateTime)",
+        "list(localDateTime)",
+        "list(duration)"
+      ]
+    },
+    "Relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/ConstraintType"
+        },
+        "entity": {
+          "$ref": "#/definitions/Entity"
+        }
+      }
+    },
+    "ConstraintType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "NodeKey",
+        "Unique",
+        "Existence"
+      ],
+      "enum": [
+        "node-key",
+        "unique",
+        "existence"
+      ]
+    },
+    "Entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/EntityType"
+        },
+        "id": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "EntityType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Node",
+        "Relationship"
+      ],
+      "enum": [
+        "node",
+        "relationship"
+      ]
+    },
+    "Index": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/IndexType"
+        },
+        "entity": {
+          "$ref": "#/definitions/Entity"
+        }
+      }
+    },
+    "IndexType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "BTree",
+        "Text",
+        "Point",
+        "Range"
+      ],
+      "enum": [
+        "b-tree",
+        "text",
+        "point",
+        "range"
       ]
     }
   }
