@@ -43,7 +43,6 @@
           }
         ],
         Connections: [
-          Movie<-Person,
           Person->Movie
         ]
       },
@@ -60,35 +59,30 @@
           }
         ],
         Connections: [
-          Movie<-Person,
           Person->Movie
         ]
       },
       {
         Type: WROTE,
         Connections: [
-          Movie<-Person,
           Person->Movie
         ]
       },
       {
         Type: PRODUCED,
         Connections: [
-          Movie<-Person,
           Person->Movie
         ]
       },
       {
         Type: DIRECTED,
         Connections: [
-          Movie<-Person,
           Person->Movie
         ]
       },
       {
         Type: FOLLOWS,
         Connections: [
-          Person->Person,
           Person->Person
         ]
       }
@@ -109,7 +103,7 @@
     Indexes: [
       {
         Name: Person_BTREE,
-        Type: b-tree,
+        Type: range,
         Entity: {
           Type: node,
           Id: Person,
@@ -120,7 +114,7 @@
       },
       {
         Name: Person_UNP,
-        Type: b-tree,
+        Type: range,
         Entity: {
           Type: node,
           Id: Person,

@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith", "SchemaSmith\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith.Tests", "SchemaSmith.Tests\SchemaSmith.Tests.csproj", "{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaSmith.YamlSchemaGenerator", "SchemaSmith.YamlSchemaGenerator\SchemaSmith.YamlSchemaGenerator.csproj", "{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A02BD42A-8AC6-4F07-B3E5-55B36ABEE98A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F72F33E-3ECA-48DC-8F9E-6A2C0314C9ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

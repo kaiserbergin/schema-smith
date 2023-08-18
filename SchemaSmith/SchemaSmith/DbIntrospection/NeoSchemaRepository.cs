@@ -102,20 +102,6 @@ public class NeoSchemaRepository : INeoSchemaRepository
         return records
             .Select(record => record["version"].As<string>())
             .Max();
-
-        // return records
-        //     .Where(record => _indexTypeMap.TryGetValue(record["type"].As<string>(), out _))
-        //     .Select(record => new Index
-        //     {
-        //         Name = record["name"].As<string>(),
-        //         Type = _indexTypeMap[record["type"].As<string>()],
-        //         Entity = new Entity
-        //         {
-        //             Type = record["entityType"].As<string>() == "NODE" ? EntityType.Node : EntityType.Relationship,
-        //             Id = record["labelsOrTypes"].As<List<string>>().FirstOrDefault(),
-        //             Properties = record["properties"].As<List<string>>()
-        //         }
-        //     }).ToList();
     }
 
     public (List<Node> Nodes, List<Relationship> Relationships) GetDatabaseEntities()
@@ -179,10 +165,11 @@ public class NeoSchemaRepository : INeoSchemaRepository
 
                         foreach (var label in labels)
                         {
-                            var connectionString = relProps["direction"].As<string>() == "in"
-                                ? $"{entityId}<-{label}"
+                            var direction = relProps["direction"].As<string>();
+                            var connectionString = direction == "in"
+                                ? $"{label}->{entityId}"
                                 : $"{entityId}->{label}";
-                            
+
                             rel.Connections.Add(connectionString);
                         }
                     }
