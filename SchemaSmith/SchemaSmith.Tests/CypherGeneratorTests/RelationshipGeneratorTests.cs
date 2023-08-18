@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Org.BouncyCastle.Utilities.Collections;
 using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
 using SchemaSmith.Tests.Fixtures;
