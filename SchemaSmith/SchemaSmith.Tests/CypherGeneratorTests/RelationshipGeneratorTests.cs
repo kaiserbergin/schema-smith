@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Org.BouncyCastle.Utilities.Collections;
 using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
 using SchemaSmith.Tests.Fixtures;
@@ -30,7 +31,7 @@ public class RelationshipGeneratorTests
                     Type = NeoDataType.Boolean
                 }
             },
-            Connections = new List<string>()
+            Connections = new HashSet<string>()
             {
                 "Node->Node",
                 "Node<-Node",

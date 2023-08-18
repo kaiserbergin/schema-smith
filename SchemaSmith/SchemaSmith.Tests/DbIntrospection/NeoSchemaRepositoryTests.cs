@@ -68,8 +68,6 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     public async void GetIndexes_WithIndexes_ReturnsIndexes()
     {
         // Arrange
-        var nodeBtreeIndex = "CREATE BTREE INDEX Node_BTREE FOR (n:Test) ON (n.tree1, n.tree2)";
-        var relationshipBtreeIndex = "CREATE BTREE INDEX Relationship_BTREE FOR ()-[r:REL]-() ON (r.tree1, r.tree2)";
         var nodeTextIndex = "CREATE TEXT INDEX Node_TEXT FOR (n:Test) ON (n.text)";
         var relationshipTextIndex = "CREATE TEXT INDEX Relationship_TEXT FOR ()-[r:REL]-() ON (r.text)";
         var nodePointIndex = "CREATE POINT INDEX Node_POINT FOR (n:Test) ON (n.location)";
@@ -77,8 +75,6 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         var nodeRangeIndex = "CREATE RANGE INDEX Node_RANGE FOR (n:Test) ON (n.range1, n.range2)";
         var relationshipRangeIndex = "CREATE RANGE INDEX Relationship_RANGE FOR ()-[r:REL]-() ON (r.range1, r.range2)";
 
-        await _neoGraphr.WriteAsync(nodeBtreeIndex);
-        await _neoGraphr.WriteAsync(relationshipBtreeIndex);
         await _neoGraphr.WriteAsync(nodeTextIndex);
         await _neoGraphr.WriteAsync(relationshipTextIndex);
         await _neoGraphr.WriteAsync(nodePointIndex);
@@ -105,7 +101,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
 
     #endregion
 
-    #region Nodes
+    #region Nodes and Relationships
     
     [Fact]
     public async void GetDatabaseEntities_WithNodesAndRelationships_ReturnsEntities()
@@ -140,7 +136,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     public async void GetServerSchema_WithBuiltOutDatabase_ReturnsSchema()
     {
         // Arrange
-        var personIndex = "CREATE BTREE INDEX Person_BTREE FOR (n:Person) ON (n.age)";
+        var personIndex = "CREATE RANGE INDEX Person_BTREE FOR (n:Person) ON (n.age)";
         var personConstraint = "CREATE CONSTRAINT Person_UNP FOR (n:Person) REQUIRE n.name IS UNIQUE";
         
         await _neoGraphr.WriteAsync(TestQueryProvider.PlayMovies);
@@ -151,7 +147,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         var result = _repository.GetServerSchema();
 
         // Assert
-        result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestcontainer.ConnectionString);
+        result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestContainer.GetConnectionString());
         await Verifier.Verify(result.Graphs);
     }
 
@@ -162,7 +158,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         var result = _repository.GetServerSchema();
 
         // Assert
-        result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestcontainer.ConnectionString);
+        result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestContainer.GetConnectionString());
         await Verifier.Verify(result.Graphs);
     }
 

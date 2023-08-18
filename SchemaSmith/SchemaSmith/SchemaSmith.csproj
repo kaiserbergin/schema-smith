@@ -8,7 +8,7 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>schemasmith</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
-        <VersionPrefix>0.0.8</VersionPrefix>
+        <VersionPrefix>0.0.9</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <Title>SchemaSmith</Title>
         <Description>Simplify development of neo4j schemas and scripts</Description>
@@ -24,7 +24,12 @@
       <PackageReference Include="NJsonSchema" Version="10.*" />
       <PackageReference Include="NJsonSchema.Yaml" Version="10.*" />
       <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
-      <PackageReference Include="YamlDotNet" Version="12.*" />
+      <PackageReference Include="YamlDotNet" Version="13.*" />
+    </ItemGroup>
+    
+    <ItemGroup Label="Transitive Upgrades (Remove when CVE's patched)">
+        <PackageReference Include="System.Net.Http" Version="4.*" />
+        <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
     </ItemGroup>
 
     <ItemGroup>

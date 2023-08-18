@@ -1,28 +1,27 @@
-﻿using System;
-using System.Threading.Tasks;
-using DotNet.Testcontainers.Builders;
-using DotNet.Testcontainers.Configurations;
-using DotNet.Testcontainers.Containers;
+﻿using System.Threading.Tasks;
 using Graphr.Neo4j.Configuration;
 using Graphr.Neo4j.Driver;
 using Graphr.Neo4j.Graphr;
 using Graphr.Neo4j.QueryExecution;
-using Neo4j.Driver;
+using Testcontainers.Neo4j;
 using Xunit;
 
 namespace SchemaSmith.Tests.Fixtures;
 
 public class Neo4jFixture : IAsyncLifetime
 {
-    public readonly TestcontainerDatabaseConfiguration Configuration = new Neo4jTestcontainerConfiguration { Password = "password" };
-    public readonly Neo4jTestcontainer Neo4JTestcontainer;
+    public readonly Neo4jContainer Neo4JTestContainer;
     
-    public NeoDriverConfigurationSettings ConfigurationSettings => new NeoDriverConfigurationSettings
+    private const string _username = "neo4j";
+    private const string _password = "connect";
+    private const string _databaseName = "neo4j";
+
+    public NeoDriverConfigurationSettings ConfigurationSettings => new()
     {
-        Url = Neo4JTestcontainer.ConnectionString,
-        Username = Neo4JTestcontainer.Username,
-        Password = Neo4JTestcontainer.Password,
-        DatabaseName = Neo4JTestcontainer.Database,
+        Url = Neo4JTestContainer.GetConnectionString(),
+        Username = _username,
+        Password = _password,
+        DatabaseName = _databaseName,
         QueryTimeoutInMs = 10000
     };
 
@@ -34,22 +33,22 @@ public class Neo4jFixture : IAsyncLifetime
 
     public Neo4jFixture()
     {
-        Neo4JTestcontainer = new TestcontainersBuilder<Neo4jTestcontainer>()
-            .WithDatabase(this.Configuration)
+        Neo4JTestContainer = new Neo4jBuilder()
             .WithImage("neo4j:enterprise")
+            .WithEnvironment("NEO4J_ACCEPT_LICENSE_AGREEMENT", "yes")
+            .WithEnvironment("NEO4J_PLUGINS", "[\"apoc\"]")
             .Build();
     }
 
     public async Task InitializeAsync()
     {
-        await Neo4JTestcontainer.StartAsync()
+        await Neo4JTestContainer.StartAsync()
             .ConfigureAwait(false);
     }
 
     public async Task DisposeAsync()
     {
-        await Neo4JTestcontainer.DisposeAsync()
-                 .ConfigureAwait(false);
-        Configuration.Dispose();
+        await Neo4JTestContainer.DisposeAsync()
+            .ConfigureAwait(false);
     }
 }

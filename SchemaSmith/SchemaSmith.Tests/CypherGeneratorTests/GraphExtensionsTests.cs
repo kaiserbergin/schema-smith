@@ -56,12 +56,12 @@ public class GraphExtensionsTests
                 new Relationship
                 {
                     Type = "REL_ONE",
-                    Connections = new List<string>() { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
+                    Connections = new HashSet<string>() { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
                 },
                 new Relationship
                 {
                     Type = "REL_TWO",
-                    Connections = new List<string>() { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
+                    Connections = new HashSet<string>() { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
                 }
             },
             Constraints = new List<Constraint>()

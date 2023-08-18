@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+using YamlDotNet.Serialization;
 
 namespace SchemaSmith.Domain;
 
@@ -76,12 +77,12 @@ public class Relationship
     /// <summary>
     /// List of properties associated with the label
     /// </summary>
-    public List<Property> Properties { get; init; } = new List<Property>();
+    public List<Property> Properties { get; init; } = new();
 
     /// <summary>
     /// List of connections with the format: LabelName-&gt;OtherLabelName
     /// </summary>
-    public List<string> Connections { get; init; } = new List<string>();
+    public HashSet<string> Connections { get; init; } = new();
 }
 
 public class Constraint
