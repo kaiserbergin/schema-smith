@@ -6,11 +6,11 @@ internal static class CaseChecker
 {
     private static class CasePatterns
     {
-        internal static string _pascal = @"^[A-Z][A-Z|a-z|/d]*$";
-        internal static string _snakeCase = @"^[a-z](?=[a-z|_|/d]+)(?!.*__)[a-z|_|/d]*$";
-        internal static string _camelCase = @"^[a-z][A-Z|a-z|/d]*$";
-        internal static string _screamingSnakeCasePattern = @"^[A-Z](?=[A-Z|_|/d]*)(?!.*__)[A-Z|_|/d]*$";
-        internal static string _pascalSnake = @"^[A-Z](?=[A-Z|a-z|/d|_]*)(?!.*__)[A-Z|a-z|/d|_]*$";
+        internal static string _pascal = @"^[A-Z][A-Z|a-z|\d]*$";
+        internal static string _snakeCase = @"^[a-z](?=[a-z|_|\d]+)(?!.*__)[a-z|_|\d]*$";
+        internal static string _camelCase = @"^[a-z][A-Z|a-z|\d]*$";
+        internal static string _screamingSnakeCasePattern = @"^[A-Z](?=[A-Z|_|\d]*)(?!.*__)[A-Z|_|\d]*$";
+        internal static string _pascalSnake = @"^[A-Z](?=[A-Z|a-z|\d|_]*)(?!.*__)[A-Z|a-z|\d|_]*$";
     }
 
     internal static CaseType GetCase(string? s)

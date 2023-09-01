@@ -22,7 +22,8 @@ internal class RunScript
             SchemaSmithFileOptions.CypherScriptInfo,
             Neo4jConnectionOptions.ServerUrl,
             Neo4jConnectionOptions.Username,
-            Neo4jConnectionOptions.Password
+            Neo4jConnectionOptions.Password,
+            Neo4jConnectionOptions.Timeout
         };
 
         RunScriptCommand.SetHandler(
@@ -30,7 +31,8 @@ internal class RunScript
             SchemaSmithFileOptions.CypherScriptInfo,
             Neo4jConnectionOptions.ServerUrl,
             Neo4jConnectionOptions.Username,
-            Neo4jConnectionOptions.Password
+            Neo4jConnectionOptions.Password,
+            Neo4jConnectionOptions.Timeout
         );
     }
 
@@ -38,7 +40,8 @@ internal class RunScript
         FileInfo cypherScript,
         Uri serverUrl,
         string username,
-        string password)
+        string password,
+        string timeout)
     {
         var settings = new NeoDriverConfigurationSettings
         {
@@ -46,7 +49,7 @@ internal class RunScript
             Username = username,
             Password = password,
             VerifyConnectivity = true,
-            QueryTimeoutInMs = 10000
+            QueryTimeoutInMs = Neo4jConnectionOptions.GetMillisecondsFromTimeoutArg(timeout)
         };
 
         var driverProvider = new DriverProvider(settings);

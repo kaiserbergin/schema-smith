@@ -8,13 +8,19 @@ public class CaseCheckerTests
 {
     [Theory]
     [InlineData("snake_case_with_more_things", CaseType.SnakeCase)]
+    [InlineData("snake_3case_with_more_things2", CaseType.SnakeCase)]
     [InlineData("PascalCase", CaseType.PascalCase)]
+    [InlineData("Pascal4Case2", CaseType.PascalCase)]
     [InlineData("camelCase", CaseType.CamelCase)]
+    [InlineData("camel2Case4", CaseType.CamelCase)]
     [InlineData("c", CaseType.CamelCase)]
     [InlineData("SCREAMING_SNAKE_CASE", CaseType.ScreamingSnakeCase)]
+    [InlineData("SCREAMING_4_SNAKE_CASE_2", CaseType.ScreamingSnakeCase)]
     [InlineData("SCREAMINGSNAKE", CaseType.ScreamingSnakeCase)]
+    [InlineData("SCREAM1NGSN4K3", CaseType.ScreamingSnakeCase)]
     [InlineData("S", CaseType.ScreamingSnakeCase)]
     [InlineData("Pascal_Snake_Is_Best", CaseType.PascalSnakeCase)]
+    [InlineData("Pascal_4_Snake_Is_Best_4", CaseType.PascalSnakeCase)]
     internal void GetCase_WithValidCasing_ReturnsCorrectCaseType(string s, CaseType expectedCase)
     {
         CaseChecker.GetCase(s).HasFlag(expectedCase).Should().BeTrue();
