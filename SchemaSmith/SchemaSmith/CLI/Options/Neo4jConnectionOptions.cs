@@ -39,4 +39,37 @@ public class Neo4jConnectionOptions
         IsRequired = true,
         Arity = ArgumentArity.ExactlyOne
     };
+    
+    internal static readonly Option<string> Timeout = new Option<string>(
+        aliases: new[] { "--timeout", "-t" },
+        description: "Neo4j query timeout. Default is milliseconds, but can be suffixed with 'ms' for milliseconds, 's' for seconds or 'm' for minutes."
+    )
+    {
+        IsRequired = false,
+        Arity = ArgumentArity.ExactlyOne
+    };
+    
+    private static readonly HashSet<string> ValidTimeoutUnits = new() { "ms", "s", "m" };
+
+    internal const string TimeoutStringFormattingExceptionMessage =
+        "Timeout must be a valid integer, optionally suffixed with 'ms', 's' or 'm'.";
+    internal static int GetMillisecondsFromTimeoutArg(string timeout)
+    {
+        if (string.IsNullOrWhiteSpace(timeout))
+            return 10000;
+        
+        var timeoutUnit = ValidTimeoutUnits.FirstOrDefault(timeout.EndsWith);
+        
+        var timeoutDurationString = timeoutUnit is null ? timeout : timeout[..^timeoutUnit.Length];
+
+        if (!int.TryParse(timeoutDurationString, out var timeoutDurationInt))
+            throw new Exception(TimeoutStringFormattingExceptionMessage);
+        
+        return timeoutUnit switch {
+            "ms" => timeoutDurationInt,
+            "s" => timeoutDurationInt * 1000,
+            "m" => timeoutDurationInt * 1000 * 60,
+            _ => timeoutDurationInt
+        };       
+    }
 }

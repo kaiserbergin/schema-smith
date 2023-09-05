@@ -27,6 +27,7 @@ internal class Introspect
             Neo4jConnectionOptions.Username,
             Neo4jConnectionOptions.Password,
             Neo4jConnectionOptions.DatabaseName,
+            Neo4jConnectionOptions.Timeout,
             SchemaSmithFileOptions.OutputSchemaSmithYamlInfo
         };
 
@@ -36,6 +37,7 @@ internal class Introspect
             Neo4jConnectionOptions.Username,
             Neo4jConnectionOptions.Password,
             Neo4jConnectionOptions.DatabaseName,
+            Neo4jConnectionOptions.Timeout,
             SchemaSmithFileOptions.OutputSchemaSmithYamlInfo
         );
     }
@@ -45,6 +47,7 @@ internal class Introspect
         string username,
         string password,
         string databaseName,
+        string timeout,
         FileInfo outputFileInfo
     )
     {
@@ -55,7 +58,7 @@ internal class Introspect
             Password = password,
             DatabaseName = databaseName,
             VerifyConnectivity = true,
-            QueryTimeoutInMs = 10000
+            QueryTimeoutInMs = Neo4jConnectionOptions.GetMillisecondsFromTimeoutArg(timeout)
         };
         
         var schemaRepository = new NeoSchemaRepository(settings);
