@@ -1,4 +1,4 @@
-﻿using System.CommandLine;
+using System.CommandLine;
 using SchemaSmith.CLI.Options;
 using SchemaSmith.Linting.Neo4j.Validation;
 using SchemaSmith.Linting.ValidationComponents;
@@ -57,8 +57,12 @@ internal class Lint
                     Console.WriteLine(e.ToString());
                 });
 
-            if (validationEvents.Count > 0)
+            if (validationEvents.Any(e => e.Severity == ValidationSeverity.Error))
                 Environment.Exit(1);
+			else 
+			{
+				Console.WriteLine("You should really consider fixing those warnings, but I'll give you a pass.");
+			}
         }
     }
 }
