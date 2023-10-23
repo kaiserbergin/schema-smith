@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Graphr.Neo4j.Graphr;
-using SchemaSmith.DbIntrospection;
 using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Infrastructure.Introspection;
 using SchemaSmith.Queries.Provider;
 using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Domain.Dto;
 using YamlDotNet.RepresentationModel;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -30,8 +31,6 @@ internal static class SpecReader
 
     internal static YamlMappingNode GetYamlMapping(string filePath)
     {
-        var sb = new StringBuilder();
-        
         // Setup the input
         var input = new StringReader(GetServerSchemaText(filePath));
 
@@ -41,27 +40,7 @@ internal static class SpecReader
 
         // Examine the stream
         var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
-        
-        foreach (var entry in mapping.Children)
-        {
-            sb.AppendLine();
-            
-            sb.AppendLine(entry.Value.NodeType.ToString());
-            
-            sb.AppendLine($"Start Line: {entry.Key.Start.Line}");
-            sb.AppendLine($"Start Column: {entry.Key.Start.Column}");
-            sb.AppendLine($"Start Index: {entry.Key.Start.Index}");
-            
-            sb.AppendLine($"End Line: {entry.Key.End.Line}");
-            sb.AppendLine($"End Column: {entry.Key.End.Column}");
-            sb.AppendLine($"End Index: {entry.Key.End.Index}");
-            
-            sb.AppendLine(((YamlScalarNode)entry.Key).Value);
-            sb.AppendLine(entry.Key.ToString());
-        }
-        
-        var test = sb.ToString();
-
+       
         return mapping;
     }
 

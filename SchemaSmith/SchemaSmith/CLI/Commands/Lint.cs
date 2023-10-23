@@ -1,7 +1,7 @@
 using System.CommandLine;
 using SchemaSmith.CLI.Options;
-using SchemaSmith.Linting.Neo4j.Validation;
-using SchemaSmith.Linting.ValidationComponents;
+using SchemaSmith.Domain.Dto.Validation;
+using SchemaSmith.Neo4j.Core.Linting.Validation.Validation;
 
 namespace SchemaSmith.CLI.Commands;
 

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Domain.Dto;
 
 namespace SchemaSmith.CypherStatementExtensions;
 

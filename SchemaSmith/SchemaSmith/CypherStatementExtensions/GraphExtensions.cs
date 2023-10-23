@@ -1,5 +1,5 @@
 ﻿using SchemaSmith.Domain;
-using SchemaSmith.Queries.Provider;
+using SchemaSmith.Neo4j.Domain.Dto;
 
 namespace SchemaSmith.CypherStatementExtensions;
 

@@ -3,6 +3,7 @@ using SchemaSmith.CypherStatementExtensions;
 using VerifyXunit;
 using Xunit;
 using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Domain.Dto;
 using SchemaSmith.Tests.Fixtures;
 
 namespace SchemaSmith.Tests.CypherGeneratorTests;

@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using SchemaSmith.Domain;
-using Index = SchemaSmith.Domain.Index;
+using SchemaSmith.Neo4j.Domain.Dto;
+using Index = SchemaSmith.Neo4j.Domain.Dto.Index;
 
 namespace SchemaSmith.CypherStatementExtensions;
 

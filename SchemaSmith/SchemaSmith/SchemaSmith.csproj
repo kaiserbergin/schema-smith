@@ -42,30 +42,24 @@
       <None Update="Schemas\neo-schema.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="Queries\Cleanup\delete-schema-smith-entities.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\show-constraints.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\show-indexes.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\show-meta-schema.cypher">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\show-privileges.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
       <None Update="sampleQuotes.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\get-versions.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="Schemas\neo4j-schema.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SchemaSmith.Core\SchemaSmith.Core.csproj" />
+      <ProjectReference Include="..\SchemaSmith.Domain\SchemaSmith.Domain.csproj" />
+      <ProjectReference Include="..\SchemaSmith.Infrastructure\SchemaSmith.Infrastructure.csproj" />
+      <ProjectReference Include="..\SchemaSmith.Neo4j\SchemaSmith.Neo4j.csproj" />
+      <ProjectReference Include="..\SchemaSmith.SQLServer\SchemaSmith.SQLServer.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="DbIntrospection\" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System.CommandLine;
 using SchemaSmith.CLI.Commands;
 using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Domain.Dto;
 
 namespace SchemaSmith;
 

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Graphr.Neo4j" Version="0.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SchemaSmith.Core\SchemaSmith.Core.csproj" />
+      <ProjectReference Include="..\SchemaSmith.Domain\SchemaSmith.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Infrastructure\ScriptExecution\" />
+    </ItemGroup>
+
+</Project>

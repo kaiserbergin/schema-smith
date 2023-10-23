@@ -2,6 +2,7 @@
 using System.Linq;
 using SchemaSmith.CypherStatementExtensions;
 using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Domain.Dto;
 using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
 using Xunit;

@@ -1,12 +1,8 @@
 ﻿using System.CommandLine;
 using Graphr.Neo4j.Configuration;
-using Graphr.Neo4j.Driver;
-using Graphr.Neo4j.Graphr;
-using Graphr.Neo4j.QueryExecution;
 using SchemaSmith.CLI.Options;
-using SchemaSmith.DbIntrospection;
 using SchemaSmith.IO;
-using SchemaSmith.Queries.Provider;
+using SchemaSmith.Neo4j.Infrastructure.Introspection;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -32,7 +28,7 @@ internal class Introspect
         };
 
         IntrospectCommand.SetHandler(
-            GenerateYaml,
+            GenerateYamlAsync!,
             Neo4jConnectionOptions.ServerUrl,
             Neo4jConnectionOptions.Username,
             Neo4jConnectionOptions.Password,
@@ -42,7 +38,7 @@ internal class Introspect
         );
     }
 
-    private static void GenerateYaml(
+    private static async Task GenerateYamlAsync(
         Uri serverUrl,
         string username,
         string password,
@@ -63,7 +59,7 @@ internal class Introspect
         
         var schemaRepository = new NeoSchemaRepository(settings);
 
-        var schema = schemaRepository.GetServerSchema();
+        var schema = await schemaRepository.GetServerSchemaAsync();
 
         var serializer = new SerializerBuilder()
             .WithNamingConvention(CamelCaseNamingConvention.Instance)
@@ -74,11 +70,11 @@ internal class Introspect
         
         if (!outputFileInfo.Exists)
             Directory.CreateDirectory(outputFileInfo.Directory!.FullName);
+
+        await using var outputFile = File.Open(outputFileInfo!.FullName, FileMode.Create);
+        await using var streamWriter = new StreamWriter(outputFile);
         
-        using var outputFile = File.Open(outputFileInfo!.FullName, FileMode.Create);
-        using var streamWriter = new StreamWriter(outputFile);
-        
-        streamWriter.Write(yaml);
+        await streamWriter.WriteAsync(yaml);
         
         streamWriter.Close();
         outputFile.Close();
