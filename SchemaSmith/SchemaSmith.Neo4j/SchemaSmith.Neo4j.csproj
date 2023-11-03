@@ -7,11 +7,13 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Graphr.Neo4j" Version="0.*" />
+        <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\SchemaSmith.Core\SchemaSmith.Core.csproj" />
       <ProjectReference Include="..\SchemaSmith.Domain\SchemaSmith.Domain.csproj" />
+      <ProjectReference Include="..\SchemaSmith.Infrastructure\SchemaSmith.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

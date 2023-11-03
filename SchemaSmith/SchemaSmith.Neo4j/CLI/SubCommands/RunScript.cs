@@ -1,17 +1,16 @@
 ﻿using System.CommandLine;
 using System.Text;
-using SchemaSmith.CLI.Options;
 using Graphr.Neo4j.Configuration;
 using Graphr.Neo4j.Driver;
 using Graphr.Neo4j.Graphr;
 using Graphr.Neo4j.QueryExecution;
-using Neo4j.Driver;
+using SchemaSmith.Neo4j.CLI.Options;
 
-namespace SchemaSmith.CLI.Commands;
+namespace SchemaSmith.Neo4j.CLI.SubCommands;
 
-internal class RunScript
+public class RunScript
 {
-    internal static readonly Command RunScriptCommand;
+    public static readonly Command RunScriptCommand;
 
     static RunScript()
     {
@@ -27,7 +26,7 @@ internal class RunScript
         };
 
         RunScriptCommand.SetHandler(
-            RunCypher,
+            RunCypherAsync,
             SchemaSmithFileOptions.CypherScriptInfo,
             Neo4jConnectionOptions.ServerUrl,
             Neo4jConnectionOptions.Username,
@@ -36,7 +35,7 @@ internal class RunScript
         );
     }
 
-    private static void RunCypher(
+    private static async Task RunCypherAsync(
         FileInfo cypherScript,
         Uri serverUrl,
         string username,
@@ -60,7 +59,7 @@ internal class RunScript
 
         File.ReadLines(cypherScript.FullName)
             .ToList()
-            .ForEach(line =>
+            .ForEach(async line =>
             {
                 var useDbPosition = line.IndexOf(":use ", StringComparison.Ordinal);
 
@@ -85,7 +84,7 @@ internal class RunScript
                 var neoGraphr = new NeoGraphr(queryExecutor)
                     .WithSessionConfig(builder => builder.WithDatabase(dbName));
 
-                neoGraphr.WriteAsync(sb.ToString()).GetAwaiter().GetResult();
+                await neoGraphr.WriteAsync(sb.ToString());
                 
                 sb.Clear();
             });

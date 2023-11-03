@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentAssertions;
-using SchemaSmith.CLI.Options;
+using SchemaSmith.Neo4j.CLI.Options;
 using Xunit;
 
 namespace SchemaSmith.Tests.CLI.Options;

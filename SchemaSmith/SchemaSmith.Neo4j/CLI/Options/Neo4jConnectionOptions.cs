@@ -1,10 +1,10 @@
 ﻿using System.CommandLine;
 
-namespace SchemaSmith.CLI.Options;
+namespace SchemaSmith.Neo4j.CLI.Options;
 
 public class Neo4jConnectionOptions
 {
-    internal static readonly Option<Uri> ServerUrl = new Option<Uri>(
+    public static readonly Option<Uri> ServerUrl = new Option<Uri>(
         aliases: new[] { "--server-url", "-s" },
         description: "Neo4j server url."
     )
@@ -13,7 +13,7 @@ public class Neo4jConnectionOptions
         Arity = ArgumentArity.ExactlyOne
     };
 
-    internal static readonly Option<string> Username = new Option<string>(
+    public static readonly Option<string> Username = new Option<string>(
         aliases: new[] { "--username", "-u" },
         description: "Username to run scripts with."
     )
@@ -22,7 +22,7 @@ public class Neo4jConnectionOptions
         Arity = ArgumentArity.ExactlyOne
     };
     
-    internal static readonly Option<string> Password = new Option<string>(
+    public static readonly Option<string> Password = new Option<string>(
         aliases: new[] { "--password", "-p" },
         description: "Username to run scripts with."
     )
@@ -31,7 +31,7 @@ public class Neo4jConnectionOptions
         Arity = ArgumentArity.ExactlyOne
     };
     
-    internal static readonly Option<string> DatabaseName = new Option<string>(
+    public static readonly Option<string> DatabaseName = new Option<string>(
         aliases: new[] { "--database-name", "-d" },
         description: "Neo4j database name."
     )
@@ -40,7 +40,7 @@ public class Neo4jConnectionOptions
         Arity = ArgumentArity.ExactlyOne
     };
     
-    internal static readonly Option<string> Timeout = new Option<string>(
+    public static readonly Option<string> Timeout = new Option<string>(
         aliases: new[] { "--timeout", "-t" },
         description: "Neo4j query timeout. Default is milliseconds, but can be suffixed with 'ms' for milliseconds, 's' for seconds or 'm' for minutes."
     )
@@ -51,9 +51,9 @@ public class Neo4jConnectionOptions
     
     private static readonly HashSet<string> ValidTimeoutUnits = new() { "ms", "s", "m" };
 
-    internal const string TimeoutStringFormattingExceptionMessage =
+    public const string TimeoutStringFormattingExceptionMessage =
         "Timeout must be a valid integer, optionally suffixed with 'ms', 's' or 'm'.";
-    internal static int GetMillisecondsFromTimeoutArg(string timeout)
+    public static int GetMillisecondsFromTimeoutArg(string timeout)
     {
         if (string.IsNullOrWhiteSpace(timeout))
             return 10000;

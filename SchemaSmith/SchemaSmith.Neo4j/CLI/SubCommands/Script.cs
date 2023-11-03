@@ -1,13 +1,14 @@
 ﻿using System.CommandLine;
-using SchemaSmith.CLI.Options;
-using SchemaSmith.CypherStatementExtensions;
-using SchemaSmith.IO;
+using SchemaSmith.Infrastructure.IO;
+using SchemaSmith.Neo4j.CLI.Options;
+using SchemaSmith.Neo4j.Core.ScriptGeneration;
+using SchemaSmith.Neo4j.Domain.Dto;
 
-namespace SchemaSmith.CLI.Commands;
+namespace SchemaSmith.Neo4j.CLI.SubCommands;
 
-internal class Script
+public class Script
 {
-    internal static readonly Command ScriptCommand;
+    public static readonly Command ScriptCommand;
 
     static Script()
     {
@@ -27,22 +28,19 @@ internal class Script
             );
     }
 
-    internal static void ScriptCypher(FileInfo file, FileInfo? outputFileInfo)
+    public static async Task ScriptCypher(FileInfo file, FileInfo? outputFileInfo)
     {
-        // The type is optional because it is a parameter for 
-        //  the command line, but we have a default value set
-        //  for it regardless.
-        Program.CypherFile = outputFileInfo!;
-        
         Console.ResetColor();
 
-        Lint.LintNeoSchema(file);
+        await Lint.LintNeoSchemaAsync(file);
 
-        Program.ServerSchema = SpecReader.GetServerSchemaFromPath(file.FullName);
+        var serverSchema = SpecReader.GetServerSchemaFromPath<ServerSchema>(file.FullName);
+
+        var schemaGenerator = new CreateScriptGenerator();
         
-        var cypherStatements = Program.ServerSchema
+        var cypherStatements = serverSchema
             .Graphs
-            .SelectMany(schema => schema.GenerateCypherStatements())
+            .SelectMany(schema => schemaGenerator.GenerateCreateScript(schema))
             .ToList();
         
         if (!outputFileInfo.Exists)

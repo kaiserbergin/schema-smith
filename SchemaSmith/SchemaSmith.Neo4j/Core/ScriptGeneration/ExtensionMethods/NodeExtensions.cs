@@ -1,12 +1,11 @@
 ﻿using System.Text;
-using SchemaSmith.Domain;
 using SchemaSmith.Neo4j.Domain.Dto;
 
-namespace SchemaSmith.CypherStatementExtensions;
+namespace SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
 
-internal static class NodeExtensions
+public static class NodeExtensions
 {
-    internal static string GenerateCypher(this Node node)
+    public static string GenerateCypher(this Node node)
     {
         var sb = new StringBuilder();
 

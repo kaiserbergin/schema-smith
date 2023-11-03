@@ -1,12 +1,20 @@
-﻿using SchemaSmith.Domain.Interfaces;
+﻿using System.Text;
+using SchemaSmith.Domain.Interfaces;
+using SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
 using SchemaSmith.Neo4j.Domain.Dto;
 
 namespace SchemaSmith.Neo4j.Core.ScriptGeneration;
 
-public class CreateScriptGenerator : ICreateScriptGenerator<ServerSchema>
+public class CreateScriptGenerator : ICreateScriptGenerator<GraphSchema>
 {
-    public string GenerateCreateScript(ServerSchema schema)
+    public string GenerateCreateScript(GraphSchema graphSchema)
     {
+        var sb = new StringBuilder();
         
+        graphSchema.GenerateCypherStatements()
+            .ToList()
+            .ForEach(graphString => sb.AppendLine(graphString));
+        
+        return sb.ToString();
     }
 }

@@ -1,11 +1,11 @@
-﻿using SchemaSmith.Domain;
-using SchemaSmith.Neo4j.Domain.Dto;
+﻿using SchemaSmith.Neo4j.Domain.Dto;
+using SchemaSmith.Neo4j.Infrastructure.Queries.Provider;
 
-namespace SchemaSmith.CypherStatementExtensions;
+namespace SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
 
 public static class GraphExtensions
 {
-    internal static IEnumerable<string> GenerateCypherStatements(this GraphSchema graphSchema)
+    public static IEnumerable<string> GenerateCypherStatements(this GraphSchema graphSchema)
     {
         var statements = new List<string>();
         
@@ -14,6 +14,7 @@ public static class GraphExtensions
         statements.AddRange(graphSchema.Indexes.Select(x => x.GenerateCypher()));
         statements.AddRange(graphSchema.Nodes.Select(x => x.GenerateCypher()));
         statements.AddRange(graphSchema.Relationships.SelectMany(x => x.GenerateCypher()));
+        // Yes, leaked a bit here... it's FIIIINE.
         statements.Add(QueryProvider.DeleteSchemaSmithEntities);
 
         return statements;

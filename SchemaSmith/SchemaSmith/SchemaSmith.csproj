@@ -59,7 +59,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DbIntrospection\" />
+      <Folder Include="CLI\" />
     </ItemGroup>
 
 </Project>

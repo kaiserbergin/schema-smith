@@ -1,11 +1,10 @@
 ﻿using System.Text;
-using SchemaSmith.Domain;
 using SchemaSmith.Neo4j.Domain.Dto;
 using Index = SchemaSmith.Neo4j.Domain.Dto.Index;
 
-namespace SchemaSmith.CypherStatementExtensions;
+namespace SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
 
-internal static class IndexExtensions
+public static class IndexExtensions
 {
     private const string BTREE_INDEX = "BTREE";
     private const string TEXT = "TEXT";
@@ -20,7 +19,7 @@ internal static class IndexExtensions
         { IndexType.Range, RANGE}
     };
 
-    internal static string GenerateCypher(this Index index)
+    public static string GenerateCypher(this Index index)
     {
         var sb = new StringBuilder();
 

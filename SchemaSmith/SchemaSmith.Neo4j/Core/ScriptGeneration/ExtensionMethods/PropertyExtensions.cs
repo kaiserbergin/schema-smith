@@ -1,10 +1,9 @@
 ﻿using System.Globalization;
-using SchemaSmith.Domain;
 using SchemaSmith.Neo4j.Domain.Dto;
 
-namespace SchemaSmith.CypherStatementExtensions;
+namespace SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
 
-internal static class PropertyExtensions
+public static class PropertyExtensions
 {
     private static string _defaultGuid => Guid.NewGuid().ToString();
     private static string _defaultBool => false.ToString().ToLowerInvariant();
@@ -37,6 +36,6 @@ internal static class PropertyExtensions
         { NeoDataType.ListDuration, () => "[ duration('P14DT16H12M') ]" }
     };
 
-    internal static string GenerateDefaultPropertyValue(this Property property) =>
+    public static string GenerateDefaultPropertyValue(this Property property) =>
         _defaultPropertyValues[property.Type]();
 }

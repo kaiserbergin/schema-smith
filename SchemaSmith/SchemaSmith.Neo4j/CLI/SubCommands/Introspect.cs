@@ -1,16 +1,16 @@
 ﻿using System.CommandLine;
 using Graphr.Neo4j.Configuration;
-using SchemaSmith.CLI.Options;
-using SchemaSmith.IO;
+using SchemaSmith.Infrastructure.IO;
+using SchemaSmith.Neo4j.CLI.Options;
 using SchemaSmith.Neo4j.Infrastructure.Introspection;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace SchemaSmith.CLI.Commands;
+namespace SchemaSmith.Neo4j.CLI.SubCommands;
 
-internal class Introspect
+public class Introspect
 {
-    internal static readonly Command IntrospectCommand;
+    public static readonly Command IntrospectCommand;
 
     static Introspect()
     {

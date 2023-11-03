@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
-using SchemaSmith.Linting.Styles;
+using SchemaSmith.Core.Linting.Styles;
+using SchemaSmith.Domain.Dto.Validation;
 using Xunit;
 
 namespace SchemaSmith.Tests.Linting.Styles;

@@ -4,7 +4,7 @@ using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
 
-namespace SchemaSmith.IO;
+namespace SchemaSmith.Infrastructure.IO;
 
 public class YamlStringEnumConverter : IYamlTypeConverter
 {

@@ -1,8 +1,7 @@
 ﻿using System.Text;
-using SchemaSmith.Domain;
 using SchemaSmith.Neo4j.Domain.Dto;
 
-namespace SchemaSmith.CypherStatementExtensions;
+namespace SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
 
 public static class RelationshipExtensions
 {
@@ -10,7 +9,7 @@ public static class RelationshipExtensions
     public const string OUTGOING_RELATIONSHIP = nameof(OUTGOING_RELATIONSHIP);
     public const string DIRECTIONLESS_RELATIONSHIP = nameof(DIRECTIONLESS_RELATIONSHIP);
 
-    internal static IEnumerable<string> GenerateCypher(this Relationship relationship)
+    public static IEnumerable<string> GenerateCypher(this Relationship relationship)
     {
         var cypherStatements = new List<string>();
         

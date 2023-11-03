@@ -1,11 +1,10 @@
 ﻿using System.CommandLine;
-using System.Globalization;
 
-namespace SchemaSmith.CLI.Options;
+namespace SchemaSmith.Neo4j.CLI.Options;
 
-internal class SchemaSmithFileOptions
+public class SchemaSmithFileOptions
 {
-    internal static readonly Option<FileInfo> NeoSchemaFileInfo = new Option<FileInfo>(
+    public static readonly Option<FileInfo> NeoSchemaFileInfo = new Option<FileInfo>(
                 aliases: new[] { "--file", "-f" },
                 description: "Neo4j schema file path.")
         {
@@ -16,7 +15,7 @@ internal class SchemaSmithFileOptions
         .LegalFilePathsOnly();
         
 
-    internal static readonly Option<FileInfo?> OutputCypherInfo = new Option<FileInfo?>(
+    public static readonly Option<FileInfo?> OutputCypherInfo = new Option<FileInfo?>(
             aliases: new[] { "--output", "-o" },
             description: "Output cypher file",
             getDefaultValue: () =>
@@ -35,7 +34,7 @@ internal class SchemaSmithFileOptions
         }
         .LegalFilePathsOnly();
     
-    internal static readonly Option<FileInfo?> OutputSchemaSmithYamlInfo = new Option<FileInfo?>(
+    public static readonly Option<FileInfo?> OutputSchemaSmithYamlInfo = new Option<FileInfo?>(
             aliases: new[] { "--output", "-o" },
             description: "Output schemasmith yaml file",
             getDefaultValue: () =>
@@ -54,7 +53,7 @@ internal class SchemaSmithFileOptions
         }
         .LegalFilePathsOnly();
 
-    internal static readonly Option<FileInfo> CypherScriptInfo = new Option<FileInfo>(
+    public static readonly Option<FileInfo> CypherScriptInfo = new Option<FileInfo>(
             aliases: new[] { "--file", "-f" },
             description: "Cypher script file path.")
         {

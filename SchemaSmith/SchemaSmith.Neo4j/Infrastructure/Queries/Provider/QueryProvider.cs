@@ -2,14 +2,14 @@
 
 namespace SchemaSmith.Neo4j.Infrastructure.Queries.Provider;
 
-internal static class QueryProvider
+public static class QueryProvider
 {
-    internal static readonly string DeleteSchemaSmithEntities;
-    internal static readonly string ShowConstraints;
-    internal static readonly string ShowIndexes;
-    internal static readonly string ShowMetaSchema;
-    internal static readonly string ShowPrivileges;
-    internal static readonly string GetVersions;
+    public static readonly string DeleteSchemaSmithEntities;
+    public static readonly string ShowConstraints;
+    public static readonly string ShowIndexes;
+    public static readonly string ShowMetaSchema;
+    public static readonly string ShowPrivileges;
+    public static readonly string GetVersions;
 
     private const string DB_INSPECTION_DIR = @"/DbInspection";
     private const string CLEANUP_DIR = @"/Cleanup";

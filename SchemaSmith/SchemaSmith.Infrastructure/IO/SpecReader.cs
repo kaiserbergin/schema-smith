@@ -1,13 +1,10 @@
-﻿using System.Text;
-using SchemaSmith.Domain;
-using SchemaSmith.Neo4j.Domain.Dto;
-using YamlDotNet.RepresentationModel;
+﻿using YamlDotNet.RepresentationModel;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace SchemaSmith.IO;
+namespace SchemaSmith.Infrastructure.IO;
 
-internal static class SpecReader
+public static class SpecReader
 {
     private static readonly IYamlTypeConverter _converter;
     private static readonly IDeserializer _deserializer;
@@ -29,7 +26,7 @@ internal static class SpecReader
             .Build();
     }
 
-    internal static YamlMappingNode GetYamlMapping(string filePath)
+    public static YamlMappingNode GetYamlMapping(string filePath)
     {
         // Setup the input
         var input = new StringReader(GetServerSchemaText(filePath));
@@ -44,16 +41,16 @@ internal static class SpecReader
         return mapping;
     }
 
-    internal static string GetServerSchemaText(string filePath)
+    public static string GetServerSchemaText(string filePath)
     {
         using var file = new StreamReader(filePath);
         return file.ReadToEnd();
     }
 
-    internal static ServerSchema GetServerSchemaFromPath(string filePath) => 
-        _deserializer.Deserialize<ServerSchema>(GetServerSchemaText(filePath));
+    public static T GetServerSchemaFromPath<T>(string filePath) => 
+        _deserializer.Deserialize<T>(GetServerSchemaText(filePath));
 
-    internal static string GetServerSchemaAsJsonFromPath(string filePath)
+    public static string GetServerSchemaAsJsonFromPath(string filePath)
     {
         using var streamReader = new StreamReader(filePath); 
         

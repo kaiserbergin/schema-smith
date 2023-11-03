@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using SchemaSmith.CypherStatementExtensions;
-using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
 using SchemaSmith.Neo4j.Domain.Dto;
 using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;

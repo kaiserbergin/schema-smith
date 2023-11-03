@@ -1,10 +1,9 @@
 using System.Text;
-using SchemaSmith.Domain;
 using SchemaSmith.Neo4j.Domain.Dto;
 
-namespace SchemaSmith.CypherStatementExtensions;
+namespace SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
 
-internal static class ConstraintExtensions
+public static class ConstraintExtensions
 {
     private static readonly Dictionary<ConstraintType, string> SuffixDict = new ()
     {
@@ -19,7 +18,7 @@ internal static class ConstraintExtensions
         }
     };
 
-    internal static string GenerateCypher(this Constraint constraint) =>
+    public static string GenerateCypher(this Constraint constraint) =>
         constraint.Entity.Type switch
         {
             EntityType.Node => CreateNodeConstraintCypher(constraint),

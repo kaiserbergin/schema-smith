@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
-using SchemaSmith.Linting.Styles;
-using SchemaSmith.Linting.YamlNodes;
+using SchemaSmith.Core.Linting.YamlNodes;
+using SchemaSmith.Domain.Dto.Validation;
 using VerifyXunit;
 using Xunit;
 using YamlDotNet.RepresentationModel;

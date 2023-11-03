@@ -78,7 +78,7 @@ public class NeoSchemaRepository : IIntrospectionRepository<ServerSchema>
         }).ToList();
     }
 
-    private async Task<List<Index>> GetIndexesAsync()
+    public async Task<List<Index>> GetIndexesAsync()
     {
         var records = await _neoGraphr.ReadAsync(QueryProvider.ShowIndexes);
 
