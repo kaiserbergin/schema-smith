@@ -1,10 +1,9 @@
 ﻿using System.IO;
 using System.Reflection;
-using SchemaSmith.Domain;
+using SchemaSmith.Infrastructure.IO;
 using VerifyXunit;
 using Xunit;
-using SchemaSmith.IO;
-using VerifyTests;
+using SchemaSmith.Neo4j.Domain.Dto;
 
 namespace SchemaSmith.Tests.IO;
 
@@ -19,7 +18,7 @@ public class SpecReaderTests
         var specPath = $@"{buildDir}/Schemas/good-schema.yml";
 
         // Act
-        var serverSchema = SpecReader.GetServerSchemaFromPath(specPath);
+        var serverSchema = SpecReader.GetServerSchemaFromPath<ServerSchema>(specPath);
 
         // Assert
         await Verifier.Verify(serverSchema);

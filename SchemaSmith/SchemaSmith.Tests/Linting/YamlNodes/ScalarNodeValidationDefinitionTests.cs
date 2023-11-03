@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
-using SchemaSmith.Linting.Styles;
-using SchemaSmith.Linting.YamlNodes;
+using SchemaSmith.Core.Linting.YamlNodes;
+using SchemaSmith.Domain.Dto.Validation;
 using VerifyXunit;
 using Xunit;
 using YamlDotNet.RepresentationModel;
@@ -20,14 +20,14 @@ public class ScalarNodeValidationDefinitionTests
         _comboDefinition = new ComboScalarDefinition();
     }
 
-    internal class CaseBasedScalarDefinition : ScalarNodeValidationDefinition
+    public class CaseBasedScalarDefinition : ScalarNodeValidationDefinition
     {
-        internal override CaseType CaseType => CaseType.CamelCase | CaseType.SnakeCase;
+        public override CaseType CaseType => CaseType.CamelCase | CaseType.SnakeCase;
     }
 
-    internal class ComboScalarDefinition : ScalarNodeValidationDefinition
+    public class ComboScalarDefinition : ScalarNodeValidationDefinition
     {
-        internal override CaseType CaseType => CaseType.CamelCase;
+        public override CaseType CaseType => CaseType.CamelCase;
 
         public ComboScalarDefinition()
         {

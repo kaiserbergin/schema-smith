@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using SchemaSmith.CypherStatementExtensions;
 using VerifyXunit;
 using Xunit;
-using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Core.ScriptGeneration.ExtensionMethods;
+using SchemaSmith.Neo4j.Domain.Dto;
 using SchemaSmith.Tests.Fixtures;
 
 namespace SchemaSmith.Tests.CypherGeneratorTests;

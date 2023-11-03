@@ -1,0 +1,100 @@
+databaseName: Database
+schemas:
+  - name: Kanto
+    description: >
+      You really do need to catch them all.
+    notes: >
+      Reference: https://open.spotify.com/track/3OIHgTyQdiAGMmpjQaNxp3?si=4157b7af4da94dcf
+    tables:
+      - name: Pokemon
+        description: >
+          Gotta have a table for your mon, you know?
+        columns:
+          - name: Id
+            description: Only plebs preface their primary key with the table name. Or use INT instead of BIGINT.
+            dataType: BIGINT
+            example: 1
+            source: Auto incremented
+            constraints:
+              - IDENTITY (1,1)
+              - UNIQUE
+              - NOT NULL
+          - name: PokedexNumber
+            description: >
+              The number of the Pokemon in the Pokedex.
+            dataType: INT
+            example: 1
+            source: Pokedex
+            constraints:
+              - NOT NULL
+          - name: Name
+            description: >
+              Bro, we gots to name our monz!
+            dataType: NVARCHAR(255)
+            example: Bulbasaur
+            source: Professor Mother Fanpy Oak
+            constraints:
+              - NOT NULL
+          - name: TrainerFK
+            description: >
+              The trainer that owns this Pokemon. Pretty messed up, huh?
+            dataType: BIGINT
+            example: 1 (The very best... Gary)
+            source: Opression
+        primaryKey:
+          name: PK_Kanto_Pokemon_Id
+          columns:
+            - Id
+          isClustered: true
+        foreignKeys:
+          - name: FK_Kanto_Pokemon_TrainerFK_Kanto_Trainer_Id
+            sourceColumn: TrainerFK
+            targetSchema: Kanto
+            targetTable: Trainer
+            targetColumn: Id
+        indexes:
+          - name: IX_Kanto_Pokemon_Name
+            isUnique: false
+            columns:
+              - Name
+      - name: Trainer
+        description: >
+          The people who enslave Pokemon. Bastards!
+        columns:
+          - name: Id
+            description: Identifies the bastard. Probably Gary.
+            dataType: BIGINT
+            example: 1
+            source: Auto incremented
+            constraints:
+              - IDENTITY (1,1)
+              - UNIQUE
+              - NOT NULL
+          - name: Uuid
+            description: >
+              The UUID of the trainer. Used for tracking purposes.
+            dataType: NVARCHAR(32)
+            example: notalluuidsareguidsyouknow
+            source: Some distributed snowflake id generator.
+            constraints:
+              - NOT NULL
+          - name: FullName
+            description: >
+              Come on, I'm too lazy for this.
+            dataType: NVARCHAR(255)
+            example: Gary Mother F***ing Oak
+            source: Gary's mom
+            constraints:
+              - NOT NULL
+        primaryKey:
+          name: PK_Kanto_Trainer_Id
+          columns:
+              - Id
+          isClustered: true
+        indexes:
+          - name: IX_Kanto_Trainer_FullName
+            isUnique: false
+            columns:
+              - FullName
+        scripts:
+          - source: Q:\Code\schema-smith\SchemaSmith\SchemaSmith.Tests\Schemas\test.sql

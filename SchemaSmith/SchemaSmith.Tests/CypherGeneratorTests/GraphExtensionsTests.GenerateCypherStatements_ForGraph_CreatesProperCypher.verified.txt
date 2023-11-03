@@ -1,7 +1,5 @@
-﻿[  
-:use neo4j;
+﻿:use neo4j;
 
-  
 CREATE CONSTRAINT Constraint1 IF NOT EXISTS
 FOR (n:one) 
 REQUIRE
@@ -10,7 +8,6 @@ REQUIRE
    n.two
 )
 IS NODE KEY;
-  
 CREATE CONSTRAINT Constraint2 IF NOT EXISTS
 FOR (n:one) 
 REQUIRE
@@ -18,39 +15,28 @@ REQUIRE
    n.three
 )
 IS UNIQUE;
-  
 CREATE BTREE INDEX Index1 IF NOT EXISTS
 FOR (i:two) ON
 (
   i.indexed
 );
-  
 CREATE (n:one:SchemaSmith)
 SET n.one = "Guid_1"
 SET n.two = "Guid_2"
 SET n.three = "Guid_3";
-  
 CREATE (n:two:SchemaSmith)
 SET n.indexed = "Guid_4";
-  
 MATCH (n1:one:SchemaSmith), (n2:two:SchemaSmith)
 CREATE (n1)-[r:REL_ONE]->(n2);
-  
 MATCH (n1:two:SchemaSmith), (n2:one:SchemaSmith)
 CREATE (n1)-[r:REL_ONE]->(n2);
-  
 MATCH (n1:one:SchemaSmith), (n2:one:SchemaSmith)
 CREATE (n1)<-[r:REL_ONE]-(n2);
-  
 MATCH (n1:one:SchemaSmith), (n2:two:SchemaSmith)
 CREATE (n1)-[r:REL_TWO]->(n2);
-  
 MATCH (n1:two:SchemaSmith), (n2:one:SchemaSmith)
 CREATE (n1)-[r:REL_TWO]->(n2);
-  
 MATCH (n1:one:SchemaSmith), (n2:one:SchemaSmith)
 CREATE (n1)<-[r:REL_TWO]-(n2);
-  
 MATCH (n:SchemaSmith)
 DETACH DELETE n;
-]

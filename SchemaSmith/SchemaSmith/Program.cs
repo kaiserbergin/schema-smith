@@ -1,6 +1,8 @@
 ﻿using System.CommandLine;
-using SchemaSmith.CLI.Commands;
-using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.CLI;
+using SchemaSmith.Neo4j.CLI.SubCommands;
+using SchemaSmith.Neo4j.Domain.Dto;
+using SchemaSmith.SQLServer.CLI;
 
 namespace SchemaSmith;
 
@@ -14,10 +16,8 @@ internal class Program
 
         var rootCommand = new RootCommand("Sample app for System.CommandLine");
         
-        rootCommand.AddCommand(Lint.LintCommand);
-        rootCommand.AddCommand(Script.ScriptCommand);
-        rootCommand.AddCommand(RunScript.RunScriptCommand);
-        rootCommand.AddCommand(Introspect.IntrospectCommand);
+        rootCommand.AddCommand(Neo4jCommandProvider.Neo4jCommand);
+        rootCommand.AddCommand(SqlServerCommandProvider.SqlServerCommand);
 
         return await rootCommand.InvokeAsync(args);
     }

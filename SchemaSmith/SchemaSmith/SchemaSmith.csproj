@@ -2,18 +2,18 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>schemasmith</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
-        <VersionPrefix>0.0.11</VersionPrefix>
+        <VersionPrefix>0.0.12</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <Title>SchemaSmith</Title>
-        <Description>Simplify development of neo4j schemas and scripts</Description>
+        <Description>Simplify development of schemas and scripts for various databases</Description>
         <Authors>Donovan Bergin</Authors>
-        <PackageTags>neo4j</PackageTags>
+        <PackageTags>neo4j;sqlserver;cli</PackageTags>
         <PackageProjectUrl>https://github.com/kaiserbergin/schema-smith</PackageProjectUrl>
     </PropertyGroup>
 
@@ -42,30 +42,24 @@
       <None Update="Schemas\neo-schema.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="Queries\Cleanup\delete-schema-smith-entities.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\show-constraints.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\show-indexes.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\show-meta-schema.cypher">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\show-privileges.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
       <None Update="sampleQuotes.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Queries\DbInspection\get-versions.cypher">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="Schemas\neo4j-schema.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SchemaSmith.Core\SchemaSmith.Core.csproj" />
+      <ProjectReference Include="..\SchemaSmith.Domain\SchemaSmith.Domain.csproj" />
+      <ProjectReference Include="..\SchemaSmith.Infrastructure\SchemaSmith.Infrastructure.csproj" />
+      <ProjectReference Include="..\SchemaSmith.Neo4j\SchemaSmith.Neo4j.csproj" />
+      <ProjectReference Include="..\SchemaSmith.SQLServer\SchemaSmith.SQLServer.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="CLI\" />
     </ItemGroup>
 
 </Project>

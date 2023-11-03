@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Graphr.Neo4j.Graphr;
-using SchemaSmith.DbIntrospection;
 using SchemaSmith.Domain;
+using SchemaSmith.Neo4j.Infrastructure.Introspection;
 using SchemaSmith.Queries.Provider;
 using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
@@ -17,7 +17,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     private readonly Neo4jFixture _neo4JFixture;
     private readonly INeoGraphr _neoGraphr;
 
-    private readonly INeoSchemaRepository _repository;
+    private readonly NeoSchemaRepository _repository;
 
     public NeoSchemaRepositoryTests(Neo4jFixture neo4JFixture)
     {
@@ -44,17 +44,17 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         await _neoGraphr.WriteAsync(nodeKeyConstraint);
 
         // Act
-        var result = _repository.GetConstraints();
+        var result = await _repository.GetConstraintsAsync();
 
         // Assert
         await Verifier.Verify(result);
     }
 
     [Fact]
-    public void GetConstraints_WithoutConstraints_ReturnsNoConstraints()
+    public async Task GetConstraints_WithoutConstraints_ReturnsNoConstraints()
     {
         // Act
-        var result = _repository.GetConstraints();
+        var result = await _repository.GetConstraintsAsync();
 
         // Assert
         result.Should().BeEmpty();
@@ -65,7 +65,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     #region Indexs
 
     [Fact]
-    public async void GetIndexes_WithIndexes_ReturnsIndexes()
+    public async Task GetIndexes_WithIndexes_ReturnsIndexes()
     {
         // Arrange
         var nodeTextIndex = "CREATE TEXT INDEX Node_TEXT FOR (n:Test) ON (n.text)";
@@ -83,17 +83,17 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         await _neoGraphr.WriteAsync(relationshipRangeIndex);
 
         // Act
-        var result = _repository.GetIndexes();
+        var result = await _repository.GetIndexesAsync();
 
         // Assert
         await Verifier.Verify(result);
     }
     
     [Fact]
-    public void GetIndexes_WithoutIndexes_ReturnsNoIndexes()
+    public async Task GetIndexes_WithoutIndexes_ReturnsNoIndexes()
     {
         // Act
-        var result = _repository.GetIndexes();
+        var result = await _repository.GetIndexesAsync();
 
         // Assert
         result.Should().BeEmpty();
@@ -104,24 +104,24 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     #region Nodes and Relationships
     
     [Fact]
-    public async void GetDatabaseEntities_WithNodesAndRelationships_ReturnsEntities()
+    public async Task GetDatabaseEntities_WithNodesAndRelationships_ReturnsEntities()
     {
         // Arrange
         await _neoGraphr.WriteAsync(TestQueryProvider.PlayMovies);
         await _neoGraphr.WriteAsync(TestQueryProvider.CreateAllTypeNode);
         
         // Act
-        var result = _repository.GetDatabaseEntities();
+        var result = await _repository.GetDatabaseEntitiesAsync();
 
         // Assert
         await Verifier.Verify(result);
     }
 
     [Fact]
-    public void GetDatabaseEntities_WithOutNodesOrRelationships_ReturnsNoEntities()
+    public async Task GetDatabaseEntities_WithOutNodesOrRelationships_ReturnsNoEntities()
     {
         // Act
-        var result = _repository.GetDatabaseEntities();
+        var result = await _repository.GetDatabaseEntitiesAsync();
 
         // Assert
         result.Nodes.Should().BeEmpty();
@@ -133,7 +133,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     #region Server Schema
 
     [Fact]
-    public async void GetServerSchema_WithBuiltOutDatabase_ReturnsSchema()
+    public async Task GetServerSchema_WithBuiltOutDatabase_ReturnsSchema()
     {
         // Arrange
         var personIndex = "CREATE RANGE INDEX Person_BTREE FOR (n:Person) ON (n.age)";
@@ -144,7 +144,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
         await _neoGraphr.WriteAsync(personConstraint);
         
         // Act
-        var result = _repository.GetServerSchema();
+        var result = await _repository.GetServerSchemaAsync();
 
         // Assert
         result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestContainer.GetConnectionString());
@@ -152,10 +152,10 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     }
 
     [Fact]
-    public async void GetServerSchema_WithEmptyDatabase_ReturnsSchema()
+    public async Task GetServerSchema_WithEmptyDatabase_ReturnsSchema()
     {
         // Act
-        var result = _repository.GetServerSchema();
+        var result = await _repository.GetServerSchemaAsync();
 
         // Assert
         result.ServerUrl.Should().Be(_neo4JFixture.Neo4JTestContainer.GetConnectionString());
@@ -170,7 +170,7 @@ public class NeoSchemaRepositoryTests : IClassFixture<Neo4jFixture>, IAsyncLifet
     public async Task GetServerVersions_ReturnsVersion()
     {
         // Act
-        var result = _repository.GetVersion();
+        var result = await _repository.GetVersionAsync();
 
         // Assert
         await Verifier.Verify(result);

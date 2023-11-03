@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using SchemaSmith.CypherStatementExtensions;
-using SchemaSmith.Domain;
+using SchemaSmith.Domain.Interfaces;
+using SchemaSmith.Neo4j.Core.ScriptGeneration;
+using SchemaSmith.Neo4j.Domain.Dto;
 using SchemaSmith.Tests.Fixtures;
 using VerifyXunit;
 using Xunit;
@@ -11,6 +11,13 @@ namespace SchemaSmith.Tests.CypherGeneratorTests;
 [UsesVerify]
 public class GraphExtensionsTests
 {
+    private readonly ICreateScriptGenerator<GraphSchema> _createScriptGenerator;
+
+    public GraphExtensionsTests()
+    {
+        _createScriptGenerator = new CreateScriptGenerator();
+    }
+
     [Fact]
     public async void GenerateCypherStatements_ForGraph_CreatesProperCypher()
     {
@@ -56,12 +63,14 @@ public class GraphExtensionsTests
                 new Relationship
                 {
                     Type = "REL_ONE",
-                    Connections = new HashSet<string>() { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
+                    Connections = new HashSet<string>()
+                        { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
                 },
                 new Relationship
                 {
                     Type = "REL_TWO",
-                    Connections = new HashSet<string>() { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
+                    Connections = new HashSet<string>()
+                        { $"{labelOne}->{labelTwo}", $"{labelTwo}->{labelOne}", $"{labelOne}--{labelOne}" }
                 }
             },
             Constraints = new List<Constraint>()
@@ -106,7 +115,7 @@ public class GraphExtensionsTests
         };
 
         // Act
-        var cypherStatements = graph.GenerateCypherStatements();
+        var cypherStatements = _createScriptGenerator.Generate(graph);
 
         // Assert
         await Verifier.Verify(cypherStatements, VerifyFixture.VerifySettings);

@@ -1,0 +1,228 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SqlServer Schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "databaseName": {
+      "type": "string"
+    },
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "tables": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "dataType": {
+                        "type": "string",
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "BIGINT",
+                              "NUMERIC",
+                              "BIT",
+                              "SMALLINT",
+                              "DECIMAL",
+                              "SMALLMONEY",
+                              "INT",
+                              "TINYINT",
+                              "MONEY",
+                              "FLOAT",
+                              "REAL",
+                              "DATE",
+                              "DATETIMEOFFSET",
+                              "DATETIME2",
+                              "SMALLDATETIME",
+                              "DATETIME",
+                              "TIME",
+                              "CHAR",
+                              "VARCHAR",
+                              "TEXT",
+                              "NCHAR",
+                              "NVARCHAR",
+                              "NTEXT",
+                              "BINARY",
+                              "VARBINARY",
+                              "IMAGE",
+                              "CURSOR",
+                              "ROWVERSION",
+                              "HIERARCHYID",
+                              "UNIQUEIDENTIFIER",
+                              "SQL_VARIANT",
+                              "XML",
+                              "TABLE",
+                              "GEOGRAPHY",
+                              "GEOMETRY"
+                            ]
+                          }
+                        ]                        
+                      },
+                      "example": {},
+                      "source": {
+                        "type": "string"
+                      },
+                      "constraints": {
+                        "type": "array",
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "NOT NULL",
+                                "UNIQUE",
+                                "IDENTITY (1, 1)"
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "dataType"
+                    ]
+                  }
+                },
+                "primaryKey": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "columns": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "isClustered": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "columns"
+                  ]
+                },
+                "foreignKeys": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "sourceColumn": {
+                        "type": "string"
+                      },
+                      "targetSchema": {
+                        "type": "string"
+                      },
+                      "targetTable": {
+                        "type": "string"
+                      },
+                      "targetColumn": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "sourceColumn",
+                      "targetSchema",
+                      "targetTable",
+                      "targetColumn"
+                    ]
+                  }
+                },
+                "indexes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "isUnique": {
+                        "type": "boolean"
+                      },
+                      "columns": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "isUnique",
+                      "columns"
+                    ]
+                  }
+                },
+                "scripts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "source": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "source"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "columns"
+              ]
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    }
+  },
+  "required": [
+    "databaseName",
+    "schemas"
+  ]
+}
