@@ -4,32 +4,32 @@ using SchemaSmith.SQLServer.Domain;
 
 namespace SchemaSmith.SQLServer.Core.ScriptGeneration;
 
-public class SqlServerScriptGenerator : ICreateScriptGenerator<SqlDatabase>
+public class SqlServerScriptGenerator : ICreateScriptGenerator<Database>
 {
-    public string Generate(SqlDatabase sqlDatabase)
+    public string Generate(Database database)
     {
         StringBuilder sb = new();
 
-        Obliterate(sb, sqlDatabase);
-        CreateSchemaAndTables(sqlDatabase, sb);
-        AddForeignKeys(sqlDatabase, sb);
+        Obliterate(sb, database);
+        CreateSchemaAndTables(database, sb);
+        AddForeignKeys(database, sb);
 
         // TODO: config for metadata
         if (false)
-            AddMetaData(sqlDatabase, sb);
+            AddMetaData(database, sb);
 
-        RunScripts(sqlDatabase, sb);
+        RunScripts(database, sb);
 
         File.WriteAllText(@"C:\Code\Tachus\DataWarehouse\Scripts\SQLServer\scaffold-databases.sql", sb.ToString());
 
         return sb.ToString();
     }
 
-    private static void RunScripts(SqlDatabase sqlDatabase, StringBuilder sb)
+    private static void RunScripts(Database database, StringBuilder sb)
     {
         sb.AppendLine(ScriptTemplates.RunScriptsHeader);
 
-        foreach (var schema in sqlDatabase.Schemas)
+        foreach (var schema in database.Schemas)
         {
             foreach (var table in schema.Tables)
             {
@@ -44,22 +44,22 @@ public class SqlServerScriptGenerator : ICreateScriptGenerator<SqlDatabase>
         }
     }
 
-    private static void Obliterate(StringBuilder sb, SqlDatabase sqlDatabase)
+    private static void Obliterate(StringBuilder sb, Database database)
     {
         sb.AppendLine(ScriptTemplates.ObliterateText);
 
-        foreach (var schema in sqlDatabase.Schemas)
+        foreach (var schema in database.Schemas)
             sb.AppendLine(ScriptTemplates.DropAllFKs(schema.Name));
 
-        foreach (var schema in sqlDatabase.Schemas)
+        foreach (var schema in database.Schemas)
         {
             sb.AppendLine(ScriptTemplates.DropAllTablesAndSchema(schema.Name));
         }
     }
 
-    private static void CreateSchemaAndTables(SqlDatabase sqlDatabase, StringBuilder sb)
+    private static void CreateSchemaAndTables(Database database, StringBuilder sb)
     {
-        foreach (var schema in sqlDatabase.Schemas)
+        foreach (var schema in database.Schemas)
         {
             sb.AppendLine(ScriptTemplates.CreateSchemaHeader(schema.Name));
 
@@ -160,11 +160,11 @@ public class SqlServerScriptGenerator : ICreateScriptGenerator<SqlDatabase>
         }
     }
 
-    private static void AddForeignKeys(SqlDatabase sqlDatabase, StringBuilder sb)
+    private static void AddForeignKeys(Database database, StringBuilder sb)
     {
         sb.AppendLine(ScriptTemplates.FKScriptHeader);
 
-        foreach (var schema in sqlDatabase.Schemas)
+        foreach (var schema in database.Schemas)
         {
             foreach (var table in schema.Tables)
             {
@@ -181,11 +181,11 @@ public class SqlServerScriptGenerator : ICreateScriptGenerator<SqlDatabase>
         }
     }
 
-    private static void AddMetaData(SqlDatabase sqlDatabase, StringBuilder sb)
+    private static void AddMetaData(Database database, StringBuilder sb)
     {
         sb.AppendLine(ScriptTemplates.ExtendedPropertiesHeader);
 
-        foreach (var schema in sqlDatabase.Schemas)
+        foreach (var schema in database.Schemas)
         {
             AddSchemaMetadata(sb, schema);
 

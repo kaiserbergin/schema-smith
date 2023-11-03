@@ -1,6 +1,6 @@
 ﻿namespace SchemaSmith.SQLServer.Domain;
 
-public class SqlDatabase
+public class Database
 {
     public string DatabaseName { get; set; } = null!;
     public string? Description { get; set; }

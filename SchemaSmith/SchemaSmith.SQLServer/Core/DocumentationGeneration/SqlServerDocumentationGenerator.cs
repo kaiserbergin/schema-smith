@@ -4,21 +4,21 @@ using SchemaSmith.SQLServer.Domain;
 
 namespace SchemaSmith.SQLServer.Core.DocumentationGeneration;
 
-public class SqlServerDocumentationGenerator : IDocumentationGenerator<SqlDatabase>
+public class SqlServerDocumentationGenerator : IDocumentationGenerator<Database>
 {
-    public string Generate(SqlDatabase sqlDatabase)
+    public string Generate(Database database)
     {
         StringBuilder sb = new();
 
-        sb.AppendLine("# Database: " + sqlDatabase.DatabaseName);
+        sb.AppendLine("# Database: " + database.DatabaseName);
 
-        if (!string.IsNullOrEmpty(sqlDatabase.Description))
+        if (!string.IsNullOrEmpty(database.Description))
         {
             sb.AppendLine();
-            sb.AppendLine(sqlDatabase.Description);
+            sb.AppendLine(database.Description);
         }
 
-        foreach (var schema in sqlDatabase.Schemas)
+        foreach (var schema in database.Schemas)
         {
             sb.AppendLine();
             sb.AppendLine("# Schema: " + schema.Name);
@@ -28,14 +28,14 @@ public class SqlServerDocumentationGenerator : IDocumentationGenerator<SqlDataba
 
             foreach (var table in schema.Tables)
             {
-                AppendTable(sb, table, sqlDatabase);
+                AppendTable(sb, table, database);
             }
         }
 
         return sb.ToString();
     }
 
-    private static void AppendTable(StringBuilder sb, Table table, SqlDatabase db)
+    private static void AppendTable(StringBuilder sb, Table table, Database db)
     {
         sb.AppendLine($"## {table.Name}");
         sb.AppendLine();
@@ -103,7 +103,7 @@ public class SqlServerDocumentationGenerator : IDocumentationGenerator<SqlDataba
         sb.AppendLine();
     }
 
-    private static void AppendRelationshipContext(StringBuilder sb, Table table, SqlDatabase db)
+    private static void AppendRelationshipContext(StringBuilder sb, Table table, Database db)
     {
         sb.AppendLine();
         sb.AppendLine("### Relationship Context");

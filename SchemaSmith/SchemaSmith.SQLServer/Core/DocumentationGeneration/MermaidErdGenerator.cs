@@ -5,16 +5,16 @@ namespace SchemaSmith.SQLServer.Core.DocumentationGeneration;
 
 public class MermaidErdGenerator
 {
-    public static void Write(SqlDatabase sqlDatabase, Table focusTable, StringBuilder ogSb)
+    public static void Write(Database database, Table focusTable, StringBuilder ogSb)
     {
         var fkSb = new StringBuilder();
         
-        var parentSchema = sqlDatabase.Schemas
+        var parentSchema = database.Schemas
             .Single(schema => schema.Tables.Contains(focusTable));
 
         AppendFks(focusTable, fkSb, parentSchema);
 
-        AppendReferences(fkSb, sqlDatabase, focusTable, parentSchema);
+        AppendReferences(fkSb, database, focusTable, parentSchema);
 
         if (fkSb.Length > 0)
         {
@@ -31,13 +31,13 @@ public class MermaidErdGenerator
 
     private static void AppendReferences(
         StringBuilder sb, 
-        SqlDatabase sqlDatabase, 
+        Database database, 
         Table focusTable, 
         Domain.Schema parentSchema)
     {
         var schemaTableFk = new Dictionary<string, Dictionary<string, (Table, ForeignKey)>>();
 
-        foreach (var schema in sqlDatabase.Schemas)
+        foreach (var schema in database.Schemas)
         {
             foreach (var table in schema.Tables)
             {
