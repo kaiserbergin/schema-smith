@@ -11,9 +11,9 @@
         <VersionPrefix>0.0.11</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <Title>SchemaSmith</Title>
-        <Description>Simplify development of neo4j schemas and scripts</Description>
+        <Description>Simplify development of schemas and scripts for various databases</Description>
         <Authors>Donovan Bergin</Authors>
-        <PackageTags>neo4j</PackageTags>
+        <PackageTags>neo4j;sqlserver;cli</PackageTags>
         <PackageProjectUrl>https://github.com/kaiserbergin/schema-smith</PackageProjectUrl>
     </PropertyGroup>
 
