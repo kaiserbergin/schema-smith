@@ -115,7 +115,7 @@ public class GraphExtensionsTests
         };
 
         // Act
-        var cypherStatements = _createScriptGenerator.GenerateCreateScript(graph);
+        var cypherStatements = _createScriptGenerator.Generate(graph);
 
         // Assert
         await Verifier.Verify(cypherStatements, VerifyFixture.VerifySettings);

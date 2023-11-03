@@ -7,7 +7,7 @@ namespace SchemaSmith.Neo4j.Core.ScriptGeneration;
 
 public class CreateScriptGenerator : ICreateScriptGenerator<GraphSchema>
 {
-    public string GenerateCreateScript(GraphSchema graphSchema)
+    public string Generate(GraphSchema graphSchema)
     {
         var sb = new StringBuilder();
         
