@@ -1,13 +1,14 @@
 ﻿using SchemaSmith.Domain.Dto.Validation;
 using SchemaSmith.Domain.Interfaces;
+using YamlDotNet.RepresentationModel;
 
 namespace SchemaSmith.Core.Linting;
 
 public class Linter
 {
-    public static async Task LintAsync(FileInfo file, ISchemaValidator validator)
+    public static async Task LintAsync(YamlMappingNode rootNode, ISchemaValidator validator)
     {
-        List<ValidationEvent> validationEvents = validator.Validate(file.FullName);
+        List<ValidationEvent> validationEvents = validator.Validate(rootNode);
 
         var validationEventsErrorLevel = validationEvents
             .Where(e => e.Severity is ValidationSeverity.Error)

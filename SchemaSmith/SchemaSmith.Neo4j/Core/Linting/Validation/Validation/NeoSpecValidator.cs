@@ -9,9 +9,6 @@ public class NeoSpecValidator : ISchemaValidator
 {
     public List<ValidationEvent> Validate(YamlNode node)
     {
-        // TODO: Move spec reading to SchemaSmith.Infrastrucutre.
-        // var root = SpecReader.GetYamlMapping(filename);
-
         var validator = new ServerSchemaMap();
 
         return validator.Validate(node);
