@@ -8,7 +8,7 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>schemasmith</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
-        <VersionPrefix>0.0.11</VersionPrefix>
+        <VersionPrefix>0.0.12</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <Title>SchemaSmith</Title>
         <Description>Simplify development of schemas and scripts for various databases</Description>
