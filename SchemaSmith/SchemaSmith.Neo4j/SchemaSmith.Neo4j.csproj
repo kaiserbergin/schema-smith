@@ -17,7 +17,24 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Infrastructure\ScriptExecution\" />
+      <None Update="Infrastructure\Queries\Cleanup\delete-schema-smith-entities.cypher">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Infrastructure\Queries\DbInspection\get-versions.cypher">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Infrastructure\Queries\DbInspection\show-constraints.cypher">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Infrastructure\Queries\DbInspection\show-indexes.cypher">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Infrastructure\Queries\DbInspection\show-meta-schema.cypher">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Infrastructure\Queries\DbInspection\show-privileges.cypher">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

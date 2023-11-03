@@ -11,6 +11,8 @@ public static class QueryProvider
     public static readonly string ShowPrivileges;
     public static readonly string GetVersions;
 
+    private const string INFRA_DIR = @"/Infrastructure";
+    private const string QUERY_DIR = @"/Queries";
     private const string DB_INSPECTION_DIR = @"/DbInspection";
     private const string CLEANUP_DIR = @"/Cleanup";
 
@@ -20,7 +22,7 @@ public static class QueryProvider
     static QueryProvider()
     {
         _buildDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
-        _queryDir = $@"{_buildDir}/Queries";
+        _queryDir = $@"{_buildDir}{INFRA_DIR}{QUERY_DIR}";
 
         DeleteSchemaSmithEntities = File.ReadAllText(@$"{_queryDir}{CLEANUP_DIR}/delete-schema-smith-entities.cypher");
         ShowConstraints = File.ReadAllText(@$"{_queryDir}{DB_INSPECTION_DIR}/show-constraints.cypher");
