@@ -99,7 +99,7 @@ graphs:
             - id
     indexes:
       - name: Test_BI
-        type: b-tree
+        type: range
         entity:
           type: node
           id: Test

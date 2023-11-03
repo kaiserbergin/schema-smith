@@ -105,12 +105,7 @@ public class SqlServerDocumentationGenerator : IDocumentationGenerator<Database>
 
     private static void AppendRelationshipContext(StringBuilder sb, Table table, Database db)
     {
-        sb.AppendLine();
-        sb.AppendLine("### Relationship Context");
-        sb.AppendLine();
-        sb.AppendLine("```mermaid");
         MermaidErdGenerator.Write(db, table, sb);
-        sb.AppendLine("```");
         sb.AppendLine();
     }
 

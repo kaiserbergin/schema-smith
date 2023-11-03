@@ -20,8 +20,6 @@ public class SqlServerScriptGenerator : ICreateScriptGenerator<Database>
 
         RunScripts(database, sb);
 
-        File.WriteAllText(@"C:\Code\Tachus\DataWarehouse\Scripts\SQLServer\scaffold-databases.sql", sb.ToString());
-
         return sb.ToString();
     }
 

@@ -40,7 +40,7 @@ public class Script
         
         var cypherStatements = serverSchema
             .Graphs
-            .SelectMany(schema => schemaGenerator.Generate(schema))
+            .Select(schema => schemaGenerator.Generate(schema))
             .ToList();
         
         if (!outputFileInfo.Exists)
