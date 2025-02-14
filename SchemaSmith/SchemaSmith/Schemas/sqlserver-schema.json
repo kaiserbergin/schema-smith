@@ -89,7 +89,7 @@
                               "GEOMETRY"
                             ]
                           }
-                        ]                        
+                        ]
                       },
                       "example": {},
                       "source": {
@@ -190,6 +190,39 @@
                       "name",
                       "isUnique",
                       "columns"
+                    ]
+                  }
+                },
+                "columnstoreIndexes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "isClustered": {
+                        "type": "boolean"
+                      },
+                      "columns": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "order": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalClauses": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "isClustered"
                     ]
                   }
                 },
