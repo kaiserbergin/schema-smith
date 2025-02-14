@@ -97,7 +97,7 @@ schemas:
             columns:
               - FullName
         scripts:
-          - source: Q:\Code\schema-smith\SchemaSmith\SchemaSmith.Tests\Schemas\test.sql
+          - source: test.sql
       - name: PokeTelemetry
         description: >
           The telemetry of the Pokemon. Like, how many times it's been caught.
