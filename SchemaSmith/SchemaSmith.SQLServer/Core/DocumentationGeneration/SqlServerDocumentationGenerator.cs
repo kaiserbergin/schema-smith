@@ -97,6 +97,23 @@ public class SqlServerDocumentationGenerator : IDocumentationGenerator<Database>
                 sb.AppendLine();
             }
         }
+        
+        if (table.ColumnstoreIndexes?.Count > 0)
+        {
+            sb.AppendLine();
+            sb.AppendLine("### Columnstore Indexes");
+            sb.AppendLine();
+            sb.AppendLine("| Name | Is Clustered | Columns |");
+            sb.AppendLine("| --- | --- | --- |");
+
+            foreach (var index in table.ColumnstoreIndexes)
+            {
+                sb.Append($"| {index.Name} | ");
+                sb.Append($"{index.IsClustered} |");
+                sb.Append($"{string.Join(", ", index.Columns)} |");
+                sb.AppendLine();
+            }
+        }
 
         sb.AppendLine();
         sb.AppendLine("---");

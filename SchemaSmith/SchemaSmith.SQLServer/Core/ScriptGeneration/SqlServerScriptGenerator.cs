@@ -86,6 +86,7 @@ public class SqlServerScriptGenerator : ICreateScriptGenerator<Database>
         CreateTable(sb, schema, table);
         AddPrimaryKey(sb, schema, table);
         AddIndexes(sb, schema, table);
+        AddColumnstoreIndexes(sb, schema, table);
     }
 
     private static void DropTableIfExists(StringBuilder sb, Domain.Schema schema, Table table)
@@ -153,6 +154,36 @@ public class SqlServerScriptGenerator : ICreateScriptGenerator<Database>
             sb.AppendLine($"CREATE INDEX [{index.Name}]");
             sb.Append($"    ON [{schema.Name}].[{table.Name}]");
             sb.AppendLine($" ({string.Join(", ", index.Columns)})");
+            sb.AppendLine("GO");
+            sb.AppendLine();
+        }
+    }
+
+    private static void AddColumnstoreIndexes(StringBuilder sb, Schema schema, Table table)
+    {
+        if (!table.ColumnstoreIndexes.Any())
+            return;
+
+        foreach (var index in table.ColumnstoreIndexes)
+        {
+            if (index.IsClustered)
+                sb.AppendLine($"CREATE CLUSTERED COLUMNSTORE INDEX [{index.Name}]");
+            else
+                sb.AppendLine($"CREATE NONCLUSTERED COLUMNSTORE INDEX [{index.Name}]");
+            
+            sb.Append($"    ON [{schema.Name}].[{table.Name}]");
+            if (index.Order.Any())
+            {
+                sb.AppendLine(" ORDER (");
+                sb.Append(string.Join(',', index.Order));
+                sb.Append(")");
+            }
+
+            if (index.AdditionalClauses is not null)
+            {
+                sb.AppendLine($" {index.AdditionalClauses}");
+            }
+
             sb.AppendLine("GO");
             sb.AppendLine();
         }

@@ -9,5 +9,6 @@ public class Table
     public PrimaryKey? PrimaryKey { get; set; }
     public List<ForeignKey> ForeignKeys { get; set; } = new();
     public List<Index> Indexes { get; set; } = new();
+    public List<ColumnstoreIndex> ColumnstoreIndexes { get; set; } = new();
     public List<CustomScript> Scripts { get; set; } = new();
 }

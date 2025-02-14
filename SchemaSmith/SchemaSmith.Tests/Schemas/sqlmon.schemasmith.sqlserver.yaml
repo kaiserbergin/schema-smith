@@ -97,4 +97,40 @@ schemas:
             columns:
               - FullName
         scripts:
-          - source: Q:\Code\schema-smith\SchemaSmith\SchemaSmith.Tests\Schemas\test.sql
+          - source: test.sql
+      - name: PokeTelemetry
+        description: >
+          The telemetry of the Pokemon. Like, how many times it's been caught.
+        columns:
+          - name: ReadingId
+            description: >
+              The telemetry reading id.
+            dataType: BIGINT
+            example: 1
+          - name: PokemonId
+            dataType: BIGINT
+            example: 1
+            source: Pokemon
+            constraints:
+              - NOT NULL
+          - name: Position
+            dataType: GEOGRAPHY
+            example: POINT(0 0)
+            source: GPS
+            constraints:
+              - NOT NULL
+          - name: HP
+            dataType: INT
+            example: 100
+            source: Gameboy
+            constraints:
+              - NOT NULL
+          - name: ReadingTimestamp
+            dataType: INT
+            description: Unix timestamp
+            example: 1234567890
+            constraints:
+              - NOT NULL
+        columnstoreIndexes:
+          - name: ClusteredIndex
+            isClustered: true
